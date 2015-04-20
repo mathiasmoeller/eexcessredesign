@@ -1,0 +1,27 @@
+{
+  "name": "EEXCESS Redesign",
+  "version": "0.1",
+  "browser_action": {
+    "default_title": "EEXCESSRedesign",
+    "default_icon": {
+      "38": "media/icons/icon38.png"
+    }
+  },
+  "background": {
+    "page": "background/background.html"
+  },
+  "web_accessible_resources": [
+    "options/*"
+  ],
+  "manifest_version": 2,
+  "permissions": [
+    "tabs",
+    "<all_urls>",
+    "geolocation",
+    "history",
+    "background",
+    "storage"
+  ],
+  "options_page": "settings/settings.html"
+}
+
