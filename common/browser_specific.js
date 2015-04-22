@@ -1,6 +1,6 @@
-var EEXCESS= EEXCESS || {};
+var ER = ER || {};
 
-EEXCESS.messaging = (function() {
+ER.messaging = (function() {
     var _extID = chrome.i18n.getMessage('@@extension_id'); // chrome extension identifier
 
     /**
@@ -10,6 +10,7 @@ EEXCESS.messaging = (function() {
      * @param {Function} callback Function to be called by the receiver
      */
     var _callBG = function(message, callback) {
+        console.log("calling BG");
         if (typeof callback !== 'undefined') {
             chrome.runtime.sendMessage(_extID, message, callback);
         } else {
@@ -85,39 +86,39 @@ EEXCESS.messaging = (function() {
         callBG: _callBG
     };
 })();
-
-EEXCESS.browserAction = (function() {
-    /**
-     * See https://developer.chrome.com/extensions/browserAction#event-onClicked for documentation
-     * @param {Function} callback
-     * @returns {undefined}
-     */
-    var _clickedListener = function(callback) {
-        chrome.browserAction.onClicked.addListener(callback);
-    };
-
-    /**
-     * See https://developer.chrome.com/extensions/browserAction#method-getBadgeText for documentation
-     * @param {Object} details
-     * @param {Function} callback
-     * @returns {undefined}
-     */
-    var _getBadgeText = function(details, callback) {
-        chrome.browserAction.getBadgeText(details, callback);
-    };
-
-    /**
-     * See https://developer.chrome.com/extensions/browserAction#method-setBadgeText for documentation
-     * @param {Object} details
-     * @returns {undefined}
-     */
-    var _setBadgeText = function(details) {
-        chrome.browserAction.setBadgeText(details);
-    };
-
-    return  {
-        clickedListener: _clickedListener,
-        getBadgeText: _getBadgeText,
-        setBadgeText: _setBadgeText
-    };
-})();
+//
+//ER.browserAction = (function() {
+//    /**
+//     * See https://developer.chrome.com/extensions/browserAction#event-onClicked for documentation
+//     * @param {Function} callback
+//     * @returns {undefined}
+//     */
+//    var _clickedListener = function(callback) {
+//        chrome.browserAction.onClicked.addListener(callback);
+//    };
+//
+//    /**
+//     * See https://developer.chrome.com/extensions/browserAction#method-getBadgeText for documentation
+//     * @param {Object} details
+//     * @param {Function} callback
+//     * @returns {undefined}
+//     */
+//    var _getBadgeText = function(details, callback) {
+//        chrome.browserAction.getBadgeText(details, callback);
+//    };
+//
+//    /**
+//     * See https://developer.chrome.com/extensions/browserAction#method-setBadgeText for documentation
+//     * @param {Object} details
+//     * @returns {undefined}
+//     */
+//    var _setBadgeText = function(details) {
+//        chrome.browserAction.setBadgeText(details);
+//    };
+//
+//    return  {
+//        clickedListener: _clickedListener,
+//        getBadgeText: _getBadgeText,
+//        setBadgeText: _setBadgeText
+//    };
+//})();
