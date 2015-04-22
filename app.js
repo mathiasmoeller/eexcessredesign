@@ -1,7 +1,7 @@
 angular
     .module('eRedesign', [
-        //'ngAnimate',
-        //'ngMaterial'
+        'ngAnimate',
+        'ngMaterial'
     ]);
 
 ER = ER || {};

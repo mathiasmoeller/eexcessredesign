@@ -1,3 +1,11 @@
 .detectedParagraph {
+    border: 2px solid rgba(29, 38, 154, 0.3);
+}
+
+.detectedParagraph:hover {
+    border: 2px solid rgba(29, 38, 154, 1);
+}
+
+.queryButton {
 
 }

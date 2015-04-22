@@ -14,7 +14,6 @@ ER.keywords = (function() {
     };
     var _getParagraphEntityTypes = function(tabID, paragraphs, callback) {
         console.log("trying to send message2");
-        console.log(callback);
         var xhr = $.ajax({
             url: 'http://zaire.dimis.fim.uni-passau.de:8999/doser-disambiguationserver/webclassify/entityAndCategoryStatistic',
             data: JSON.stringify({paragraphs: paragraphs}),
@@ -22,7 +21,9 @@ ER.keywords = (function() {
             contentType: 'application/json',
             dataType: 'json'
         });
-        xhr.done(callback);
+        xhr.then(callback, function () {
+            console.log("failed");
+        });
     };
 
     return {
