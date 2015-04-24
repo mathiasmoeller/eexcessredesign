@@ -2,11 +2,6 @@ var ER = ER || {};
 
 
 ER.queryParagraphs = function() {
-    // TODO: find a better place for me
-    $("html").attr('ng-app','eRedesign');
-    //$("html").attr("ng-csp", "true");
-
-
 
     var corresponding = [];
     var single = [];
@@ -96,7 +91,7 @@ ER.queryParagraphs = function() {
 
     for (var i in single) {
         var h = _getHeadline(single[i]);
-        $(single[i]).wrap('<paragraph-directive></paragraph-directive>');
+        $(single[i]).wrap('<paragraph-directive paragraph="single[i]"></paragraph-directive>');
         finalParagraphs.push({
             headline: $(h).text(),
             content: $(single[i]).text()
@@ -109,7 +104,7 @@ ER.queryParagraphs = function() {
         for (var k = 0; k < corresponding[i].length; k++) {
             text += $(corresponding[i][k]).text();
         }
-        tmpCorr.wrapAll('<paragraph-directive></paragraph-directive>');
+        tmpCorr.wrapAll('<paragraph-directive paragraph="tempCorr"></paragraph-directive>');
         finalParagraphs.push({
             headline: $(h).text(),
             content: text
@@ -143,14 +138,14 @@ ER.queryParagraphs = function() {
         });
     };
 
-    ER.messaging.callBG({method: {parent: 'keywords', func: 'getParagraphEntityTypes'}, data: finalParagraphs}, function(result) {
-        console.log("getParagraphEntityTypes results are: ");
-        console.log(result);
-    });
-    ER.messaging.callBG({method: {parent: 'keywords', func: 'getParagraphEntities'}, data: finalParagraphs}, function(result) {
-        console.log("getParagraphEntities results are: ");
-        console.log(result);
-    });
+    //ER.messaging.callBG({method: {parent: 'keywords', func: 'getParagraphEntityTypes'}, data: finalParagraphs}, function(result) {
+    //    console.log("getParagraphEntityTypes results are: ");
+    //    console.log(result);
+    //});
+    //ER.messaging.callBG({method: {parent: 'keywords', func: 'getParagraphEntities'}, data: finalParagraphs}, function(result) {
+    //    console.log("getParagraphEntities results are: ");
+    //    console.log(result);
+    //});
         //var valueStr = function(val) {
         //    if (val === 1) {
         //        return '';
