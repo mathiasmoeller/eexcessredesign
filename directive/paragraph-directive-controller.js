@@ -9,6 +9,7 @@
         $scope.query = function () {
             // outgoing paragraph has to be in a list. this is requested by the api of the REST service
             var paragraph = [ER.paragraphs.getParagraph($scope.id)];
+            $scope.queried = true;
 
             ER.messaging.callBG({
                 method: {parent: 'keywords', func: 'getParagraphEntities'},
