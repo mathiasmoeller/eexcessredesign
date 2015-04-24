@@ -1,7 +1,15 @@
 var ER = ER || {};
 
-ER.messaging = (function() {
+ER.utils = (function() {
     var _extID = chrome.i18n.getMessage('@@extension_id'); // chrome extension identifier
+
+    return {
+        extID: _extID
+    };
+})();
+
+ER.messaging = (function() {
+    var _extID = ER.utils.extID;
 
     /**
      * Sends a message to the background script
