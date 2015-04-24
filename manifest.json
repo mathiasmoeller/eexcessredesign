@@ -26,6 +26,8 @@
         "vendor/angular-material/angular-material.js",
         "vendor/angular-animate/angular-animate.js",
         "vendor/angular-aria/angular-aria.js",
+        "vendor/angular-loading-bar/src/loading-bar.js",
+        "vendor/angular-hotkeys/src/hotkeys.js",
         "common/browser_specific.js",
         "paragraphDetection/ContextDetector.js",
         "app.js",
