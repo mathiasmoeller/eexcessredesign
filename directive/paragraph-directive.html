@@ -1,0 +1,10 @@
+<div>
+    <div class="detectedParagraph" ng-transclude="true" ng-mouseenter="showQueryButton = true"
+         ng-mouseleave="showQueryButton = false"></div>
+
+    <md-button aria-label="Query" class="md-primary md-raised queryButton" ng-show="showQueryButton"
+               ng-mouseenter="showQueryButton = true" ng-mouseleave="showQueryButton = false" ng-click="query()">
+        <md-icon md-svg-src="{{iconSource}}"></md-icon>
+
+    </md-button>
+</div>
