@@ -8,9 +8,7 @@
     }
   },
   "background": {
-    //    "page": "background/background.html"
     "scripts": [
-      //      "vendor/angular/angular.min.js"
       "vendor/jquery-1.10.1.min.js",
       "common/browser_specific.js",
       "background/keywords.js",

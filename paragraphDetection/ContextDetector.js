@@ -1,17 +1,17 @@
 var ER = ER || {};
+var processedParagraphs = {};
 
-
-ER.queryParagraphs = function() {
+ER.queryParagraphs = function () {
 
     var corresponding = [];
     var single = [];
 
-    var _getParagraphs = function() {
+    var _getParagraphs = function () {
         var pars = [];
         var walker = document.createTreeWalker(
-                document.body,
-                NodeFilter.SHOW_TEXT
-                );
+            document.body,
+            NodeFilter.SHOW_TEXT
+        );
 
         var node;
         while (node = walker.nextNode()) {
@@ -23,7 +23,7 @@ ER.queryParagraphs = function() {
             var cond4 = parent !== 'A';
             var minLength = node.nodeValue.length > 40;
 
-            if(parent === 'HTML') {
+            if (parent === 'HTML') {
                 console.log(parent);
 
             }
@@ -37,11 +37,11 @@ ER.queryParagraphs = function() {
         return pars;
     };
 
-    var _getHeadline = function(parNode) {
+    var _getHeadline = function (parNode) {
         var walker = document.createTreeWalker(
-                document.body,
-                NodeFilter.SHOW_ELEMENT
-                );
+            document.body,
+            NodeFilter.SHOW_ELEMENT
+        );
 
         var node = parNode;
         walker.currentNode = node;
@@ -87,15 +87,17 @@ ER.queryParagraphs = function() {
         }
     }
 
-    var finalParagraphs = [];
+    var finalParagraphs = {};
+    var id = 0;
 
     for (var i in single) {
         var h = _getHeadline(single[i]);
-        $(single[i]).wrap('<paragraph-directive paragraph="single[i]"></paragraph-directive>');
-        finalParagraphs.push({
+        $(single[i]).wrap('<paragraph-directive id="' + id + '"></paragraph-directive>');
+        finalParagraphs[id] = {
             headline: $(h).text(),
             content: $(single[i]).text()
-        });
+        };
+        id++;
     }
     for (var i in corresponding) {
         var h = _getHeadline(corresponding[i][0]);
@@ -104,21 +106,24 @@ ER.queryParagraphs = function() {
         for (var k = 0; k < corresponding[i].length; k++) {
             text += $(corresponding[i][k]).text();
         }
-        tmpCorr.wrapAll('<paragraph-directive paragraph="tempCorr"></paragraph-directive>');
-        finalParagraphs.push({
+        tmpCorr.wrapAll('<paragraph-directive id="' + id + '"></paragraph-directive>');
+        finalParagraphs[id] = {
             headline: $(h).text(),
             content: text
-        });
-    }
+        };
+        id++;
 
-    ER.messaging.callBG({method: {parent: 'keywords', func: 'getParagraphEntityTypes'}, data: finalParagraphs}, function(result) {
-        console.log("getParagraphEntityTypes results are: ");
-        console.log(result);
-    });
-    ER.messaging.callBG({method: {parent: 'keywords', func: 'getParagraphEntities'}, data: finalParagraphs}, function(result) {
-        console.log("getParagraphEntities results are: ");
-        console.log(result);
-    });
+    }
+    processedParagraphs = finalParagraphs;
 }();
 
-
+ER.paragraphs = function () {
+    return {
+        getParagraphs: function () {
+            return processedParagraphs;
+        },
+        getParagraph: function (id) {
+            return processedParagraphs[id];
+        }
+    }
+}();

@@ -4,16 +4,20 @@
     function ParagraphCtrl($scope, $sce) {
         $scope.iconSource = $sce.trustAsResourceUrl('chrome-extension://' + ER.utils.extID + '/media/icons/query-icon.svg');
         $scope.showQueryButton = false;
+        $scope.keywords = [];
 
         $scope.query = function () {
-            ER.messaging.callBG({method: {parent: 'keywords', func: 'getParagraphEntities'}, data: $scope.paragraph}, function(result) {
-                console.log("getParagraphEntities results are: ");
+            // outgoing paragraph has to be in a list. this is requested by the api of the REST service
+            var paragraph = [ER.paragraphs.getParagraph($scope.id)];
+
+            ER.messaging.callBG({
+                method: {parent: 'keywords', func: 'getParagraphEntities'},
+                data: paragraph
+            }, function (result) {
+                $scope.keywords = result.paragraphs[0].statistic;
                 console.log(result);
             });
         };
-
-        console.log("paragraph is");
-        console.log($scope.paragraph);
     }
 
     angular
