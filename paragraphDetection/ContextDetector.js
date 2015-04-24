@@ -1,17 +1,17 @@
 var ER = ER || {};
+var processedParagraphs = {};
 
-
-ER.queryParagraphs = function() {
+ER.queryParagraphs = function () {
 
     var corresponding = [];
     var single = [];
 
-    var _getParagraphs = function() {
+    var _getParagraphs = function () {
         var pars = [];
         var walker = document.createTreeWalker(
-                document.body,
-                NodeFilter.SHOW_TEXT
-                );
+            document.body,
+            NodeFilter.SHOW_TEXT
+        );
 
         var node;
         while (node = walker.nextNode()) {
@@ -23,7 +23,7 @@ ER.queryParagraphs = function() {
             var cond4 = parent !== 'A';
             var minLength = node.nodeValue.length > 40;
 
-            if(parent === 'HTML') {
+            if (parent === 'HTML') {
                 console.log(parent);
 
             }
@@ -37,11 +37,11 @@ ER.queryParagraphs = function() {
         return pars;
     };
 
-    var _getHeadline = function(parNode) {
+    var _getHeadline = function (parNode) {
         var walker = document.createTreeWalker(
-                document.body,
-                NodeFilter.SHOW_ELEMENT
-                );
+            document.body,
+            NodeFilter.SHOW_ELEMENT
+        );
 
         var node = parNode;
         walker.currentNode = node;
@@ -87,15 +87,17 @@ ER.queryParagraphs = function() {
         }
     }
 
-    var finalParagraphs = [];
+    var finalParagraphs = {};
+    var id = 0;
 
     for (var i in single) {
         var h = _getHeadline(single[i]);
-        $(single[i]).wrap('<paragraph-directive paragraph="single[i]"></paragraph-directive>');
-        finalParagraphs.push({
+        $(single[i]).wrap('<paragraph-directive id="' + id + '"></paragraph-directive>');
+        finalParagraphs[id] = {
             headline: $(h).text(),
             content: $(single[i]).text()
-        });
+        };
+        id++;
     }
     for (var i in corresponding) {
         var h = _getHeadline(corresponding[i][0]);
@@ -104,122 +106,24 @@ ER.queryParagraphs = function() {
         for (var k = 0; k < corresponding[i].length; k++) {
             text += $(corresponding[i][k]).text();
         }
-        tmpCorr.wrapAll('<paragraph-directive paragraph="tempCorr"></paragraph-directive>');
-        finalParagraphs.push({
+        tmpCorr.wrapAll('<paragraph-directive id="' + id + '"></paragraph-directive>');
+        finalParagraphs[id] = {
             headline: $(h).text(),
             content: text
-        });
+        };
+        id++;
+
     }
-
-    var showEntities = function() {
-        ER.messaging.callBG({method: {parent: 'NER', func: 'getParagraphEntities'}, data: finalParagraphs}, function(result) {
-            var addEntities = function(prefix, i, id) {
-                var img = $('<img src="chrome-extension://' + ER.utils.extID + '/media/icons/16.png" style="margin:0;padding:0;" />');
-                $('#' + prefix + id).prepend(img);
-                var entities = '';
-                for (var j = 0; j < result.paragraphs[i].statistic.length; j++) {
-                    if (j < result.paragraphs[i].statistic.length - 1) {
-                        entities += ' ' + result.paragraphs[i].statistic[j].key.text + ' |';
-                    } else {
-                        entities += ' ' + result.paragraphs[i].statistic[j].key.text;
-                    }
-                }
-                img.after('<span style="color:#1D904E;font-weight:bold;">' + entities + '</span>');
-            };
-
-            for (var i = 0; i < result.paragraphs.length; i++) {
-                if (i < single.length) {
-                    addEntities('eexcess_s', i, i);
-                } else {
-                    addEntities('eexcess_c', i, i - single.length);
-                }
-            }
-            console.log(result);
-        });
-    };
-
-    //ER.messaging.callBG({method: {parent: 'keywords', func: 'getParagraphEntityTypes'}, data: finalParagraphs}, function(result) {
-    //    console.log("getParagraphEntityTypes results are: ");
-    //    console.log(result);
-    //});
-    //ER.messaging.callBG({method: {parent: 'keywords', func: 'getParagraphEntities'}, data: finalParagraphs}, function(result) {
-    //    console.log("getParagraphEntities results are: ");
-    //    console.log(result);
-    //});
-        //var valueStr = function(val) {
-        //    if (val === 1) {
-        //        return '';
-        //    }
-        //    return '<span style="color:gray;font-weight:normal"> ' + val + '</span>';
-        //};
-        //var increment = function(dict, key, val, weight) {
-        //    if (key in dict) {
-        //        dict[key].count += weight;
-        //        dict[key].occurrences += 1;
-        //    } else {
-        //        dict[key] = val;
-        //        val.count = weight;
-        //        val.occurrences = 1;
-        //    }
-        //};
-        //
-        //var addCategories = function(el, i, threshold) {
-        //
-        //    var categories = {};
-        //    for (var j = 0; j < result.paragraphs[i].statistic.length; j++) {
-        //        var current = result.paragraphs[i].statistic[j];
-        //        for (var k = 0; k < current.key.categories.length; k++) {
-        //            increment(categories, current.key.categories[k].uri, current.key.categories[k], current.value);
-        //        }
-        //    }
-        //    categories = Object.keys(categories).map(function(key) {
-        //        return categories[key];
-        //    });
-        //    categories.sort(function(a, b) {
-        //        return b.count - a.count;
-        //    });
-        //    var categories_html = '';
-        //    for (var j = 0; j < categories.length; j++) {
-        //        if (categories[j].occurrences > threshold) {
-        //            if (j < categories.length - 1) {
-        //                categories_html += ' ' + categories[j].name + valueStr(categories[j].count) + '@' + valueStr(categories[j].occurrences) + ' |';
-        //            } else {
-        //                categories_html += ' ' + categories[j].name + valueStr(categories[j].count) + '@' + valueStr(categories[j].occurrences);
-        //            }
-        //        }
-        //    }
-        //    categories_html += '<hr/>';
-        //    el.prepend('<span style="color:red;font-weight:bold;">' + categories_html + '</span>');
-        //};
-        //
-        //
-        //var addEntities = function(el, i) {
-        //    var entities = '';
-        //    result.paragraphs[i].statistic.sort(function(a,b){return b.value - a.value});
-        //    for (var j = 0; j < result.paragraphs[i].statistic.length; j++) {
-        //        if (j < result.paragraphs[i].statistic.length - 1) {
-        //            entities += ' ' + result.paragraphs[i].statistic[j].key.text + valueStr(result.paragraphs[i].statistic[j].value) +' |';
-        //        } else {
-        //            entities += ' ' + result.paragraphs[i].statistic[j].key.text + valueStr(result.paragraphs[i].statistic[j].value);
-        //        }
-        //    }
-        //    el.prepend('<span style="color:#1D904E;font-weight:bold;">' + entities + '</span>');
-        //};
-        //
-        //var threshold = 1;
-        //for (var i = 0; i < result.paragraphs.length; i++) {
-        //    if (i < single.length) {
-        //        var el = $('#' + 'eexcess_s' + i);
-        //        addEntities(el, i);
-        //        addCategories(el, i, threshold);
-        //    } else {
-        //        var el = $('#' + 'eexcess_c' + (i - single.length));
-        //        addEntities(el, i);
-        //        addCategories(el, i, threshold);
-        //    }
-        //}
-        //console.log(result);
-    //});
+    processedParagraphs = finalParagraphs;
 }();
 
-
+ER.paragraphs = function () {
+    return {
+        getParagraphs: function () {
+            return processedParagraphs;
+        },
+        getParagraph: function (id) {
+            return processedParagraphs[id];
+        }
+    }
+}();

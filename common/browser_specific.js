@@ -18,8 +18,6 @@ ER.messaging = (function() {
      * @param {Function} callback Function to be called by the receiver
      */
     var _callBG = function(message, callback) {
-        console.log("calling BG: ");
-        console.log(callback);
         if (typeof callback !== 'undefined') {
             chrome.runtime.sendMessage(_extID, message, callback);
         } else {

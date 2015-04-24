@@ -8,9 +8,7 @@
     }
   },
   "background": {
-    //    "page": "background/background.html"
     "scripts": [
-      //      "vendor/angular/angular.min.js"
       "vendor/jquery-1.10.1.min.js",
       "common/browser_specific.js",
       "background/keywords.js",
@@ -28,6 +26,8 @@
         "vendor/angular-material/angular-material.js",
         "vendor/angular-animate/angular-animate.js",
         "vendor/angular-aria/angular-aria.js",
+        "vendor/angular-loading-bar/src/loading-bar.js",
+        "vendor/angular-hotkeys/src/hotkeys.js",
         "common/browser_specific.js",
         "paragraphDetection/ContextDetector.js",
         "app.js",

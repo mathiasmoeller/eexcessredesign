@@ -8,7 +8,7 @@
             transclude: true,
             restrict: 'E',
             scope: {
-                paragraph: '='
+                id: '='
             },
             templateUrl: $sce.trustAsResourceUrl('chrome-extension://' + ER.utils.extID + '/directive/paragraph-directive.html'),
             controller: 'ParagraphCtrl'
