@@ -33,7 +33,8 @@
         "app.js",
         "md-config.js",
         "directive/paragraph-directive.js",
-        "directive/paragraph-directive-controller.js"
+        "directive/paragraph-directive-controller.js",
+        "result-dialog/result-dialog-controller.js"
       ],
       "css": ["media/css/styles.css",
       "vendor/angular-material/angular-material.css"]
@@ -43,7 +44,8 @@
     "options/*",
     "media/*",
     "vendor/*",
-    "directive/*"
+    "directive/*",
+    "result-dialog/*"
   ],
   "manifest_version": 2,
   "permissions": [
