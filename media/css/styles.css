@@ -1,3 +1,5 @@
+
+
 .detectedParagraph {
     border: 2px solid rgba(63, 81, 181, 0.3);
     border-radius: 2px;
@@ -8,5 +10,20 @@
 }
 
 .queryButton {
-    /*bottom: 42px;*/
+    height: 36px;
+    width: 36px;
+    /*right: -20px;*/
+    /*position: relative;*/
+}
+
+.result-counter {
+    background-color: red;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    position: relative;
+    z-index: 999;
+    left: -10px;
+    top: 10px;
 }

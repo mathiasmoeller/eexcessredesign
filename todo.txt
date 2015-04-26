@@ -1,3 +1,4 @@
 - config loading bar
 - replace vendor scripts with minified versions
 - define hotkeys
+- md-highlight-text

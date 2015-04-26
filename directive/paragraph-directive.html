@@ -7,11 +7,37 @@
             {{$chip.key.text}}
         </md-chip-template>
     </md-chips>
-    <md-button aria-label="Query" class="md-primary md-icon-button md-raised queryButton" ng-show="showQueryButton"
-               ng-mouseenter="showQueryButton = true" ng-mouseleave="showQueryButton = false" ng-click="query()">
-        <md-icon md-svg-src="{{iconSource}}"></md-icon>
+    <div layout="row" layout-align="space-between end">
+        <!-- Query-->
+        <md-button aria-label="Query" class="md-accent md-icon-button md-raised queryButton"
+                   ng-mouseenter="showQueryButton = true" ng-mouseleave="showQueryButton = false" ng-click="query()">
+            <md-icon md-svg-src="{{icons.query}}" style="position: absolute; left: 6px; top: 6px;"></md-icon>
+            <md-tooltip>Query</md-tooltip>
+        </md-button>
 
-    </md-button>
+        <div layout="row" layout-align="end end">
+            <!-- Text-->
+            <md-button aria-label="Text" class="md-primary md-icon-button md-raised queryButton" ng-click="showTextResults($event)">
+                <md-icon md-svg-src="{{icons.text}}" style="position: absolute; left: 6px; top: 6px;"></md-icon>
+                <md-tooltip>Show text results</md-tooltip>
+            </md-button>
+            <span class="result-counter" layout="row" layout-align="center center">20</span>
+
+            <!-- Image-->
+            <md-button aria-label="Image" class="md-primary md-icon-button md-raised queryButton" ng-click="showImageResults($event)">
+                <md-icon md-svg-src="{{icons.image}}" style="position: absolute; left: 6px; top: 6px;"></md-icon>
+                <md-tooltip>Show image results</md-tooltip>
+            </md-button>
+            <span class="result-counter" layout="row" layout-align="center center">8</span>
+
+            <!-- Video-->
+            <md-button aria-label="Video" class="md-primary md-icon-button md-raised queryButton" ng-click="showVideoResults($event)">
+                <md-icon md-svg-src="{{icons.video}}" style="position: absolute; left: 6px; top: 6px;"></md-icon>
+                <md-tooltip>Show video results</md-tooltip>
+            </md-button>
+            <span class="result-counter" layout="row" layout-align="center center">3</span>
+        </div>
+    </div>
     <div class="detectedParagraph" ng-transclude="true" ng-mouseenter="showQueryButton = true"
          ng-mouseleave="showQueryButton = false">
     </div>
