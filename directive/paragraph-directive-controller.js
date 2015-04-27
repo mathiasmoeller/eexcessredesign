@@ -30,6 +30,7 @@
                     });
 
                     $scope.keywordsFound = true;
+                    $scope.$apply();
                 });
             }
 
@@ -55,6 +56,7 @@
                     });
 
                     $scope.queried = true;
+                    $scope.$apply();
                 });
             }
         };

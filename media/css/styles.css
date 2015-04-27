@@ -1,7 +1,8 @@
 
 .detectedParagraph {
     border: 2px solid rgba(63, 81, 181, 0.3);
-    border-radius: 2px;
+    border-radius: 1.1rem;
+    padding: 5px;
 }
 
 .detectedParagraph:hover {
@@ -9,10 +10,13 @@
 }
 
 .queryButton {
+    margin-left: 1.1rem;
     height: 36px;
     width: 36px;
 }
-
+.resultButtons {
+    margin-right: 1.1rem;
+}
 .resultButton {
     height: 36px;
     width: 36px;
