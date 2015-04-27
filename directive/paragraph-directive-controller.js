@@ -8,16 +8,16 @@
         $scope.icons.text = $sce.trustAsResourceUrl('chrome-extension://' + ER.utils.extID + '/media/icons/text-icon.svg');
         $scope.icons.video = $sce.trustAsResourceUrl('chrome-extension://' + ER.utils.extID + '/media/icons/video-icon.svg');
 
-        $scope.showQueryButton = false;
         $scope.keywords = [];
-        var results = {};
+
+        var queryResults = undefined;
 
         $scope.query = function () {
             if ($scope.keywords.length === 0) {
 
                 // outgoing paragraph has to be in a list. this is requested by the api of the REST service
                 var paragraph = [ER.paragraphs.getParagraph($scope.id)];
-                $scope.queried = true;
+
 
                 ER.messaging.callBG({
                     method: {service: 'KeywordService', func: 'getParagraphEntities'},
@@ -29,7 +29,7 @@
                         }
                     });
 
-                    console.log($scope.keywords);
+                    $scope.keywordsFound = true;
                 });
             }
 
@@ -39,23 +39,39 @@
                     method: {service: 'EuService', func: 'query'},
                     data: $scope.keywords
                 }, function (result) {
-                    console.log(result);
+                    queryResults = result.items;
+                    $scope.textResults = 0;
+                    $scope.imageResults = 0;
+                    $scope.avResults = 0;
+
+                    angular.forEach(queryResults, function(item) {
+                       if (item.type === 'TEXT') {
+                           $scope.textResults++;
+                       } else if(item.type === 'IMAGE' || item.type === '3D') {
+                           $scope.imageResults++;
+                       } else {
+                           $scope.avResults++;
+                       }
+                    });
+
+                    $scope.queried = true;
                 });
             }
         };
 
-        $scope.showTextResults= function(event) {
+        $scope.showResults= function(event, selectedTab) {
             $mdDialog.show({
                 templateUrl: $sce.trustAsResourceUrl('chrome-extension://' + ER.utils.extID + '/result-dialog/result-dialog.html'),
                 controller: 'ResultDialogCtrl',
                 resolve: {
                     results: function () {
-                        return results;
+                        return queryResults;
+                    },
+                    selectedTab: function () {
+                        return selectedTab;
                     }
                 },
                 targetEvent: event
-            }).then(function (changedObject) {
-
             });
         }
     }
