@@ -39,7 +39,7 @@
         "result-dialog/result-dialog-controller.js"
       ],
       "css": ["media/css/styles.css",
-      "vendor/angular-material/angular-material.css"]
+      "media/css/angular-material-adapted.css"]
     }
   ],
   "web_accessible_resources": [
