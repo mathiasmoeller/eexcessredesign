@@ -20,15 +20,28 @@
                 $scope.queried = true;
 
                 ER.messaging.callBG({
-                    method: {parent: 'keywords', func: 'getParagraphEntities'},
+                    method: {service: 'KeywordService', func: 'getParagraphEntities'},
                     data: paragraph
                 }, function (result) {
-                    $scope.keywords = result.paragraphs[0].statistic;
-                    console.log(result);
+                    angular.forEach(result.paragraphs[0].statistic, function(elem) {
+                        if (elem.key.text !== "") {
+                            $scope.keywords.push(elem.key.text);
+                        }
+                    });
+
+                    console.log($scope.keywords);
                 });
             }
 
-            // Query europeana
+            else {
+                // Query europeana
+                ER.messaging.callBG({
+                    method: {service: 'EuService', func: 'query'},
+                    data: $scope.keywords
+                }, function (result) {
+                    console.log(result);
+                });
+            }
         };
 
         $scope.showTextResults= function(event) {
