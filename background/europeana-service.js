@@ -22,7 +22,8 @@
 
             $http.get(ENV.api, {
                 params: {
-                    query: query
+                    query: query,
+                    rows: 30
                 }
             })
                 .success(function (result) {
@@ -31,17 +32,6 @@
                 }).error(function (error) {
                     console.log(error);
                 });
-
-            //var resource = $resource('http://www.europeana.eu/api/v2/search.json?wskey=DEXt75rSw', {}, {
-            //    query: {
-            //        method: 'GET',
-            //        data: queryTerms
-            //    }
-            //});
-            //
-            //resource.query().$promise.then(function(result) {
-            //    success(result);
-            //})
         };
 
         return {
