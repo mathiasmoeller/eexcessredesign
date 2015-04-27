@@ -8,12 +8,15 @@
     }
   },
   "background": {
-    "scripts": [
-      "vendor/jquery-1.10.1.min.js",
-      "common/browser_specific.js",
-      "background/keywords.js",
-      "background/messaging.js"
-    ]
+    "page": "background/background.html"
+//    "scripts": [
+//      "vendor/jquery-1.10.1.min.js",
+//      "vendor/angular/angular.js",
+//      "common/browser_specific.js",
+//      "background/background.js",
+//      "background/keywords.js",
+//      "background/messaging.js"
+//    ]
   },
   "content_scripts": [
     {
@@ -27,7 +30,6 @@
         "vendor/angular-animate/angular-animate.js",
         "vendor/angular-aria/angular-aria.js",
         "vendor/angular-loading-bar/src/loading-bar.js",
-        "vendor/angular-hotkeys/src/hotkeys.js",
         "common/browser_specific.js",
         "paragraphDetection/ContextDetector.js",
         "app.js",
@@ -47,6 +49,7 @@
     "directive/*",
     "result-dialog/*"
   ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "manifest_version": 2,
   "permissions": [
     "tabs",
