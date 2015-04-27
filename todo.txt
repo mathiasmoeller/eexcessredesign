@@ -1,3 +1,9 @@
 - config loading bar
 - replace vendor scripts with minified versions
 - define hotkeys
+- md-highlight-text
+- free access? Looking for objects containing the term Paris among objects protected by the Rights Reserved - Free Access licence:
+
+              http://www.europeana.eu/api/v2/search.json?wskey=xxxx&query=Paris&qf=RIGHTS:http://www.europeana.eu/rights/rr-f/
+
+- number of results?

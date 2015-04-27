@@ -8,12 +8,15 @@
     }
   },
   "background": {
-    "scripts": [
-      "vendor/jquery-1.10.1.min.js",
-      "common/browser_specific.js",
-      "background/keywords.js",
-      "background/messaging.js"
-    ]
+    "page": "background/background.html"
+//    "scripts": [
+//      "vendor/jquery-1.10.1.min.js",
+//      "vendor/angular/angular.js",
+//      "common/browser_specific.js",
+//      "background/background.js",
+//      "background/keywords.js",
+//      "background/messaging.js"
+//    ]
   },
   "content_scripts": [
     {
@@ -21,30 +24,32 @@
       "exclude_globs": ["*google*chrome*"],
       "run_at": "document_end",
       "js": [
-        "vendor/jquery-1.10.1.min.js",
+        "vendor/jquery/dist/jquery.min.js",
         "vendor/angular/angular.js",
         "vendor/angular-material/angular-material.js",
         "vendor/angular-animate/angular-animate.js",
         "vendor/angular-aria/angular-aria.js",
         "vendor/angular-loading-bar/src/loading-bar.js",
-        "vendor/angular-hotkeys/src/hotkeys.js",
         "common/browser_specific.js",
         "paragraphDetection/ContextDetector.js",
         "app.js",
         "md-config.js",
         "directive/paragraph-directive.js",
-        "directive/paragraph-directive-controller.js"
+        "directive/paragraph-directive-controller.js",
+        "result-dialog/result-dialog-controller.js"
       ],
       "css": ["media/css/styles.css",
-      "vendor/angular-material/angular-material.css"]
+      "media/css/angular-material-adapted.css"]
     }
   ],
   "web_accessible_resources": [
     "options/*",
     "media/*",
     "vendor/*",
-    "directive/*"
+    "directive/*",
+    "result-dialog/*"
   ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "manifest_version": 2,
   "permissions": [
     "tabs",

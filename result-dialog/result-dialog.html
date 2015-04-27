@@ -1,0 +1,56 @@
+<md-dialog aria-label="Result dialog">
+    <md-content>
+        <md-tabs md-selected="selectedTab">
+            <md-tab label="Text Results">
+                <md-content>
+                    <md-list>
+                        <md-list-item ng-repeat="result in results | resultFilter: {'TEXT': true}">
+                            <img ng-src="{{result.edmPreview[0]}}" class="preview-icon">
+
+                            <div class="md-list-item-test">
+                                <a href="{{result.guid}}" target="_blank">{{result.title[0]}}, {{result.title[1]}}</a>
+                            </div>
+                        </md-list-item>
+                    </md-list>
+                </md-content>
+            </md-tab>
+            <md-tab label="Image Results">
+                <md-content>
+                    <md-list>
+                        <md-list-item ng-repeat="result in results | resultFilter: {'IMAGE': true, '3D': true}">
+                            <img ng-src="{{result.edmPreview[0]}}" class="preview-icon">
+
+                            <div class="md-list-item-test">
+                                <a href="{{result.guid}}" target="_blank">{{result.title[0]}}, {{result.title[1]}}</a>
+                            </div>
+                        </md-list-item>
+                    </md-list>
+                </md-content>
+            </md-tab>
+            <md-tab label="Audio and Video Results">
+                <md-content>
+                    <md-list>
+                        <md-list-item ng-repeat="result in results | resultFilter: {'VIDEO': true, 'AUDIO': true}">
+                            <img ng-src="{{result.edmPreview[0]}}" class="preview-icon">
+
+                            <div class="md-list-item-test">
+                                <a href="{{result.guid}}" target="_blank">{{result.title[0]}}, {{result.title[1]}}</a>
+                            </div>
+                        </md-list-item>
+                    </md-list>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+
+
+    <div class="md-actions" layout="row">
+        <md-button>
+            Settings
+        </md-button>
+        <md-button class="md-primary" ng-click="hide()">
+            Close
+        </md-button>
+    </div>
+
+</md-dialog>

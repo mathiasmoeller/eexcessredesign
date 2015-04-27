@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html data-ng-csp="true">
+<html data-ng-csp="true" ng-app="eRedesignBG" ng-controller="BackgroundCtrl">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script src="background.js" type="text/javascript"></script>
-    <script src="keywords.js" type="text/javascript"></script>
-    <script src="messaging.js" type="text/javascript"></script>
-    <script src="../vendor/jquery-1.10.1.min.js" type="text/javascript"></script>
-    <script src="../common/browser_specific.js" type="text/javascript"></script>
-    <!--<script src="../vendor/angular/angular.js" type="text/javascript"></script>-->
 
-    <!--<script src="../common_js/storage.js" type="text/javascript"></script>-->
-    <!--<script src="../common_js/config.js" type="text/javascript"></script>-->
-    <!--<script src="../common_js/utils.js" type="text/javascript"></script>-->
+    <!-- vendor scripts-->
+    <script src="../vendor/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    <script src="../vendor/angular/angular.js"></script>
+
+    <!-- background scripts-->
+    <script src="background.js" type="text/javascript"></script>
+    <script src="background-controller.js" type="text/javascript"></script>
+    <script src="europeana-service.js" type="text/javascript"></script>
+    <script src="keyword-service.js" type="text/javascript"></script>
+    <script src="message-service.js" type="text/javascript"></script>
+    <script src="config.js" type="text/javascript"></script>
 
 </head>
 <body>
