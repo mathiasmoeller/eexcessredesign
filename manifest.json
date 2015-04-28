@@ -9,14 +9,14 @@
   },
   "background": {
     "page": "background/background.html"
-//    "scripts": [
-//      "vendor/jquery-1.10.1.min.js",
-//      "vendor/angular/angular.js",
-//      "common/browser_specific.js",
-//      "background/background.js",
-//      "background/keywords.js",
-//      "background/messaging.js"
-//    ]
+    //    "scripts": [
+    //      "vendor/jquery-1.10.1.min.js",
+    //      "vendor/angular/angular.js",
+    //      "common/browser_specific.js",
+    //      "background/background.js",
+    //      "background/keywords.js",
+    //      "background/messaging.js"
+    //    ]
   },
   "content_scripts": [
     {
@@ -38,8 +38,10 @@
         "directive/paragraph-directive-controller.js",
         "result-dialog/result-dialog-controller.js"
       ],
-      "css": ["media/css/styles.css",
-      "media/css/angular-material-adapted.css"]
+      "css": [
+        "vendor/angular-material/angular-material.css",
+        "media/css/styles.css"
+      ]
     }
   ],
   "web_accessible_resources": [
