@@ -35,10 +35,23 @@
     box-sizing: content-box;
 }
 
+.result-dialog-items {
+    position: absolute;
+    left: 86px;
+    height: 66px;
+}
+
+.result-dialog-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 45px;
+}
+
 /*Material Design Changes*/
 body {
     font-size: 1.0rem;
 }
+
 .md-button {
 
     padding: 0 0.6rem;
@@ -66,6 +79,7 @@ body {
 .md-button.md-icon-button.resultButton {
     margin-left: 5px;
 }
+
 .md-chips {
     display: block;
     font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;

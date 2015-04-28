@@ -5,10 +5,19 @@
                 <md-content>
                     <md-list>
                         <md-list-item ng-repeat="result in results | resultFilter: {'TEXT': true}">
-                            <img ng-src="{{result.edmPreview[0]}}" class="preview-icon">
+                            <a href="{{result.guid}}" target="_blank">
+                                <img ng-src="{{result.edmPreview[0]}}" class="preview-icon">
+                            </a>
 
-                            <div class="md-list-item-test">
-                                <a href="{{result.guid}}" target="_blank">{{result.title[0]}}, {{result.title[1]}}</a>
+                            <div class="result-dialog-items" layout="column" layout-align="center start">
+                                <div class="result-dialog-text" layout="column" layout-align="center start">
+                                    <a href="{{result.guid}}" target="_blank">
+                                        {{result.title[0]}}
+                                        <span ng-if="result.title[1]">,</span>
+                                        {{result.title[1]}}
+                                    </a>
+
+                                </div>
                             </div>
                         </md-list-item>
                     </md-list>
@@ -18,10 +27,18 @@
                 <md-content>
                     <md-list>
                         <md-list-item ng-repeat="result in results | resultFilter: {'IMAGE': true, '3D': true}">
-                            <img ng-src="{{result.edmPreview[0]}}" class="preview-icon">
+                            <a href="{{result.guid}}" target="_blank">
+                                <img ng-src="{{result.edmPreview[0]}}" class="preview-icon">
+                            </a>
 
-                            <div class="md-list-item-test">
-                                <a href="{{result.guid}}" target="_blank">{{result.title[0]}}, {{result.title[1]}}</a>
+                            <div class="result-dialog-items" layout="column" layout-align="center start">
+                                <div class="result-dialog-text" layout="column" layout-align="center start">
+                                    <a href="{{result.guid}}" target="_blank">
+                                        {{result.title[0]}}
+                                        <span ng-if="result.title[1]">,</span>
+                                        {{result.title[1]}}
+                                    </a>
+                                </div>
                             </div>
                         </md-list-item>
                     </md-list>
@@ -31,10 +48,18 @@
                 <md-content>
                     <md-list>
                         <md-list-item ng-repeat="result in results | resultFilter: {'VIDEO': true, 'AUDIO': true}">
-                            <img ng-src="{{result.edmPreview[0]}}" class="preview-icon">
+                            <a href="{{result.guid}}" target="_blank">
+                                <img ng-src="{{result.edmPreview[0]}}" class="preview-icon">
+                            </a>
 
-                            <div class="md-list-item-test">
-                                <a href="{{result.guid}}" target="_blank">{{result.title[0]}}, {{result.title[1]}}</a>
+                            <div class="result-dialog-items" layout="column" layout-align="center start">
+                                <div class="result-dialog-text" layout="column" layout-align="center start">
+                                    <a href="{{result.guid}}" target="_blank">
+                                        {{result.title[0]}}
+                                        <span ng-if="result.title[1]">,</span>
+                                        {{result.title[1]}}
+                                    </a>
+                                </div>
                             </div>
                         </md-list-item>
                     </md-list>
