@@ -34,6 +34,7 @@
         "common/browser_specific.js",
         "paragraphDetection/ContextDetector.js",
         "app.js",
+        "app-controller.js",
         "md-config.js",
         "directive/paragraph-directive.js",
         "directive/paragraph-directive-controller.js",
@@ -51,18 +52,19 @@
     "vendor/*",
     "directive/*",
     "result-dialog/*",
-    "popup/*"
+    "settings/*"
   ],
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "manifest_version": 2,
   "permissions": [
     "tabs",
     "<all_urls>",
-    "geolocation",
-    "history",
     "background",
     "storage"
   ],
-  "options_page": "settings/settings.html"
+  "options_ui": {
+    "page": "settings/settings.html",
+    "chrome_style": true
+  }
 }
 
