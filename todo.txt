@@ -7,3 +7,4 @@
               http://www.europeana.eu/api/v2/search.json?wskey=xxxx&query=Paris&qf=RIGHTS:http://www.europeana.eu/rights/rr-f/
 
 - number of results?
+-md config

@@ -6,6 +6,7 @@
     "default_icon": {
       "38": "media/icons/icon38.png"
     }
+//    "default_popup": "popup/popup.html"
   },
   "background": {
     "page": "background/background.html"
@@ -49,7 +50,8 @@
     "media/*",
     "vendor/*",
     "directive/*",
-    "result-dialog/*"
+    "result-dialog/*",
+    "popup/*"
   ],
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "manifest_version": 2,
