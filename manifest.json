@@ -4,6 +4,7 @@
   "browser_action": {
     "default_title": "EEXCESSRedesign",
     "default_icon": {
+      "19": "media/icons/icon38.png",
       "38": "media/icons/icon38.png"
     }
   },
@@ -33,6 +34,7 @@
         "common/browser_specific.js",
         "paragraphDetection/ContextDetector.js",
         "app.js",
+        "app-controller.js",
         "md-config.js",
         "directive/paragraph-directive.js",
         "directive/paragraph-directive-controller.js",
@@ -49,18 +51,25 @@
     "media/*",
     "vendor/*",
     "directive/*",
-    "result-dialog/*"
+    "result-dialog/*",
+    "settings/*"
   ],
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "manifest_version": 2,
   "permissions": [
     "tabs",
     "<all_urls>",
-    "geolocation",
-    "history",
     "background",
     "storage"
   ],
-  "options_page": "settings/settings.html"
+  "options_ui": {
+    "page": "settings/settings.html",
+    "chrome_style": true
+  },
+  "icons": {
+    "16": "media/icons/icon38.png",
+    "48": "media/icons/icon38.png",
+    "128": "media/icons/icon38.png"
+  }
 }
 

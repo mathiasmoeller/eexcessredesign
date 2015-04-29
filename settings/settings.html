@@ -1,1 +1,34 @@
-This will be the settings page
+<!DOCTYPE html>
+<html ng-csp ng-app="eRedesignSettings">
+<head>
+    <title>EEXCESS Redesign Settings</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="../vendor/angular-material/angular-material.css">
+    <!--<link rel="stylesheet" href="../media/css/styles.css">-->
+</head>
+<body>
+<div ng-controller="SettingsCtrl" layout="column" layout-align="space-between start" layout-padding style="min-height: 500px; min-width: 400px;">
+    <h4 class="md-subhead">EEXCESS Redesign Settings</h4>
+
+    <div layout="column" layout-align="start start">
+        <md-input-container>
+            <label>Number of Results</label>
+            <input type="number" ng-model="resultNumber">
+        </md-input-container>
+
+        <md-switch ng-model="onlyOpen">Only show open, reusable sources</md-switch>
+
+        <div style="width: 390px">
+            <md-button style="width: 50px" class="md-primary" ng-click="save()">Save</md-button>
+        </div>
+    </div>
+</div>
+
+<script src="../vendor/angular/angular.js" type="text/javascript"></script>
+<script src="../vendor/angular-animate/angular-animate.js" type="text/javascript"></script>
+<script src="../vendor/angular-aria/angular-aria.js" type="text/javascript"></script>
+<script src="../vendor/angular-material/angular-material.js" type="text/javascript"></script>
+<script src="settings.js" type="text/javascript"></script>
+<script src="settings-controller.js" type="text/javascript"></script>
+</body>
+</html>
