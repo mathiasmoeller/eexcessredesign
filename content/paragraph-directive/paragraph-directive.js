@@ -10,7 +10,7 @@
             scope: {
                 id: '='
             },
-            templateUrl: $sce.trustAsResourceUrl('chrome-extension://' + ER.utils.extID + '/directive/paragraph-directive.html'),
+            templateUrl: $sce.trustAsResourceUrl('chrome-extension://' + ER.utils.extID + '/content/paragraph-directive/paragraph-directive.html'),
             controller: 'ParagraphCtrl'
         };
     }

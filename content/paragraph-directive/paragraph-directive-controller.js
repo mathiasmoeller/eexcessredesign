@@ -76,7 +76,7 @@
 
         $scope.showResults = function (event, selectedTab) {
             $mdDialog.show({
-                templateUrl: $sce.trustAsResourceUrl('chrome-extension://' + ER.utils.extID + '/result-dialog/result-dialog.html'),
+                templateUrl: $sce.trustAsResourceUrl('chrome-extension://' + ER.utils.extID + '/content/result-dialog/result-dialog.html'),
                 controller: 'ResultDialogCtrl',
                 resolve: {
                     results: function () {

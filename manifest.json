@@ -10,14 +10,6 @@
   },
   "background": {
     "page": "background/background.html"
-    //    "scripts": [
-    //      "vendor/jquery-1.10.1.min.js",
-    //      "vendor/angular/angular.js",
-    //      "common/browser_specific.js",
-    //      "background/background.js",
-    //      "background/keywords.js",
-    //      "background/messaging.js"
-    //    ]
   },
   "content_scripts": [
     {
@@ -31,14 +23,14 @@
         "vendor/angular-animate/angular-animate.js",
         "vendor/angular-aria/angular-aria.js",
         "vendor/angular-loading-bar/src/loading-bar.js",
-        "common/browser_specific.js",
-        "paragraphDetection/ContextDetector.js",
-        "app.js",
-        "app-controller.js",
-        "md-config.js",
-        "directive/paragraph-directive.js",
-        "directive/paragraph-directive-controller.js",
-        "result-dialog/result-dialog-controller.js"
+        "content/common/browser_specific.js",
+        "content/paragraph-detection/ContextDetector.js",
+        "content/app.js",
+        "content/app-controller.js",
+        "content/md-config.js",
+        "content/paragraph-directive/paragraph-directive.js",
+        "content/paragraph-directive/paragraph-directive-controller.js",
+        "content/result-dialog/result-dialog-controller.js"
       ],
       "css": [
         "vendor/angular-material/angular-material.css",
@@ -47,12 +39,12 @@
     }
   ],
   "web_accessible_resources": [
-    "options/*",
+    "content/*",
     "media/*",
-    "vendor/*",
-    "directive/*",
-    "result-dialog/*",
-    "settings/*"
+    "vendor/*"
+//    "directive/*",
+//    "result-dialog/*",
+//    "settings/*"
   ],
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "manifest_version": 2,
