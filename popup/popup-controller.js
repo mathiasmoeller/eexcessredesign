@@ -8,15 +8,18 @@
 
         $scope.toggleApplication = true;
 
-        $scope.showSettings = function () {
-            chrome.tabs.query({active: true}, function(tab) {
-                console.log(tab);
-                chrome.tabs.sendMessage(tab[0].id, "hello there");
+        $scope.$watch('toggleApplication', function () {
+            console.log("watcher");
+            chrome.tabs.query({active: true}, function (tab) {
+                var tabID = tab[0].id;
+                var eRedesign = {};
+                eRedesign[tabID] = $scope.toggleApplication;
+
+                chrome.storage.sync.set({'eRedesign': eRedesign}, function () {
+                    console.log("success");
+                });
             });
-
-
-
-        };
+        });
     }
 
     angular
