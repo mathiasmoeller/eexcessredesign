@@ -3,6 +3,18 @@
     'use strict';
 
     function EuService($http, ENV) {
+        var resultNumber = 30;
+        var reusability = '';
+
+        // load settings from storage
+        chrome.storage.sync.get('eRedesignSettings', function(data) {
+            if (data && data.eRedesignSettings) {
+                reusability = _parseUsability(data.eRedesignSettings.onlyOpen);
+                resultNumber = data.eRedesignSettings.resultNumber;
+            }
+        });
+
+
         var _buildQueryTerm = function (terms) {
             var queryTerm = '';
             angular.forEach(terms, function (value) {
@@ -23,7 +35,8 @@
             $http.get(ENV.api, {
                 params: {
                     query: query,
-                    rows: 30
+                    rows: resultNumber,
+                    reusability: reusability
                 }
             })
                 .success(function (result) {
@@ -33,6 +46,22 @@
                     console.log(error);
                 });
         };
+
+        var _parseUsability = function (onlyOpen) {
+            if (onlyOpen) {
+                return 'open';
+            } else {
+                return '';
+            }
+        };
+
+        chrome.storage.onChanged.addListener(function (changes) {
+            if (changes.eRedesignSettings) {
+                var change = changes.eRedesignSettings.newValue;
+                resultNumber = change.resultNumber;
+                reusability = _parseUsability(change.onlyOpen);
+            }
+        });
 
         return {
             query: _query
