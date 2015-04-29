@@ -4,9 +4,9 @@
   "browser_action": {
     "default_title": "EEXCESSRedesign",
     "default_icon": {
+      "19": "media/icons/icon38.png",
       "38": "media/icons/icon38.png"
     }
-//    "default_popup": "popup/popup.html"
   },
   "background": {
     "page": "background/background.html"
@@ -65,6 +65,11 @@
   "options_ui": {
     "page": "settings/settings.html",
     "chrome_style": true
+  },
+  "icons": {
+    "16": "media/icons/icon38.png",
+    "48": "media/icons/icon38.png",
+    "128": "media/icons/icon38.png"
   }
 }
 
