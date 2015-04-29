@@ -2,12 +2,11 @@
 
     'use strict';
 
-    function MessageService(EuService, KeywordService) {
+    function MessageService(EuService, KeywordService, UtilsService) {
         var service = {};
         service.EuService = EuService;
         service.KeywordService = KeywordService;
-
-        console.log("reached MEssageservice");
+        service.UtilsService = UtilsService;
 
         var _sendMsgTab = function(tabID, msg, callback) {
             if (typeof callback !== 'undefined') {
@@ -30,8 +29,6 @@
         };
 
         chrome.runtime.onMessage.addListener(function (request, sender, response) {
-            console.log("trying to send");
-            console.log(request);
 
             if (typeof sender.tab === 'undefined') {
                 // sender cannot be identified, exit
