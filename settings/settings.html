@@ -4,18 +4,22 @@
     <title>EEXCESS Redesign Settings</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="../vendor/angular-material/angular-material.css">
-    <!--<link rel="stylesheet" href="../media/css/styles.css">-->
+    <link rel="stylesheet" href="settings.css">
 </head>
-<body>
+<body style="max-height: 300px; min-width: 410px">
 <div ng-controller="SettingsCtrl" layout="column" layout-align="space-between start" layout-padding>
     <h4 class="md-subhead">EEXCESS Redesign Settings</h4>
 
+    <div class="settings-feedback settings-feedback-success"
+         ng-show="feedback === 'saved'">Settings saved
+    </div>
+
     <div >
-        <form name="numberForm">
+        <form name="numberForm" novalidate ng-submit="numberForm.$valid && save()">
             <md-input-container>
-                <label>Number of Results</label>
+                <label>Number of Results (between 1 and 100)</label>
                 <input type="number" ng-model="resultNumber" min="1" max="100"
-                       placeholder="Choose a number between 1 and 100">
+                       name="results" required>
             </md-input-container>
         </form>
         <md-switch ng-model="onlyOpen">Only show open, reusable sources</md-switch>
