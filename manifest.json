@@ -22,7 +22,6 @@
         "vendor/angular-material/angular-material.js",
         "vendor/angular-animate/angular-animate.js",
         "vendor/angular-aria/angular-aria.js",
-        "vendor/angular-loading-bar/src/loading-bar.js",
         "content/common/browser_specific.js",
         "content/paragraph-detection/ContextDetector.js",
         "content/app.js",
