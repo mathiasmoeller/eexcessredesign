@@ -1,9 +1,10 @@
 (function () {
     'use strict';
 
-    function ParagraphCtrl($scope, $sce, $mdDialog) {
+    function ParagraphCtrl($scope, $sce, $mdDialog, HighlightService) {
         $scope.icons = {};
         $scope.icons.query = $sce.trustAsResourceUrl('chrome-extension://' + ER.utils.extID + '/media/icons/query-icon.svg');
+        $scope.icons.search = $sce.trustAsResourceUrl('chrome-extension://' + ER.utils.extID + '/media/icons/search-icon.svg');
         $scope.icons.image = $sce.trustAsResourceUrl('chrome-extension://' + ER.utils.extID + '/media/icons/image-icon.svg');
         $scope.icons.text = $sce.trustAsResourceUrl('chrome-extension://' + ER.utils.extID + '/media/icons/text-icon.svg');
         $scope.icons.video = $sce.trustAsResourceUrl('chrome-extension://' + ER.utils.extID + '/media/icons/video-icon.svg');
@@ -34,7 +35,6 @@
 
                 // outgoing paragraph has to be in a list. this is requested by the api of the REST service
                 var paragraph = [ER.paragraphs.getParagraph($scope.id)];
-
 
                 ER.messaging.callBG({
                     method: {service: 'KeywordService', func: 'getParagraphEntities'},
@@ -73,10 +73,19 @@
                     });
 
                     $scope.queried = true;
+                    $scope.keywordsFound = true;
                     $scope.$apply();
                 });
             }
         };
+
+        // Watch for keyword changes to highlight the current keywords
+        $scope.$watch('keywords', function() {
+            HighlightService.removeHighlight($scope.id);
+            angular.forEach($scope.keywords, function(keyword) {
+                HighlightService.highlight($scope.id, keyword);
+            })
+        }, true);
 
         // Show a dialog with all found results
         $scope.showResults = function (event, selectedTab) {

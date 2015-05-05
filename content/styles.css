@@ -1,6 +1,6 @@
 .detectedParagraph {
     border: 2px solid rgba(63, 81, 181, 0.3);
-    border-radius: 1.1rem;
+    border-radius: 2px 2px 1.1rem 1.1rem;
     padding: 5px;
 }
 
@@ -8,12 +8,8 @@
     border: 2px solid rgba(63, 81, 181, 1);
 }
 
-.resultButtons {
-    margin-right: 1.1rem;
-}
-
 .result-counter {
-    background-color: red;
+    background-color: rgb(255, 82, 82);
     color: white;
     width: 20px;
     height: 20px;
@@ -23,6 +19,10 @@
     position: absolute;
     left: 24px;
     font-size: 14px;
+}
+
+.a14 {
+background-color: red;
 }
 
 .preview-icon {
@@ -45,6 +45,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
     height: 45px;
+}
+
+.highlight {
+    background-color: yellow;
+    border-radius: 2px;
 }
 
 /*Material Design Changes*/
@@ -70,10 +75,6 @@ body {
     height: 36px;
     width: 36px;
     overflow: visible;
-}
-
-.md-button.md-icon-button.queryButton {
-    margin-left: 1.1rem;
 }
 
 .md-button.md-icon-button.resultButton {
