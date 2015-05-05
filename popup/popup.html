@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-csp="true" ng-app="eRedesignPopup">
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="../vendor/angular-material/angular-material.css">
+    <!--<link rel="stylesheet" href="../media/css/styles.css">-->
+</head>
+<body>
+<div ng-controller="PopupCtrl" layout="column" layout-align="space-between start" layout-padding layout-fill style="height: 100px">
+    <h4 class="md-subhead">Welcome to EEXCESS Redesign</h4>
+
+    <div layout="row" layout-align="space-between end">
+        <md-switch ng-model="toggleApplication" aria-label="Toggle Application">Toggle Application</md-switch>
+        <a class="md-button md-primary" target="_blank" href="{{linkToSettings}}">Settings</a>
+    </div>
+</div>
+
+<script src="../vendor/angular/angular.js" type="text/javascript"></script>
+<script src="../vendor/angular-animate/angular-animate.js" type="text/javascript"></script>
+<script src="../vendor/angular-aria/angular-aria.js" type="text/javascript"></script>
+<script src="../vendor/angular-material/angular-material.js" type="text/javascript"></script>
+<script src="popup.js" type="text/javascript"></script>
+<script src="popup-controller.js" type="text/javascript"></script>
+</body>
+</html>

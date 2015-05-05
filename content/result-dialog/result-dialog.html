@@ -1,0 +1,81 @@
+<md-dialog aria-label="Result dialog" >
+    <md-content>
+        <md-tabs md-selected="selectedTab" style="min-height: 400px;">
+            <md-tab label="Text Results">
+                <md-content>
+                    <md-list>
+                        <md-list-item ng-repeat="result in results | resultFilter: {'TEXT': true}">
+                            <a href="{{result.guid}}" target="_blank">
+                                <img ng-src="{{result.edmPreview[0]}}" class="preview-icon">
+                            </a>
+
+                            <div class="result-dialog-items" layout="column" layout-align="center start">
+                                <div class="result-dialog-text" layout="column" layout-align="center start">
+                                    <a href="{{result.guid}}" target="_blank">
+                                        {{result.title[0]}}
+                                        <span ng-if="result.title[1]">,</span>
+                                        {{result.title[1]}}
+                                    </a>
+
+                                </div>
+                            </div>
+                        </md-list-item>
+                    </md-list>
+                </md-content>
+            </md-tab>
+            <md-tab label="Image Results">
+                <md-content>
+                    <md-list>
+                        <md-list-item ng-repeat="result in results | resultFilter: {'IMAGE': true, '3D': true}">
+                            <a href="{{result.guid}}" target="_blank">
+                                <img ng-src="{{result.edmPreview[0]}}" class="preview-icon">
+                            </a>
+
+                            <div class="result-dialog-items" layout="column" layout-align="center start">
+                                <div class="result-dialog-text" layout="column" layout-align="center start">
+                                    <a href="{{result.guid}}" target="_blank">
+                                        {{result.title[0]}}
+                                        <span ng-if="result.title[1]">,</span>
+                                        {{result.title[1]}}
+                                    </a>
+                                </div>
+                            </div>
+                        </md-list-item>
+                    </md-list>
+                </md-content>
+            </md-tab>
+            <md-tab label="Audio and Video Results">
+                <md-content>
+                    <md-list>
+                        <md-list-item ng-repeat="result in results | resultFilter: {'VIDEO': true, 'AUDIO': true}">
+                            <a href="{{result.guid}}" target="_blank">
+                                <img ng-src="{{result.edmPreview[0]}}" class="preview-icon">
+                            </a>
+
+                            <div class="result-dialog-items" layout="column" layout-align="center start">
+                                <div class="result-dialog-text" layout="column" layout-align="center start">
+                                    <a href="{{result.guid}}" target="_blank">
+                                        {{result.title[0]}}
+                                        <span ng-if="result.title[1]">,</span>
+                                        {{result.title[1]}}
+                                    </a>
+                                </div>
+                            </div>
+                        </md-list-item>
+                    </md-list>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+
+
+    <div class="md-actions" layout="row">
+        <md-button>
+            Settings
+        </md-button>
+        <md-button class="md-primary" ng-click="hide()">
+            Close
+        </md-button>
+    </div>
+
+</md-dialog>

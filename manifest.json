@@ -4,19 +4,12 @@
   "browser_action": {
     "default_title": "EEXCESSRedesign",
     "default_icon": {
+      "19": "media/icons/icon38.png",
       "38": "media/icons/icon38.png"
     }
   },
   "background": {
     "page": "background/background.html"
-//    "scripts": [
-//      "vendor/jquery-1.10.1.min.js",
-//      "vendor/angular/angular.js",
-//      "common/browser_specific.js",
-//      "background/background.js",
-//      "background/keywords.js",
-//      "background/messaging.js"
-//    ]
   },
   "content_scripts": [
     {
@@ -29,36 +22,45 @@
         "vendor/angular-material/angular-material.js",
         "vendor/angular-animate/angular-animate.js",
         "vendor/angular-aria/angular-aria.js",
-        "vendor/angular-loading-bar/src/loading-bar.js",
-        "common/browser_specific.js",
-        "paragraphDetection/ContextDetector.js",
-        "app.js",
-        "md-config.js",
-        "directive/paragraph-directive.js",
-        "directive/paragraph-directive-controller.js",
-        "result-dialog/result-dialog-controller.js"
+        "content/common/browser_specific.js",
+        "content/paragraph-detection/ContextDetector.js",
+        "content/app.js",
+        "content/app-controller.js",
+        "content/md-config.js",
+        "content/paragraph-directive/paragraph-directive.js",
+        "content/paragraph-directive/paragraph-directive-controller.js",
+        "content/result-dialog/result-dialog-controller.js"
       ],
-      "css": ["media/css/styles.css",
-      "media/css/angular-material-adapted.css"]
+      "css": [
+        "vendor/angular-material/angular-material.css",
+        "media/css/styles.css"
+      ]
     }
   ],
   "web_accessible_resources": [
-    "options/*",
+    "content/*",
     "media/*",
-    "vendor/*",
-    "directive/*",
-    "result-dialog/*"
+    "vendor/*"
+//    "directive/*",
+//    "result-dialog/*",
+//    "settings/*"
   ],
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "manifest_version": 2,
   "permissions": [
     "tabs",
     "<all_urls>",
-    "geolocation",
-    "history",
     "background",
     "storage"
   ],
-  "options_page": "settings/settings.html"
+  "options_ui": {
+    "page": "settings/settings.html",
+    "chrome_style": true
+  },
+  "icons": {
+    "16": "media/icons/icon38.png",
+    "48": "media/icons/icon38.png",
+    "128": "media/icons/icon38.png"
+  }
 }
 

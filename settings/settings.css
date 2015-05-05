@@ -1,0 +1,39 @@
+.settings-feedback {
+    position: relative;
+    border-radius: 2px;
+    color: white;
+    padding: 15px;
+    margin-bottom: 20px;
+    width: 412px;
+}
+
+.settings-feedback.ng-hide-add,
+.settings-feedback.ng-hide-remove {
+    -webkit-transition: 0.3s linear all;
+    transition: 0.3s linear all;
+}
+
+.settings-feedback.ng-hide-remove,
+.settings-feedback.ng-hide-add.ng-hide-add-active {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.settings-feedback.ng-hide-add,
+.settings-feedback.ng-hide-remove.ng-hide-remove-active {
+    opacity: 1;
+    height: 22px;
+}
+
+.settings-feedback-danger {
+    background-color: #ff4136;
+    border: none;
+    color: #fff;
+}
+
+.settings-feedback-success {
+    background-color: #1cce28;
+    border: none;
+    color: #fff;
+}

@@ -1,22 +1,15 @@
-
 .detectedParagraph {
     border: 2px solid rgba(63, 81, 181, 0.3);
-    border-radius: 2px;
+    border-radius: 1.1rem;
+    padding: 5px;
 }
 
 .detectedParagraph:hover {
     border: 2px solid rgba(63, 81, 181, 1);
 }
 
-.queryButton {
-    height: 36px;
-    width: 36px;
-}
-
-.resultButton {
-    height: 36px;
-    width: 36px;
-    margin-left: 12px;
+.resultButtons {
+    margin-right: 1.1rem;
 }
 
 .result-counter {
@@ -40,4 +33,182 @@
     margin-right: 16px;
     border-radius: 2px;
     box-sizing: content-box;
+}
+
+.result-dialog-items {
+    position: absolute;
+    left: 86px;
+    height: 66px;
+}
+
+.result-dialog-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 45px;
+}
+
+/*Material Design Changes*/
+body {
+    font-size: 1.0rem;
+}
+
+.md-button {
+
+    padding: 0 0.6rem;
+    margin: 0.6rem 0.8rem;
+    line-height: 2.5rem;
+    height: 2.5rem;
+    /*min-width: 8.8rem;*/
+    font-size: 1.2rem;
+}
+
+.md-button.md-icon-button {
+    margin: 0 0;
+    min-width: 0;
+    padding-left: 0;
+    padding-right: 0;
+    height: 36px;
+    width: 36px;
+    overflow: visible;
+}
+
+.md-button.md-icon-button.queryButton {
+    margin-left: 1.1rem;
+}
+
+.md-button.md-icon-button.resultButton {
+    margin-left: 5px;
+}
+
+.md-chips {
+    display: block;
+    font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;
+    font-size: 0.9rem;
+    padding: 0 0 0.3rem 0;
+    vertical-align: middle;
+    cursor: text;
+}
+
+.md-chips:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.md-chips .md-chip {
+    cursor: default;
+    border-radius: 1.1rem;
+    display: block;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    margin: 0.3rem 0.3rem 0 0;
+    padding: 0 0.3rem 0 0.7rem;
+    float: left;
+}
+
+.md-chips .md-chip .md-chip-content {
+    display: block;
+    padding-right: 0;
+    float: left;
+    white-space: nowrap;
+}
+
+.md-chips .md-chip .md-chip-content:focus {
+    outline: none;
+}
+
+.md-chips .md-chip .md-chip-remove-container {
+    display: inline-block;
+    margin-right: -0.5rem;
+}
+
+.md-chips .md-chip .md-chip-remove {
+    text-align: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    min-width: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    margin: 0;
+    position: relative;
+}
+
+.md-chips .md-chip .md-chip-remove md-icon {
+    height: 1.3rem;
+    width: 1.3rem;
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+}
+
+.md-chips .md-chip-input-container {
+    display: block;
+    line-height: 2.5rem;
+    margin: 0.3rem 0.3rem 0 0;
+    padding: 0 0.3rem 0 0.5rem;
+    float: left;
+}
+
+.md-chips .md-chip-input-container input:not([type]), .md-chips .md-chip-input-container input[type="email"], .md-chips .md-chip-input-container input[type="number"], .md-chips .md-chip-input-container input[type="tel"], .md-chips .md-chip-input-container input[type="url"], .md-chips .md-chip-input-container input[type="text"] {
+    border: 0;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    padding: 0;
+}
+
+.md-chips .md-chip-input-container input:not([type]):focus, .md-chips .md-chip-input-container input[type="email"]:focus, .md-chips .md-chip-input-container input[type="number"]:focus, .md-chips .md-chip-input-container input[type="tel"]:focus, .md-chips .md-chip-input-container input[type="url"]:focus, .md-chips .md-chip-input-container input[type="text"]:focus {
+    outline: none;
+}
+
+.md-chips .md-chip-input-container md-autocomplete, .md-chips .md-chip-input-container md-autocomplete-wrap {
+    background: transparent;
+    height: 2.5rem;
+}
+
+.md-chips .md-chip-input-container md-autocomplete {
+    box-shadow: none;
+}
+
+.md-chips .md-chip-input-container md-autocomplete input {
+    position: relative;
+}
+
+.md-chips .md-chip-input-container input {
+    border: 0;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    padding: 0;
+}
+
+.md-chips .md-chip-input-container input:focus {
+    outline: none;
+}
+
+.md-chips .md-chip-input-container md-autocomplete, .md-chips .md-chip-input-container md-autocomplete-wrap {
+    height: 2.5rem;
+}
+
+.md-chips .md-chip-input-container md-autocomplete {
+    box-shadow: none;
+}
+
+.md-chips .md-chip-input-container md-autocomplete input {
+    position: relative;
+}
+
+.md-chips .md-chip-input-container:not(:first-child) {
+    margin: 0.3rem 0.3rem 0 0;
+}
+
+.md-chips .md-chip-input-container input {
+    background: transparent;
+    border-width: 0;
+}
+
+.md-chips md-autocomplete button {
+    display: none;
 }

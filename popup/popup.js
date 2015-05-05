@@ -1,5 +1,5 @@
 angular
-    .module('eRedesignSettings', [
+    .module('eRedesignPopup', [
         'ngAnimate',
         'ngMaterial'
     ]);
