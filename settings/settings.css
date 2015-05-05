@@ -26,14 +26,8 @@
     height: 22px;
 }
 
-.settings-feedback-danger {
-    background-color: #ff4136;
-    border: none;
-    color: #fff;
-}
-
 .settings-feedback-success {
-    background-color: #1cce28;
+    background-color: rgb(255, 64, 129);
     border: none;
     color: #fff;
 }
