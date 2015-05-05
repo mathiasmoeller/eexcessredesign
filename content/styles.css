@@ -21,6 +21,10 @@
     font-size: 14px;
 }
 
+.a14 {
+background-color: red;
+}
+
 .preview-icon {
     width: 50px;
     height: 50px;
@@ -41,6 +45,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
     height: 45px;
+}
+
+.highlight {
+    background-color: yellow;
+    border-radius: 2px;
 }
 
 /*Material Design Changes*/
