@@ -37,3 +37,11 @@
     border: none;
     color: #fff;
 }
+
+.settings-box {
+    width: 442px;
+}
+
+.settings-form {
+    margin: 15px;
+}

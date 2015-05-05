@@ -19,7 +19,7 @@
 
                 $timeout(function() {
                     $scope.feedback = '';
-                }, 2000);
+                }, 4000);
             });
         };
 
