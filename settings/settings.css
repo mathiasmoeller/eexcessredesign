@@ -4,7 +4,7 @@
     color: white;
     padding: 15px;
     margin-bottom: 20px;
-    width: 412px;
+    width: 381px;
 }
 
 .settings-feedback.ng-hide-add,
@@ -38,11 +38,7 @@
     color: #fff;
 }
 
-.settings-button {
-    width: 396px;
-}
-
-.settings-box {
+.settings {
     width: 396px;
 }
 

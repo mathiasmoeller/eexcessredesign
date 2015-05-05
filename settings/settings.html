@@ -19,7 +19,7 @@
     </div>
 
     <div flex layout="column" layout-align="space-between start">
-        <div class="settings-box">
+        <div class="settings">
             <form class="settings-form" name="numberForm" novalidate ng-submit="numberForm.$valid && save()">
                 <md-input-container>
                     <label>Number of Results (between 1 and 100)</label>
@@ -29,7 +29,7 @@
             </form>
             <md-switch ng-model="onlyOpen">Only show open, reusable sources</md-switch>
         </div>
-        <div layout="row" layout-align="end end" class="settings-button">
+        <div layout="row" layout-align="end end" class="settings">
             <md-button style="width: 70px; font-size: 18px" class="md-primary" ng-click="save()"
                        ng-disabled="!numberForm.$valid">Save
             </md-button>
