@@ -11,20 +11,24 @@
 
         var queryResults = undefined;
 
-        // check if plugin is disabled or not
-        //chrome.storage.onChanged.addListener(function (changes) {
-        //    if (changes.eRedesign) {
-        //        var storageValue = changes.eRedesign.newValue;
-        //        ER.messaging.callBG({
-        //            method: {service: 'UtilsService', func: 'getCurrentTabID'}
-        //        }, function (tab) {
-        //            if (storageValue) {
-        //                alert("this is not implemented yet");
-        //            }
-        //        });
-        //    }
-        //});
+        // Check if plugin is disabled or not
+        chrome.storage.onChanged.addListener(function (changes) {
+            if (changes.eRedesign) {
+                var storageValue = changes.eRedesign.newValue;
+                ER.messaging.callBG({
+                    method: {service: 'UtilsService', func: 'getCurrentTabID'}
+                }, function (tabID) {
 
+                    if (storageValue[tabID] !== undefined) {
+                        $scope.showPlugin = storageValue[tabID];
+                    }
+                    $scope.$apply();
+                });
+            }
+        });
+
+        // Depending if there are keywords or not this method queries keywords from the current paragraph
+        // or sends a query with the given keywords to europeana
         $scope.query = function () {
             if ($scope.keywords.length === 0) {
 
@@ -74,6 +78,7 @@
             }
         };
 
+        // Show a dialog with all found results
         $scope.showResults = function (event, selectedTab) {
             $mdDialog.show({
                 templateUrl: $sce.trustAsResourceUrl('chrome-extension://' + ER.utils.extID + '/content/result-dialog/result-dialog.html'),

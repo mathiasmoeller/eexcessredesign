@@ -4,16 +4,31 @@
     function PopupCtrl($scope) {
         var extID = chrome.i18n.getMessage('@@extension_id');
         $scope.linkToSettings = "chrome://extensions?options=" + extID;
-        console.log($scope.linkToSettings);
 
-        $scope.toggleApplication = true;
+        // The application.showApp needs to be a unshallow object. Don't ask why. I dare you. I double dare you.
+        $scope.application = {};
 
-        $scope.$watch('toggleApplication', function () {
-            console.log("watcher");
+        // Check if the plugin is disabled or enabled. If no data is found enable it (first startup)
+        chrome.storage.sync.get('eRedesign', function (data) {
+            chrome.tabs.query({active: true}, function (tab) {
+                var tabID = tab[0].id;
+                if (data && data.eRedesign && data.eRedesign[tabID] !== undefined) {
+                    $scope.application.showApp = data.eRedesign[tabID];
+                }
+                else {
+                    $scope.application.showApp = true;
+                }
+                $scope.$apply();
+            });
+
+        });
+
+        // Save the value of showApp to the storage
+        $scope.$watch('application.showApp', function () {
             chrome.tabs.query({active: true}, function (tab) {
                 var tabID = tab[0].id;
                 var eRedesign = {};
-                eRedesign[tabID] = $scope.toggleApplication;
+                eRedesign[tabID] = $scope.application.showApp;
 
                 chrome.storage.sync.set({'eRedesign': eRedesign}, function () {
                     console.log("success");
@@ -25,4 +40,5 @@
     angular
         .module('eRedesignPopup')
         .controller('PopupCtrl', PopupCtrl);
-})();
+})
+();

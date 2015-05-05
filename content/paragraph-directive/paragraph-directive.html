@@ -1,5 +1,5 @@
 <div>
-    <div class="resultButtons" layout="row" layout-align="space-between end">
+    <div ng-show="showPlugin" class="resultButtons" layout="row" layout-align="space-between end">
         <!-- Query-->
         <md-button ng-class="{'md-hue-1': keywordsFound}" aria-label="Query" class="md-accent md-icon-button md-raised queryButton" ng-click="query()">
             <md-icon md-svg-src="{{icons.query}}" style="position: absolute; left: 6px; top: 6px;"></md-icon>
@@ -36,8 +36,8 @@
 
         </div>
     </div>
-    <div class="detectedParagraph">
-        <md-chips ng-if="keywordsFound" ng-model="keywords" placeholder="Add a keyword"
+    <div ng-class="{'detectedParagraph': showPlugin}">
+        <md-chips ng-show="showPlugin" ng-model="keywords" placeholder="Add a keyword"
                   delete-button-label="Remove Keyword"
                   delete-hint="Press delete to remove keyword"
                   secondary-placeholder="Add a keyword">

@@ -4,7 +4,7 @@
     color: white;
     padding: 15px;
     margin-bottom: 20px;
-    width: 412px;
+    width: 381px;
 }
 
 .settings-feedback.ng-hide-add,
@@ -26,14 +26,16 @@
     height: 22px;
 }
 
-.settings-feedback-danger {
-    background-color: #ff4136;
+.settings-feedback-success {
+    background-color: rgb(255, 64, 129);
     border: none;
     color: #fff;
 }
 
-.settings-feedback-success {
-    background-color: #1cce28;
-    border: none;
-    color: #fff;
+.settings {
+    width: 396px;
+}
+
+.settings-form {
+    margin: 15px;
 }
