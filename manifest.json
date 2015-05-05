@@ -34,7 +34,7 @@
       "css": [
         "vendor/angular-material/angular-material.css",
         "common/angular-csp.css",
-        "media/css/styles.css"
+        "content/styles.css"
       ]
     }
   ],
