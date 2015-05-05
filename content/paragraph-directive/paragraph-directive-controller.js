@@ -4,6 +4,7 @@
     function ParagraphCtrl($scope, $sce, $mdDialog) {
         $scope.icons = {};
         $scope.icons.query = $sce.trustAsResourceUrl('chrome-extension://' + ER.utils.extID + '/media/icons/query-icon.svg');
+        $scope.icons.search = $sce.trustAsResourceUrl('chrome-extension://' + ER.utils.extID + '/media/icons/search-icon.svg');
         $scope.icons.image = $sce.trustAsResourceUrl('chrome-extension://' + ER.utils.extID + '/media/icons/image-icon.svg');
         $scope.icons.text = $sce.trustAsResourceUrl('chrome-extension://' + ER.utils.extID + '/media/icons/text-icon.svg');
         $scope.icons.video = $sce.trustAsResourceUrl('chrome-extension://' + ER.utils.extID + '/media/icons/video-icon.svg');
@@ -73,6 +74,7 @@
                     });
 
                     $scope.queried = true;
+                    $scope.keywordsFound = true;
                     $scope.$apply();
                 });
             }
