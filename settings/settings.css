@@ -38,8 +38,12 @@
     color: #fff;
 }
 
+.settings-button {
+    width: 396px;
+}
+
 .settings-box {
-    width: 442px;
+    width: 396px;
 }
 
 .settings-form {
