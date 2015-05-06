@@ -1,10 +1,10 @@
-.detectedParagraph {
+.detected-paragraph {
     border: 2px solid rgba(63, 81, 181, 0.3);
     border-radius: 2px 2px 1.1rem 1.1rem;
     padding: 5px;
 }
 
-.detectedParagraph:hover {
+.detected-paragraph:hover {
     border: 2px solid rgba(63, 81, 181, 1);
 }
 
@@ -21,10 +21,6 @@
     font-size: 14px;
 }
 
-.a14 {
-background-color: red;
-}
-
 .preview-icon {
     width: 50px;
     height: 50px;
@@ -33,6 +29,7 @@ background-color: red;
     margin-right: 16px;
     border-radius: 2px;
     box-sizing: content-box;
+    z-index: 999;
 }
 
 .result-dialog-items {
@@ -52,6 +49,32 @@ background-color: red;
     border-radius: 2px;
 }
 
+#text-results {
+    -webkit-animation-duration: 0.3s;
+}
+
+#image-results {
+    -webkit-animation-delay: 0.1s;
+    -webkit-animation-duration: 0.3s;
+}
+
+#video-results {
+    -webkit-animation-delay: 0.2s;
+    -webkit-animation-duration: 0.3s;
+}
+
+.query-icon {
+    position: relative;
+    top: -3px;
+    margin-left: 5px
+}
+
+.query-name {
+    margin: 0 5px 0 0;
+    position: relative;
+    top: -2px;
+}
+
 /*Material Design Changes*/
 body {
     font-size: 1.0rem;
@@ -67,6 +90,14 @@ body {
     font-size: 1.2rem;
 }
 
+.md-button.query-button {
+    margin: 0 0;
+    padding-left: 0;
+    padding-right: 0;
+    height: 36px;
+    font-size: 14px;
+}
+
 .md-button.md-icon-button {
     margin: 0 0;
     min-width: 0;
@@ -77,15 +108,16 @@ body {
     overflow: visible;
 }
 
-.md-button.md-icon-button.resultButton {
+.md-button.md-icon-button.result-button {
     margin-left: 5px;
 }
 
 .md-chips {
-    display: block;
+    display: table;
     font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;
     font-size: 0.9rem;
     padding: 0 0 0.3rem 0;
+    margin: 5px 0 3px 0;
     vertical-align: middle;
     cursor: text;
 }

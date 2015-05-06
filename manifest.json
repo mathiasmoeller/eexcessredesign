@@ -36,7 +36,8 @@
       "css": [
         "vendor/angular-material/angular-material.css",
         "common/angular-csp.css",
-        "content/styles.css"
+        "content/styles.css",
+        "content/animate.css"
       ]
     }
   ],
