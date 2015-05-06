@@ -95,6 +95,10 @@ body {
     font-size: inherit;
 }
 
+html {
+    font-size: inherit;
+}
+
 .md-button {
 
     padding: 0 0.6rem;
