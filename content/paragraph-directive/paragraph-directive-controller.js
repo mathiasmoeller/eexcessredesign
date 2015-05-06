@@ -12,7 +12,23 @@
 
         var queryResults = undefined;
 
-        // Check if plugin is disabled or not
+        // Load the initial value from the storage
+        chrome.storage.sync.get('eRedesign', function (data) {
+            if (data.eRedesign) {
+                ER.messaging.callBG({
+                    method: {service: 'UtilsService', func: 'getCurrentTabID'}
+                }, function (tabID) {
+
+                    if (data.eRedesign[tabID] !== undefined) {
+                        $scope.showPlugin = data.eRedesign[tabID];
+                    }
+                    $scope.$apply();
+                });
+            }
+        });
+
+
+        // Set listener who listens for changes in the storage
         chrome.storage.onChanged.addListener(function (changes) {
             if (changes.eRedesign) {
                 var storageValue = changes.eRedesign.newValue;
