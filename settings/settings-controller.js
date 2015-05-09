@@ -4,17 +4,17 @@
     function SettingsCtrl($scope, $timeout) {
         $scope.settings = {};
 
-        chrome.storage.sync.get('eRedesignSettings', function(data) {
-            if (data && data.eRedesignSettings) {
-                $scope.onlyOpen = data.eRedesignSettings.onlyOpen;
-                $scope.resultNumber = data.eRedesignSettings.resultNumber;
+        chrome.storage.sync.get('JarvisSettings', function(data) {
+            if (data && data.JarvisSettings) {
+                $scope.onlyOpen = data.JarvisSettings.onlyOpen;
+                $scope.resultNumber = data.JarvisSettings.resultNumber;
                 $scope.$apply();
             }
         });
 
 
         $scope.save = function () {
-            chrome.storage.sync.set({'eRedesignSettings': {onlyOpen: $scope.onlyOpen, resultNumber: $scope.resultNumber}}, function() {
+            chrome.storage.sync.set({'JarvisSettings': {onlyOpen: $scope.onlyOpen, resultNumber: $scope.resultNumber}}, function() {
                 $scope.feedback = 'saved';
 
                 $timeout(function() {
@@ -27,6 +27,6 @@
     }
 
     angular
-        .module('eRedesignSettings')
+        .module('JarvisSettings')
         .controller('SettingsCtrl', SettingsCtrl);
 })();

@@ -1,4 +1,4 @@
-angular.module("eRedesignBG")
+angular.module("JarvisBG")
 
     .constant("ENV", {
         "name": "europeana",

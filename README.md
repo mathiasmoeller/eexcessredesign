@@ -1,5 +1,7 @@
 # eexcessredesign
-Redesign of the EEXCESS Chrome Plugin
+Redesign of the EEXCESS Chrome Plugin.
+
+This is Jarvis. As the famous butler Edwin Jarvis assisted Howard and Tony Stark this Jarvis will assist you with your recherche.
 
 ## setup
 1. Clone the repository

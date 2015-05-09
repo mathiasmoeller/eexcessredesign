@@ -1,5 +1,5 @@
 angular
-    .module('eRedesignSettings', [
+    .module('JarvisSettings', [
         'ngAnimate',
         'ngMaterial'
     ]);

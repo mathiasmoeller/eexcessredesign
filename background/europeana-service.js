@@ -7,10 +7,10 @@
         var reusability = '';
 
         // load settings from storage
-        chrome.storage.sync.get('eRedesignSettings', function(data) {
-            if (data && data.eRedesignSettings) {
-                reusability = _parseUsability(data.eRedesignSettings.onlyOpen);
-                resultNumber = data.eRedesignSettings.resultNumber;
+        chrome.storage.sync.get('JarvisSettings', function(data) {
+            if (data && data.JarvisSettings) {
+                reusability = _parseUsability(data.JarvisSettings.onlyOpen);
+                resultNumber = data.JarvisSettings.resultNumber;
             }
         });
 
@@ -56,8 +56,8 @@
         };
 
         chrome.storage.onChanged.addListener(function (changes) {
-            if (changes.eRedesignSettings) {
-                var change = changes.eRedesignSettings.newValue;
+            if (changes.JarvisSettings) {
+                var change = changes.JarvisSettings.newValue;
                 resultNumber = change.resultNumber;
                 reusability = _parseUsability(change.onlyOpen);
             }
@@ -69,7 +69,7 @@
     }
 
     angular
-        .module('eRedesignBG')
+        .module('JarvisBG')
         .factory('EuService', EuService);
 
 })();

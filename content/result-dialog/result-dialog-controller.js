@@ -11,7 +11,7 @@
     }
 
     angular
-        .module('eRedesign')
+        .module('Jarvis')
         .controller('ResultDialogCtrl', ResultDialogCtrl)
         .filter('resultFilter', function () {
             return function (results, types) {

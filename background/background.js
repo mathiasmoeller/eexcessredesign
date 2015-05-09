@@ -1,5 +1,5 @@
 angular
-    .module('eRedesignBG', [
+    .module('JarvisBG', [
         'ngAnimate',
         'ngMaterial'
     ]);

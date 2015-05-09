@@ -14,7 +14,7 @@
     }
 
     angular
-        .module('eRedesignBG')
+        .module('JarvisBG')
         .factory('UtilsService', UtilsService);
 
 })();

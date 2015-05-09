@@ -21,7 +21,7 @@
     }
 
     angular
-        .module('eRedesignBG')
+        .module('JarvisBG')
         .factory('KeywordService', KeywordService);
 
 })();
