@@ -3,3 +3,4 @@
 - md config
 - focus auf input field
 - europeana anfrage checken
+- angular fehler finden
