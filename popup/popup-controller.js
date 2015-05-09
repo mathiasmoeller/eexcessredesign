@@ -4,6 +4,7 @@
     function PopupCtrl($scope) {
         var extID = chrome.i18n.getMessage('@@extension_id');
         $scope.linkToSettings = "chrome://extensions?options=" + extID;
+        console.log($scope.linkToSettings);
 
         // The application.showApp needs to be a unshallow object. Don't ask why. I dare you. I double dare you.
         $scope.application = {};
@@ -35,6 +36,10 @@
                 });
             });
         });
+
+        $scope.showSettings = function () {
+            chrome.tabs.create({url: 'chrome://extensions?options=icignkfnpkemhfemfklfcioicajmmhol'});
+        }
     }
 
     angular
