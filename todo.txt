@@ -1,5 +1,4 @@
 - replace vendor scripts with minified versions
-- md-highlight-text
 - md config
 - focus auf input field
 - europeana anfrage checken
