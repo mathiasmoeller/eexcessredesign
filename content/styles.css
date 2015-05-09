@@ -45,6 +45,12 @@
     font-size: 16px;
 }
 
+.detail-dialog-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 2px;
+}
+
 .highlight {
     background-color: yellow;
     border-radius: 2px;

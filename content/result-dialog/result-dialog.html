@@ -5,7 +5,7 @@
                 <md-content>
                     <md-list>
                         <md-list-item ng-repeat="result in results | resultFilter: {'TEXT': true}">
-                            <a href="{{result.guid}}" target="_blank">
+                            <a href="{{result.guid}}" target="_blank" ng-mouseenter="showDetailDialog = true" ng-mouseleave="showDetailDialog = false">
                                 <img ng-src="{{result.edmPreview[0]}}" class="preview-icon">
                             </a>
 
@@ -15,9 +15,21 @@
                                         {{result.title[0]}}
                                         <span ng-if="result.title[1]">,</span>
                                         {{result.title[1]}}
+                                        <span ng-if="result.year">,</span>
+                                        {{result.year}}
                                     </a>
 
                                 </div>
+                            </div>
+
+                            <div ng-show="true" style="width: 600px; height: 100px; position: relative; top: 66px;">
+                                <a href="{{result.guid}}" target="_blank">
+                                    <img ng-src="{{result.edmPreview[0]}}" class="detail-dialog-icon">
+                                </a>
+                                <span>Data Provider:</span><span>{{result.provider}}</span>
+                                <span>Languages:</span><span>{{result.language}}</span>
+                                <span>Rights:</span><span>{{result.rights}}</span>
+                                <span>Characteristics:</span><span>{{result.dctermsSpatial}}</span>
                             </div>
                             <md-divider ng-show="!$last"></md-divider>
                         </md-list-item>

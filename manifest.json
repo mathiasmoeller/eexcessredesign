@@ -31,7 +31,8 @@
         "content/paragraph-directive/highlight-service.js",
         "content/paragraph-directive/paragraph-directive.js",
         "content/paragraph-directive/paragraph-directive-controller.js",
-        "content/result-dialog/result-dialog-controller.js"
+        "content/result-dialog/result-dialog-controller.js",
+        "content/detail-dialog/detail-dialog-controller.js"
       ],
       "css": [
         "vendor/angular-material/angular-material.css",
