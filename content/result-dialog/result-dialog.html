@@ -81,7 +81,7 @@
             <md-tab label="Audio and Video Results">
                 <md-content>
                     <md-list>
-                        <md-list-item ng-repeat="result in results | resultFilter: {'VIDEO': true, 'AUDIO': true} | orderBy: '-score'" ng-mouseleave="showDetailDialog = false">
+                        <md-list-item ng-repeat="result in results | resultFilter: {'VIDEO': true, 'SOUND': true} | orderBy: '-score'" ng-mouseleave="showDetailDialog = false">
                             <div class="result-image-container" layout="row" layout-align="start center" ng-mouseenter="showDetailDialog = true"
                                  ng-class="{'result-image-container-small': !showDetailDialog, 'result-image-container-big': showDetailDialog}">
                                 <a href="{{result.guid}}" target="_blank" >
