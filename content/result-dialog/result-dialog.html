@@ -4,38 +4,58 @@
             <md-tab label="Text Results">
                 <md-content>
                     <md-list>
-                        <md-list-item ng-repeat="result in results | resultFilter: {'TEXT': true}">
+                        <md-list-item ng-repeat="result in results | resultFilter: {'TEXT': true} | orderBy: '-score'">
                             <a href="{{result.guid}}" target="_blank" ng-mouseenter="showDetailDialog = true" ng-mouseleave="showDetailDialog = false">
-                                <img ng-src="{{result.edmPreview[0]}}" class="preview-icon">
+                                <img ng-src="{{result.edmPreview[0]}}" class="preview-icon"
+                                     ng-class="{'preview-icon-small': !showDetailDialog, 'preview-icon-big': showDetailDialog}">
                             </a>
 
-                            <div class="result-dialog-items" layout="column" layout-align="center start">
-                                <div class="result-dialog-text" layout="column" layout-align="center start">
-                                    <a href="{{result.guid}}" target="_blank">
-                                        {{result.title[0]}}
-                                        <span ng-if="result.title[1]">,</span>
-                                        {{result.title[1]}}
-                                        <span ng-if="result.year">,</span>
-                                        {{result.year}}
-                                    </a>
+                            <div layout="column" layout-align="start start" layout-fill layout-padding>
 
+                                <div class="" layout="column" layout-align="center start">
+                                    <div class="result-dialog-text" layout="column" layout-align="center start">
+                                        <a href="{{result.guid}}" target="_blank">
+                                            {{result.title[0]}}
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div ng-show="true" style="width: 600px; height: 100px; position: relative; top: 66px;">
-                                <a href="{{result.guid}}" target="_blank">
-                                    <img ng-src="{{result.edmPreview[0]}}" class="detail-dialog-icon">
-                                </a>
-                                <span>Data Provider:</span><span>{{result.provider}}</span>
-                                <span>Languages:</span><span>{{result.language}}</span>
-                                <span>Rights:</span><span>{{result.rights}}</span>
-                                <span>Characteristics:</span><span>{{result.dctermsSpatial}}</span>
+                                <div ng-show="showDetailDialog" layout-fill>
+                                    <md-list class="detailed-list">
+                                        <md-list-item class="detailed-item" layout="row" layout-align="start center">
+                                            <div flex="25" layout-align="start start">
+                                                <span class="name">Data Provider:</span>
+                                            </div>
+                                            <div flex>{{result.provider[0]}}</div>
+                                        </md-list-item>
+                                        <md-list-item class="detailed-item" layout="row" layout-align="start center">
+                                            <div flex="25" layout-align="start start">
+                                                <span class="name">Language:</span>
+                                            </div>
+                                            <div flex>{{result.language[0]}}</div>
+                                        </md-list-item>
+                                        <md-list-item class="detailed-item" layout="row" layout-align="start center">
+                                            <div flex="25" layout-align="start start">
+                                                <span class="name">Rights:</span>
+                                            </div>
+                                            <div flex><a href="{{result.rights[0]}}" target="_blank">{{result.rights[0]}}</a></div>
+                                        </md-list-item>
+                                        <md-list-item class="detailed-item" layout="row" layout-align="start center">
+                                            <div flex="25" layout-align="start start">
+                                                <span class="name">Score:</span>
+                                            </div>
+                                            <div flex>{{result.score}}</div>
+                                        </md-list-item>
+
+                                    </md-list>
+                                </div>
                             </div>
                             <md-divider ng-show="!$last"></md-divider>
                         </md-list-item>
                     </md-list>
                 </md-content>
             </md-tab>
+
             <md-tab label="Image Results">
                 <md-content>
                     <md-list>
@@ -58,6 +78,7 @@
                     </md-list>
                 </md-content>
             </md-tab>
+
             <md-tab label="Audio and Video Results">
                 <md-content>
                     <md-list>
