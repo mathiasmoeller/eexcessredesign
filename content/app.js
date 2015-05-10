@@ -1,7 +1,7 @@
 angular
-    .module('eRedesign', [
+    .module('Jarvis', [
         'ngAnimate',
         'ngMaterial'
     ]);
 
-$("html").attr('ng-app','eRedesign');
+$("html").attr('ng-app','Jarvis');

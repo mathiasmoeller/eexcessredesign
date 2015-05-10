@@ -16,7 +16,7 @@
     }
 
     angular
-        .module('eRedesign')
+        .module('Jarvis')
         .directive('paragraphDirective', ParagraphDirective);
 
 })();

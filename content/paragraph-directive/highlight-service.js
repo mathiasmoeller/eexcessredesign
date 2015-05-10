@@ -17,7 +17,7 @@
     }
 
     angular
-        .module('eRedesign')
+        .module('Jarvis')
         .factory('HighlightService', HighlightService);
 
 })();

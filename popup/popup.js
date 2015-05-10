@@ -1,5 +1,5 @@
 angular
-    .module('eRedesignPopup', [
+    .module('JarvisPopup', [
         'ngAnimate',
         'ngMaterial'
     ]);

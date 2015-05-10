@@ -8,6 +8,6 @@
     }
 
     angular
-        .module('eRedesignBG')
+        .module('JarvisBG')
         .controller('BackgroundCtrl', BackgroundCtrl);
 })();

@@ -1,3 +1,7 @@
+html, body {
+    height: 400px;
+}
+
 .settings-feedback {
     position: relative;
     border-radius: 2px;
@@ -23,7 +27,7 @@
 .settings-feedback.ng-hide-add,
 .settings-feedback.ng-hide-remove.ng-hide-remove-active {
     opacity: 1;
-    height: 22px;
+    height: 17px;
 }
 
 .settings-feedback-success {

@@ -1,42 +1,55 @@
-<div ng-class="{'detectedParagraph': showPlugin}">
+<div ng-class="{'detected-paragraph': showPlugin}">
     <div ng-show="showPlugin" layout="row" layout-align="space-between end">
         <!-- Query-->
         <md-button aria-label="Query"
-                   class="md-accent md-icon-button md-raised queryButton" ng-click="query()">
+                   class="md-accent md-raised query-button" ng-click="query()" layout="row" layout-align="start center">
+
             <!-- Find keywords-->
-            <md-icon ng-if="!keywordsFound" md-svg-src="{{icons.query}}"
-                     style="position: absolute; left: 6px; top: 6px;"></md-icon>
-            <md-tooltip ng-if="!keywordsFound">Find keywords</md-tooltip>
+            <section class="keyword-section" ng-show="!keywordsFound">
+                <md-icon md-svg-src="{{icons.query}}"
+                         class="query-icon query-fade"></md-icon>
+                <span class="query-name">Find keywords</span>
+            </section>
 
             <!-- Query europeana-->
-            <md-icon ng-if="keywordsFound" md-svg-src="{{icons.search}}"
-                     style="position: absolute; left: 6px; top: 6px;"></md-icon>
-            <md-tooltip ng-if="keywordsFound">Query Europeana</md-tooltip>
+            <section class="animated fadeIn" ng-show="keywordsFound">
+                <md-icon md-svg-src="{{icons.search}}"
+                         class="query-icon"></md-icon>
+                <span class="query-name">Query Europeana</span>
+            </section>
+
+            <!--<md-tooltip>-->
+            <!--<span ng-if="!keywordsFound" class="animate fadeOut">Find keywords</span>-->
+            <!--<span ng-if="keywordsFound" class="animate fadeIn">Query Europeana</span>-->
+            <!--</md-tooltip>-->
         </md-button>
 
         <div layout="row" layout-align="end end">
             <!-- Text-->
-            <md-button ng-if="queried" aria-label="Text" class="md-primary md-icon-button md-raised resultButton"
+            <md-button id="text-results" ng-if="queried" aria-label="Text"
+                       class="animated bounceIn md-primary md-icon-button md-raised result-button"
                        ng-click="showResults($event, 0)">
-                <md-icon md-svg-src="{{icons.text}}" style="position: absolute; left: 6px; top: 6px;"></md-icon>
+                <md-icon md-svg-src="{{icons.text}}" style="position: absolute; left: 4px; top: 4px;"></md-icon>
                 <md-tooltip>Show text results</md-tooltip>
                 <span class="result-counter" layout="row" layout-align="center center">{{textResults}}</span>
             </md-button>
 
 
             <!-- Image-->
-            <md-button ng-if="queried" aria-label="Image" class="md-primary md-icon-button md-raised resultButton"
+            <md-button id="image-results" ng-if="queried" aria-label="Image"
+                       class="animated bounceIn md-primary md-icon-button md-raised result-button"
                        ng-click="showResults($event, 1)">
-                <md-icon md-svg-src="{{icons.image}}" style="position: absolute; left: 6px; top: 6px;"></md-icon>
+                <md-icon md-svg-src="{{icons.image}}" style="position: absolute; left: 4px; top: 4px;"></md-icon>
                 <md-tooltip>Show image results</md-tooltip>
                 <span class="result-counter" layout="row" layout-align="center center">{{imageResults}}</span>
             </md-button>
 
 
             <!-- Video-->
-            <md-button ng-if="queried" aria-label="Video" class="md-primary md-icon-button md-raised resultButton"
+            <md-button id="video-results" ng-if="queried" aria-label="Video"
+                       class="animated bounceIn md-primary md-icon-button md-raised result-button"
                        ng-click="showResults($event, 2)">
-                <md-icon md-svg-src="{{icons.video}}" style="position: absolute; left: 6px; top: 6px;"></md-icon>
+                <md-icon md-svg-src="{{icons.video}}" style="position: absolute; left: 4px; top: 4px;"></md-icon>
                 <md-tooltip>Show audio and video results</md-tooltip>
                 <span class="result-counter" layout="row" layout-align="center center">{{avResults}}</span>
             </md-button>

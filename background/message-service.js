@@ -48,7 +48,7 @@
     }
 
     angular
-        .module('eRedesignBG')
+        .module('JarvisBG')
         .factory('MessageService', MessageService)
         .run(function (MessageService) {
             // call MessageService in run function so it can listen to all events from beginning on.

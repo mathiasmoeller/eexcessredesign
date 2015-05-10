@@ -15,7 +15,7 @@
 
 
     angular
-        .module('eRedesign')
+        .module('Jarvis')
         .config(MdThemeConfig);
 
 })();

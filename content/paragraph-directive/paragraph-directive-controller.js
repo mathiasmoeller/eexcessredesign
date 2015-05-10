@@ -12,10 +12,26 @@
 
         var queryResults = undefined;
 
-        // Check if plugin is disabled or not
+        // Load the initial value from the storage
+        chrome.storage.sync.get('Jarvis', function (data) {
+            if (data.Jarvis) {
+                ER.messaging.callBG({
+                    method: {service: 'UtilsService', func: 'getCurrentTabID'}
+                }, function (tabID) {
+
+                    if (data.Jarvis[tabID] !== undefined) {
+                        $scope.showPlugin = data.Jarvis[tabID];
+                    }
+                    $scope.$apply();
+                });
+            }
+        });
+
+
+        // Set listener who listens for changes in the storage
         chrome.storage.onChanged.addListener(function (changes) {
-            if (changes.eRedesign) {
-                var storageValue = changes.eRedesign.newValue;
+            if (changes.Jarvis) {
+                var storageValue = changes.Jarvis.newValue;
                 ER.messaging.callBG({
                     method: {service: 'UtilsService', func: 'getCurrentTabID'}
                 }, function (tabID) {
@@ -106,6 +122,6 @@
     }
 
     angular
-        .module('eRedesign')
+        .module('Jarvis')
         .controller('ParagraphCtrl', ParagraphCtrl);
 })();

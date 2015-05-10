@@ -11,6 +11,6 @@
     }
 
     angular
-        .module('eRedesign')
+        .module('Jarvis')
         .controller('AppCtrl', AppCtrl);
 })();

@@ -1,8 +1,8 @@
 {
-  "name": "EEXCESS Redesign",
-  "version": "0.2",
+  "name": "Jarvis",
+  "version": "0.3",
   "browser_action": {
-    "default_title": "EEXCESSRedesign",
+    "default_title": "Jarvis",
     "default_icon": {
       "19": "media/icons/icon38.png",
       "38": "media/icons/icon38.png"
@@ -31,12 +31,14 @@
         "content/paragraph-directive/highlight-service.js",
         "content/paragraph-directive/paragraph-directive.js",
         "content/paragraph-directive/paragraph-directive-controller.js",
-        "content/result-dialog/result-dialog-controller.js"
+        "content/result-dialog/result-dialog-controller.js",
+        "content/detail-dialog/detail-dialog-controller.js"
       ],
       "css": [
         "vendor/angular-material/angular-material.css",
         "common/angular-csp.css",
-        "content/styles.css"
+        "content/styles.css",
+        "content/animate.css"
       ]
     }
   ],
