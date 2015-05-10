@@ -8,7 +8,7 @@
                             <div class="result-image-container" layout="row" layout-align="start center" ng-mouseenter="showDetailDialog = true"
                                  ng-class="{'result-image-container-small': !showDetailDialog, 'result-image-container-big': showDetailDialog}">
                                 <a href="{{result.guid}}" target="_blank" >
-                                    <img ng-src="{{result.edmPreview[0]}}" class="preview-icon"
+                                    <img ng-src="{{result.edmPreview[0] || textFallback}}" class="preview-icon"
                                          ng-class="{'preview-icon-small': !showDetailDialog, 'preview-icon-big': showDetailDialog}">
                                 </a>
                             </div>
@@ -66,7 +66,7 @@
                         <md-grid-tile
                                 ng-repeat="result in results | resultFilter: {'IMAGE': true, '3D': true} | orderBy: '-score'">
                             <a href="{{result.guid}}" target="_blank">
-                                <img ng-src="{{result.edmPreview[0]}}" class="image-result">
+                                <img ng-src="{{result.edmPreview[0] || imageFallback}}" class="image-result">
 
 
                                 <md-grid-tile-footer>
@@ -85,7 +85,7 @@
                             <div class="result-image-container" layout="row" layout-align="start center" ng-mouseenter="showDetailDialog = true"
                                  ng-class="{'result-image-container-small': !showDetailDialog, 'result-image-container-big': showDetailDialog}">
                                 <a href="{{result.guid}}" target="_blank" >
-                                    <img ng-src="{{result.edmPreview[0]}}" class="preview-icon"
+                                    <img ng-src="{{result.edmPreview[0] || videoFallback}}" class="preview-icon"
                                          ng-class="{'preview-icon-small': !showDetailDialog, 'preview-icon-big': showDetailDialog}">
                                 </a>
                             </div>
