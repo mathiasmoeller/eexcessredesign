@@ -1,13 +1,13 @@
 (function () {
     'use strict';
 
-    function ResultDialogCtrl($scope, $sce, $mdDialog, results, selectedTab) {
+    function ResultDialogCtrl($scope, $mdDialog, results, selectedTab) {
         $scope.results = results;
         $scope.selectedTab = selectedTab;
 
         $scope.hide = function () {
             $mdDialog.hide();
-        }
+        };
     }
 
     angular
