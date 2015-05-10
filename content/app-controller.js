@@ -2,12 +2,7 @@
     'use strict';
 
     function AppCtrl($scope) {
-        console.log("hey");
-
-        chrome.runtime.onMessage.addListener(function() {
-            alert("hey");
-            console.log("hey");
-        });
+        //   Not used at the moment
     }
 
     angular

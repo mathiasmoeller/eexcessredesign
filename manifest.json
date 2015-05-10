@@ -22,17 +22,16 @@
         "vendor/angular-material/angular-material.js",
         "vendor/angular-animate/angular-animate.js",
         "vendor/angular-aria/angular-aria.js",
-        "content/common/browser_specific.js",
         "content/paragraph-detection/ContextDetector.js",
         "content/app.js",
         "content/app-controller.js",
-        "content/md-config.js",
+        "content/message-service.js",
+        "content/utils-service.js",
         "content/paragraph-directive/highlight.js",
         "content/paragraph-directive/highlight-service.js",
         "content/paragraph-directive/paragraph-directive.js",
         "content/paragraph-directive/paragraph-directive-controller.js",
-        "content/result-dialog/result-dialog-controller.js",
-        "content/detail-dialog/detail-dialog-controller.js"
+        "content/result-dialog/result-dialog-controller.js"
       ],
       "css": [
         "vendor/angular-material/angular-material.css",
