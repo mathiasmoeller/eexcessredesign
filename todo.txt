@@ -1,5 +1,5 @@
 - replace vendor scripts with minified versions
-- md config
 - focus auf input field
 - europeana anfrage checken
 - angular fehler finden
+- placeholder falls keine ergebnisse gefunden
