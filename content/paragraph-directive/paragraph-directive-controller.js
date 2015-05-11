@@ -65,42 +65,19 @@
 
                     $scope.keywordsFound = true;
                     $scope.$apply();
+                    _queryEuropeana();
                 });
             }
 
             else {
-                // Query europeana
-                MessageService.callBG({
-                    method: {service: 'EuService', func: 'query'},
-                    data: $scope.keywords
-                }, function (result) {
-                    queryResults = result.items;
-                    $scope.resultNumbers = {};
-                    $scope.resultNumbers.textResults = 0;
-                    $scope.resultNumbers.imageResults = 0;
-                    $scope.resultNumbers.avResults = 0;
-
-                    angular.forEach(queryResults, function (item) {
-                        if (item.type === 'TEXT') {
-                            $scope.resultNumbers.textResults++;
-                        } else if (item.type === 'IMAGE' || item.type === '3D') {
-                            $scope.resultNumbers.imageResults++;
-                        } else {
-                            $scope.resultNumbers.avResults++;
-                        }
-                    });
-
-                    $scope.queried = true;
-                    $scope.keywordsFound = true;
-                    $scope.$apply();
-                });
+                _queryEuropeana();
             }
         };
 
         // Watch for keyword changes to highlight the current keywords
-        $scope.$watch('keywords', function() {
+        $scope.$watch('keywords', function () {
             HighlightService.removeHighlight($scope.id);
-            angular.forEach($scope.keywords, function(keyword) {
+            angular.forEach($scope.keywords, function (keyword) {
                 HighlightService.highlight($scope.id, keyword);
             })
         }, true);
@@ -122,6 +99,32 @@
                     }
                 },
                 targetEvent: event
+            });
+        }
+
+        function _queryEuropeana() {
+            MessageService.callBG({
+                method: {service: 'EuService', func: 'query'},
+                data: $scope.keywords
+            }, function (result) {
+                queryResults = result.items;
+                $scope.resultNumbers = {};
+                $scope.resultNumbers.textResults = 0;
+                $scope.resultNumbers.imageResults = 0;
+                $scope.resultNumbers.avResults = 0;
+
+                angular.forEach(queryResults, function (item) {
+                    if (item.type === 'TEXT') {
+                        $scope.resultNumbers.textResults++;
+                    } else if (item.type === 'IMAGE' || item.type === '3D') {
+                        $scope.resultNumbers.imageResults++;
+                    } else {
+                        $scope.resultNumbers.avResults++;
+                    }
+                });
+
+                $scope.queried = true;
+                $scope.$apply();
             });
         }
     }
