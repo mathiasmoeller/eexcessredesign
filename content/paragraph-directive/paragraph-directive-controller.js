@@ -75,17 +75,18 @@
                     data: $scope.keywords
                 }, function (result) {
                     queryResults = result.items;
-                    $scope.textResults = 0;
-                    $scope.imageResults = 0;
-                    $scope.avResults = 0;
+                    $scope.resultNumbers = {};
+                    $scope.resultNumbers.textResults = 0;
+                    $scope.resultNumbers.imageResults = 0;
+                    $scope.resultNumbers.avResults = 0;
 
                     angular.forEach(queryResults, function (item) {
                         if (item.type === 'TEXT') {
-                            $scope.textResults++;
+                            $scope.resultNumbers.textResults++;
                         } else if (item.type === 'IMAGE' || item.type === '3D') {
-                            $scope.imageResults++;
+                            $scope.resultNumbers.imageResults++;
                         } else {
-                            $scope.avResults++;
+                            $scope.resultNumbers.avResults++;
                         }
                     });
 
@@ -115,6 +116,9 @@
                     },
                     selectedTab: function () {
                         return selectedTab;
+                    },
+                    resultNumbers: function () {
+                        return $scope.resultNumbers;
                     }
                 },
                 targetEvent: event

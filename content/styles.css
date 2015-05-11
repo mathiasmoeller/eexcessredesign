@@ -67,6 +67,10 @@
     overflow: hidden;
 }
 
+.result-dialog-placeholder {
+    padding: 16px 0 0 16px;
+}
+
 .detailed-list {
     padding: 0;
 }
@@ -78,31 +82,6 @@
 .image-result {
     max-width: 150px;
     max-height: 150px;
-}
-
-md-grid-list md-grid-tile {
-    background: rgba(0, 0, 0, 0.16);
-}
-
-md-grid-list md-grid-tile md-grid-tile-footer {
-    background: rgba(0, 0, 0, 0.68);
-    height: 36px;
-}
-
-md-grid-list md-grid-tile md-grid-tile-footer figcaption {
-    width: 100%;
-}
-
-md-grid-list md-grid-tile md-grid-tile-footer figcaption div {
-    margin: 0;
-    font-weight: 700;
-    width: 100%;
-    text-align: center;
-    color: white;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    height: 30px;
-    font-size: 14px;
 }
 
 .highlight {
@@ -323,4 +302,30 @@ html {
 
 .md-chips md-autocomplete button {
     display: none;
+}
+
+
+md-grid-list md-grid-tile {
+    background: rgba(0, 0, 0, 0.16);
+}
+
+md-grid-list md-grid-tile md-grid-tile-footer {
+    background: rgba(0, 0, 0, 0.68);
+    height: 36px;
+}
+
+md-grid-list md-grid-tile md-grid-tile-footer figcaption {
+    width: 100%;
+}
+
+md-grid-list md-grid-tile md-grid-tile-footer figcaption div {
+    margin: 0;
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 30px;
+    font-size: 14px;
 }
