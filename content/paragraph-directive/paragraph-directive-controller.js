@@ -1,13 +1,14 @@
 (function () {
     'use strict';
 
-    function ParagraphCtrl($scope, $sce, $mdDialog, HighlightService) {
+    function ParagraphCtrl($scope, $sce, $mdDialog, HighlightService, MessageService, Utils) {
+        var _extID = Utils.getExtID();
         $scope.icons = {};
-        $scope.icons.query = $sce.trustAsResourceUrl('chrome-extension://' + ER.utils.extID + '/media/icons/query-icon.svg');
-        $scope.icons.search = $sce.trustAsResourceUrl('chrome-extension://' + ER.utils.extID + '/media/icons/search-icon.svg');
-        $scope.icons.image = $sce.trustAsResourceUrl('chrome-extension://' + ER.utils.extID + '/media/icons/image-icon.svg');
-        $scope.icons.text = $sce.trustAsResourceUrl('chrome-extension://' + ER.utils.extID + '/media/icons/text-icon.svg');
-        $scope.icons.video = $sce.trustAsResourceUrl('chrome-extension://' + ER.utils.extID + '/media/icons/video-icon.svg');
+        $scope.icons.query = $sce.trustAsResourceUrl('chrome-extension://' + _extID + '/media/icons/query-icon.svg');
+        $scope.icons.search = $sce.trustAsResourceUrl('chrome-extension://' + _extID + '/media/icons/search-icon.svg');
+        $scope.icons.image = $sce.trustAsResourceUrl('chrome-extension://' + _extID + '/media/icons/image-icon.svg');
+        $scope.icons.text = $sce.trustAsResourceUrl('chrome-extension://' + _extID + '/media/icons/text-icon.svg');
+        $scope.icons.video = $sce.trustAsResourceUrl('chrome-extension://' + _extID + '/media/icons/video-icon.svg');
         $scope.keywords = [];
 
         var queryResults = undefined;
@@ -15,7 +16,7 @@
         // Load the initial value from the storage
         chrome.storage.sync.get('Jarvis', function (data) {
             if (data.Jarvis) {
-                ER.messaging.callBG({
+                MessageService.callBG({
                     method: {service: 'UtilsService', func: 'getCurrentTabID'}
                 }, function (tabID) {
 
@@ -32,7 +33,7 @@
         chrome.storage.onChanged.addListener(function (changes) {
             if (changes.Jarvis) {
                 var storageValue = changes.Jarvis.newValue;
-                ER.messaging.callBG({
+                MessageService.callBG({
                     method: {service: 'UtilsService', func: 'getCurrentTabID'}
                 }, function (tabID) {
 
@@ -52,7 +53,7 @@
                 // outgoing paragraph has to be in a list. this is requested by the api of the REST service
                 var paragraph = [ER.paragraphs.getParagraph($scope.id)];
 
-                ER.messaging.callBG({
+                MessageService.callBG({
                     method: {service: 'KeywordService', func: 'getParagraphEntities'},
                     data: paragraph
                 }, function (result) {
@@ -64,41 +65,19 @@
 
                     $scope.keywordsFound = true;
                     $scope.$apply();
+                    _queryEuropeana();
                 });
             }
 
             else {
-                // Query europeana
-                ER.messaging.callBG({
-                    method: {service: 'EuService', func: 'query'},
-                    data: $scope.keywords
-                }, function (result) {
-                    queryResults = result.items;
-                    $scope.textResults = 0;
-                    $scope.imageResults = 0;
-                    $scope.avResults = 0;
-
-                    angular.forEach(queryResults, function (item) {
-                        if (item.type === 'TEXT') {
-                            $scope.textResults++;
-                        } else if (item.type === 'IMAGE' || item.type === '3D') {
-                            $scope.imageResults++;
-                        } else {
-                            $scope.avResults++;
-                        }
-                    });
-
-                    $scope.queried = true;
-                    $scope.keywordsFound = true;
-                    $scope.$apply();
-                });
+                _queryEuropeana();
             }
         };
 
         // Watch for keyword changes to highlight the current keywords
-        $scope.$watch('keywords', function() {
+        $scope.$watch('keywords', function () {
             HighlightService.removeHighlight($scope.id);
-            angular.forEach($scope.keywords, function(keyword) {
+            angular.forEach($scope.keywords, function (keyword) {
                 HighlightService.highlight($scope.id, keyword);
             })
         }, true);
@@ -106,7 +85,7 @@
         // Show a dialog with all found results
         $scope.showResults = function (event, selectedTab) {
             $mdDialog.show({
-                templateUrl: $sce.trustAsResourceUrl('chrome-extension://' + ER.utils.extID + '/content/result-dialog/result-dialog.html'),
+                templateUrl: $sce.trustAsResourceUrl('chrome-extension://' + _extID + '/content/result-dialog/result-dialog.html'),
                 controller: 'ResultDialogCtrl',
                 resolve: {
                     results: function () {
@@ -114,9 +93,38 @@
                     },
                     selectedTab: function () {
                         return selectedTab;
+                    },
+                    resultNumbers: function () {
+                        return $scope.resultNumbers;
                     }
                 },
                 targetEvent: event
+            });
+        }
+
+        function _queryEuropeana() {
+            MessageService.callBG({
+                method: {service: 'EuService', func: 'query'},
+                data: $scope.keywords
+            }, function (result) {
+                queryResults = result.items;
+                $scope.resultNumbers = {};
+                $scope.resultNumbers.textResults = 0;
+                $scope.resultNumbers.imageResults = 0;
+                $scope.resultNumbers.avResults = 0;
+
+                angular.forEach(queryResults, function (item) {
+                    if (item.type === 'TEXT') {
+                        $scope.resultNumbers.textResults++;
+                    } else if (item.type === 'IMAGE' || item.type === '3D') {
+                        $scope.resultNumbers.imageResults++;
+                    } else {
+                        $scope.resultNumbers.avResults++;
+                    }
+                });
+
+                $scope.queried = true;
+                $scope.$apply();
             });
         }
     }

@@ -3,6 +3,9 @@
         <md-tabs md-selected="selectedTab" style="min-width: 1000px; min-height: 400px;">
             <md-tab label="Text Results">
                 <md-content>
+                    <div class="result-dialog-placeholder" ng-if="resultNums.textResults === 0">
+                        No text results found
+                    </div>
                     <md-list>
                         <md-list-item ng-repeat="result in results | resultFilter: {'TEXT': true} | orderBy: '-score'" ng-mouseleave="showDetailDialog = false">
                             <div class="result-image-container" layout="row" layout-align="start center" ng-mouseenter="showDetailDialog = true"
@@ -15,8 +18,8 @@
 
                             <div layout="column" layout-align="start start" layout-fill layout-padding>
 
-                                <div class="" layout="column" layout-align="center start">
-                                    <div class="result-dialog-text" layout="column" layout-align="center start">
+                                <div class="result-dialog-text" layout="column" layout-align="center start">
+                                    <div class="result-dialog-header" layout="column" layout-align="center start">
                                         <a href="{{result.guid}}" target="_blank">
                                             {{result.title[0]}}
                                         </a>
@@ -62,6 +65,9 @@
 
             <md-tab label="Image Results">
                 <md-content>
+                    <div class="result-dialog-placeholder" ng-if="resultNums.imageResults === 0">
+                        No image results found
+                    </div>
                     <md-grid-list md-cols="6" md-row-height="1:1" md-gutter="5px">
                         <md-grid-tile
                                 ng-repeat="result in results | resultFilter: {'IMAGE': true, '3D': true} | orderBy: '-score'">
@@ -80,6 +86,9 @@
 
             <md-tab label="Audio and Video Results">
                 <md-content>
+                    <div class="result-dialog-placeholder" ng-if="resultNums.avResults === 0">
+                        No audio or video results found
+                    </div>
                     <md-list>
                         <md-list-item ng-repeat="result in results | resultFilter: {'VIDEO': true, 'SOUND': true} | orderBy: '-score'" ng-mouseleave="showDetailDialog = false">
                             <div class="result-image-container" layout="row" layout-align="start center" ng-mouseenter="showDetailDialog = true"
@@ -102,6 +111,12 @@
 
                                 <div ng-show="showDetailDialog" layout-fill>
                                     <md-list class="detailed-list">
+                                        <md-list-item class="detailed-item" layout="row" layout-align="start center">
+                                            <div flex="25" layout-align="start start">
+                                                <span class="name">Type:</span>
+                                            </div>
+                                            <div flex>{{result.type}}</div>
+                                        </md-list-item>
                                         <md-list-item class="detailed-item" layout="row" layout-align="start center">
                                             <div flex="25" layout-align="start start">
                                                 <span class="name">Data Provider:</span>
