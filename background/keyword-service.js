@@ -5,7 +5,7 @@
     function KeywordService($http) {
 
         var _getParagraphEntities = function (tabID, paragraphs, callback) {
-            $http.post('http://mics.fim.uni-passau.de/serverREL/RELEVANTICO/api/entities', {
+            $http.post('http://zaire.dimis.fim.uni-passau.de:8999/doser-disambiguationserverstable/webclassify/entityAndCategoryStatistic', {
                 paragraphs: paragraphs
             })
                 .success(function (result) {
