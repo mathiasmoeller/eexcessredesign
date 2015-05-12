@@ -1,0 +1,41 @@
+\BOOKMARK [1][-]{section.I}{Kurzfassung}{}% 1
+\BOOKMARK [1][-]{section*.1}{Inhaltsverzeichnis}{}% 2
+\BOOKMARK [1][-]{section.III}{Abbildungsverzeichnis}{}% 3
+\BOOKMARK [1][-]{section.IV}{Tabellenverzeichnis}{}% 4
+\BOOKMARK [1][-]{section.V}{Listing-Verzeichnis}{}% 5
+\BOOKMARK [1][-]{section.VI}{Abk\374rzungsverzeichnis}{}% 6
+\BOOKMARK [1][-]{section.1}{Einleitung und Motivation}{}% 7
+\BOOKMARK [2][-]{subsection.1.1}{Unterschiede Web Augmentation, Web Personalization, Web Customization}{section.1}% 8
+\BOOKMARK [2][-]{subsection.1.2}{Vormarsch von JITIR/Web Augmentation}{section.1}% 9
+\BOOKMARK [2][-]{subsection.1.3}{Verbesserung des EEXCESS Plugins / Unterschiede zum EEXCESS Plugin}{section.1}% 10
+\BOOKMARK [1][-]{section.2}{Related Work}{}% 11
+\BOOKMARK [2][-]{subsection.2.1}{Unterschiede und Gemeinsamkeiten zu JITIR-Agents}{section.2}% 12
+\BOOKMARK [3][-]{subsubsection.2.1.1}{Proaktiv vs. User Interaction}{subsection.2.1}% 13
+\BOOKMARK [3][-]{subsubsection.2.1.2}{Informationen darstellen in \214Nonintrusive Manner\215}{subsection.2.1}% 14
+\BOOKMARK [3][-]{subsubsection.2.1.3}{Awareness of user's local context}{subsection.2.1}% 15
+\BOOKMARK [2][-]{subsection.2.2}{Vergleich mit existierenden JITIR Agents}{section.2}% 16
+\BOOKMARK [3][-]{subsubsection.2.2.1}{Remembrance Agent \(in EMACS Editor\)}{subsection.2.2}% 17
+\BOOKMARK [3][-]{subsubsection.2.2.2}{Margin? Web Plugin \344hnlich wie EEXCESS}{subsection.2.2}% 18
+\BOOKMARK [3][-]{subsubsection.2.2.3}{Watson}{subsection.2.2}% 19
+\BOOKMARK [3][-]{subsubsection.2.2.4}{EEXCESS?}{subsection.2.2}% 20
+\BOOKMARK [2][-]{subsection.2.3}{Text Retrieval Algorithmen}{section.2}% 21
+\BOOKMARK [2][-]{subsection.2.4}{Unterschiede und Gemeinsamkeiten zu \214Automatic help systems\215 \(z.B. Microsoft Office Assistant \040Domain spezifisch\)}{section.2}% 22
+\BOOKMARK [1][-]{section.3}{Konzept}{}% 23
+\BOOKMARK [2][-]{subsection.3.1}{Warum kein Proactiver JITIR-Agent?}{section.3}% 24
+\BOOKMARK [2][-]{subsection.3.2}{Anzeige der Ergebnisse}{section.3}% 25
+\BOOKMARK [2][-]{subsection.3.3}{Erkl\344rung der Such-Anfragen Generierung}{section.3}% 26
+\BOOKMARK [2][-]{subsection.3.4}{Anpassen der Suchanfrage durch den Nutzer}{section.3}% 27
+\BOOKMARK [2][-]{subsection.3.5}{Verbesserung der Suchanfrage z.B. durch maschinelles Lernen}{section.3}% 28
+\BOOKMARK [1][-]{section.4}{Implementierung}{}% 29
+\BOOKMARK [2][-]{subsection.4.1}{Verwendung von AngularJS f\374r alle Komponenten des Plugins}{section.4}% 30
+\BOOKMARK [2][-]{subsection.4.2}{Bau der GUIs}{section.4}% 31
+\BOOKMARK [2][-]{subsection.4.3}{Einbindung der REST-Services}{section.4}% 32
+\BOOKMARK [1][-]{section.5}{Evaluierung?}{}% 33
+\BOOKMARK [1][-]{section.6}{Future Work}{}% 34
+\BOOKMARK [2][-]{subsection.6.1}{Alternative Algorithmen zur Textanalyse}{section.6}% 35
+\BOOKMARK [2][-]{subsection.6.2}{Implementierung einer automatischen Suchanfragen-Verbesserung durch maschinelles Lernen}{section.6}% 36
+\BOOKMARK [2][-]{subsection.6.3}{Verbesserung der Ergebniss-G\374te}{section.6}% 37
+\BOOKMARK [2][-]{subsection.6.4}{Anpassung der Anwendung auf mobile Nutzung}{section.6}% 38
+\BOOKMARK [1][-]{section.7}{Conclusion}{}% 39
+\BOOKMARK [1][-]{section*.2}{Anhang}{}% 40
+\BOOKMARK [1][-]{appendix.A}{GUI}{}% 41
