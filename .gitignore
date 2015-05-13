@@ -1,0 +1,5 @@
+# ignore the vendor scripts (those should be loaded via bower)
+/src/vendor/*
+**/*.aux
+**/*.bbl
+**/*.blg

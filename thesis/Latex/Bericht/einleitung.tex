@@ -1,0 +1,27 @@
+\section{Einleitung und Motivation}
+Suchmaschinen gehören heutzutage zu den meistbesuchten Seiten im Internet. Google\footnote{https://www.google.com/} ist mit 2.000.000.000.000 Suchanfragen pro Jahr (TODO: Quelle) nicht nur die beliebteste Suchmaschine, sondern auch die meist besuchte Seite im Internet. Auch die chinesische Suchmaschine Baidu\footnote{http://www.baidu.com/} ist in den oberen fünf Plätzen vertreten \cite{alexa}. Doch der Funktionsumfang dieser Seiten ist begrenzt.
+Sie können den Kontext des Benutzers in ihren Queries nicht miteinbeziehen. Weiterhin verlangen sie vom Nutzer seine gegenwärtige Arbeit einzustellen, die Webseite der Suchmaschine aufzurufen und eine Suchanfrage zu formulieren. So wird die Konzentration auf den eigentlichen Arbeitsschritt gestört. Im Schnitt sind nur 67\% der Suchanfragen an Google erfolgreich (TODO: Quelle). Das heißt in circa einem Drittel der Fälle bleibt der Aufruf der Suchmaschine ohne die erwarteten Erfolge. Zu der verstrichenen Zeit kommt auch noch die Zeit dazu, die der Nutzer braucht um sich seine Arbeit wieder ins Kurzzeitgedächtnis zu holen.
+Um diesen Problemen entgegen zu wirken wurden neue Wege zur Informationsgewinnung entwickelt. Eine Möglichkeit sind so genannte Just-in-time Information Retrieval Agents (JITIR-Agents)\cite{rhodes2000just}. Sie beobachten im Hintergrund den Kontext des Benutzers und versuchen aus den so erhaltenen Informationen eine Suchanfrage an eine Datenbank oder ein Recommender-System zu schicken. Die gewonnenen Informationen werden dann möglichst unaufdringlich dem Benutzer angezeigt. Er kann sich nun entscheiden diese Informationen genauer zu betrachten oder mit seiner Arbeit fortzufahren. Die kognitive Belastung bleibt hierbei sehr gering. JITIR-Agents reduzieren auf diese Weise enorm den Aufwand Informationen zu finden\cite{rhodes2000just}.
+Durch ihre Funktionsweise sind sie jedoch nicht so exakt wie klassische Suchmaschinen, da sie nur `erraten` was den Benutzer gerade interessieren könnte. Wenn ein Benutzer einer genaue Vorstellung von der Suchanfrage oder den Ergebnissen hat haben klassische Suchmaschinen Vorteile gegenüber den JITIR-Agents \cite{rhodes2000just}.
+Ein Beispiel für ein solches System ist das EEXCESS Chrome Plugin. Es analysiert die aktuell besuchten Seiten des Nutzers und schlägt ihm auf Grund der erlangten Daten am Rand des Browser-Fensters weiterführende Quellen aus der Europeana-Datenbank\footnote{http://www.europeana.eu/portal/} vor.
+Ziel dieser Bachelorarbeit ist es, auf Basis des EEXCESS Plugins ein Chrome Plugin zu entwerfen und zu implementieren, welche eine Webseite in einzelne Paragraphen aufteilt und zu jedem Paragraphen kulturelle Inhalte der Europeana-Datenbank vorschlägt. Dabei soll das Design des Plugins helfen, die bei der in Kapitel 5 erläuterten Evaluierung aufgetauchten Probleme zu beheben und Schwachstellen zu verbessern.
+
+
+\subsection{Unterschiede Web Augmentation, Web Personalization, Web Customization}
+WA is to the web what augmented reality is to the physical world
+
+\subsection{Vormarsch von JITIR/Web Augmentation}
+JITIR = Just-in-Time Information Retrieval
+\begin{itemize}
+	\item Möglichkeit das Web mit Funktionen anzureichern
+	\item JITIR hat Vorteile/Nachteile gegenüber klassischen Suchmaschinen
+		\begin{itemize}
+			\item Vorteil Suchmaschinen: Wenn Benutzer klare Vorstellung von der Suche/ Suchanfrage hat oder genau weiß wonach er sucht
+			\item Vorteil JITIR: Aktueller Task muss nicht komplett unterbrochen werden. Man verliert nicht den Überblick was man gerade macht/bleibt im Kurzzeitgedächtnis. JITIR Agents greatly reduce the cost of searching for information 
+			\item Nachteil JITIR: Ergebnisse sind nicht so exakt wie bei Suchmaschinen
+		\end{itemize}
+\end{itemize}
+
+\subsection{Verbesserung des EEXCESS Plugins / Unterschiede zum EEXCESS Plugin}
+Auswertung der alten Evaluierung?
+Erleichtern von Recherchen durch einbinden von weiterführenden Links zu kulturellen Inhalten direkt in die betrachtete Webseite
