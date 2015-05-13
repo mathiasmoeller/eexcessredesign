@@ -1,26 +1,3 @@
-% ----------------------------------------------------------------------------------------------------------
-% Einleitung
-% ----------------------------------------------------------------------------------------------------------
-\section{Einleitung und Motivation}
-\subsection{Unterschiede Web Augmentation, Web Personalization, Web Customization}
-WA is to the web what augmented reality is to the physical world
-
-\subsection{Vormarsch von JITIR/Web Augmentation}
-JITIR = Just-in-Time Information Retrieval
-\begin{itemize}
-	\item Möglichkeit das Web mit Funktionen anzureichern
-	\item JITIR hat Vorteile/Nachteile gegenüber klassischen Suchmaschinen
-		\begin{itemize}
-			\item Vorteil Suchmaschinen: Wenn Benutzer klare Vorstellung von der Suche/ Suchanfrage hat oder genau weiß wonach er sucht
-			\item Vorteil JITIR: Aktueller Task muss nicht komplett unterbrochen werden. Man verliert nicht den Überblick was man gerade macht/bleibt im Kurzzeitgedächtnis. \"JITIR Agents greatly reduce the cost of searching for information \"
-			\item Nachteil JITIR: Ergebnisse sind nicht so exakt wie bei Suchmaschinen
-		\end{itemize}
-\end{itemize}
-
-\subsection{Verbesserung des EEXCESS Plugins / Unterschiede zum EEXCESS Plugin}
-Auswertung der alten Evaluierung?
-Erleichtern von Recherchen durch einbinden von weiterführenden Links zu kulturellen Inhalten direkt in die betrachtete Webseite
-
 \section{Related Work}
 \subsection{Unterschiede und Gemeinsamkeiten zu JITIR-Agents}
  \subsubsection{Proaktiv vs. User Interaction}
@@ -29,21 +6,21 @@ Erleichtern von Recherchen durch einbinden von weiterführenden Links zu kulture
 \subsection{Vergleich mit existierenden JITIR Agents}
  	\subsubsection{Remembrance Agent (in EMACS Editor)}
 		Zeigt Quellen an auf Basis des geschriebenen Texts, Benutzer kann Suchanfrage dann auch noch manuell anpassen/verfeinern
-		→ Vorteil von Suchmaschinen wird mit integriert
+		- > Vorteil von Suchmaschinen wird mit integriert
  	\subsubsection{Margin? Web Plugin ähnlich wie EEXCESS}
  	\subsubsection{Watson}
  	\subsubsection{EEXCESS?}
  	\subsection{Text Retrieval Algorithmen}
  		Term Frequency/Inverse Document Frequency algorithm
  		Text rank
- \subsection{Unterschiede und Gemeinsamkeiten zu „Automatic help systems“ (z.B. Microsoft Office Assistant → Domain spezifisch)}
+ \subsection{Unterschiede und Gemeinsamkeiten zu „Automatic help systems“ (z.B. Microsoft Office Assistant - > Domain spezifisch)}
  	Domain spezifisch vs. Domain unabhängig
 
 \section{Konzept}
  \subsection{Warum kein Proactiver JITIR-Agent?}
- 	→ API Limitierung und decrease cognitive load 
-	→ Benutzer entscheidet ob er weitere Informationen erhalten möchte
-	→ Benutzer kann Suchanfrage erst anpassen (Nachteil von Margin Notes (Paper 4)
+ 	- > API Limitierung und decrease cognitive load 
+	- > Benutzer entscheidet ob er weitere Informationen erhalten möchte
+	- > Benutzer kann Suchanfrage erst anpassen (Nachteil von Margin Notes (Paper 4)
  \subsection{Anzeige der Ergebnisse}
  \subsection{Erklärung der Such-Anfragen Generierung}
  \subsection{Anpassen der Suchanfrage durch den Nutzer}
@@ -52,11 +29,11 @@ Erleichtern von Recherchen durch einbinden von weiterführenden Links zu kulture
 \section{Implementierung}
  \subsection{Verwendung von AngularJS für alle Komponenten des Plugins}
  \subsection{Bau der GUIs}
-		→ Darf den Benutzer nicht zu sehr ablenken
-		→ Ergebnisse müssen in der Nähe ihrer „Quelle“ angezeigt werden (proximity compatibility pricinple)
-		→ Benutzer muss klar zwischen Webseite und Augmentation unterscheiden können
-		→ buntes, auffälliges Design
-		→ Ramping interface: Mehr Benutzerinteraktionen führen zu mehr angezeigten Informationen (Erklärung der Stages) 
+		- > Darf den Benutzer nicht zu sehr ablenken
+		- > Ergebnisse müssen in der Nähe ihrer „Quelle“ angezeigt werden (proximity compatibility pricinple)
+		- > Benutzer muss klar zwischen Webseite und Augmentation unterscheiden können
+		- > buntes, auffälliges Design
+		- > Ramping interface: Mehr Benutzerinteraktionen führen zu mehr angezeigten Informationen (Erklärung der Stages) 
  \subsection{Einbindung der REST-Services}
 
 \section{Evaluierung?}

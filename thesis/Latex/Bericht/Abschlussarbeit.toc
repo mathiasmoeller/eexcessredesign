@@ -4,40 +4,40 @@
 \contentsline {section}{\numberline {III}Abbildungsverzeichnis}{IV}{section.III}
 \contentsline {section}{\numberline {IV}Tabellenverzeichnis}{V}{section.IV}
 \contentsline {section}{\numberline {V}Listing-Verzeichnis}{V}{section.V}
-\contentsline {section}{\numberline {VI}Abk\IeC {\"u}rzungsverzeichnis}{VI}{section.VI}
+\contentsline {section}{\numberline {VI}Abk\"urzungsverzeichnis}{VI}{section.VI}
 \contentsline {section}{\numberline {1}Einleitung und Motivation}{1}{section.1}
-\contentsline {subsection}{\numberline {1.1}Unterschiede Web Augmentation, Web Personalization, Web Customization}{1}{subsection.1.1}
-\contentsline {subsection}{\numberline {1.2}Vormarsch von JITIR/Web Augmentation}{1}{subsection.1.2}
-\contentsline {subsection}{\numberline {1.3}Verbesserung des EEXCESS Plugins / Unterschiede zum EEXCESS Plugin}{1}{subsection.1.3}
-\contentsline {section}{\numberline {2}Related Work}{1}{section.2}
-\contentsline {subsection}{\numberline {2.1}Unterschiede und Gemeinsamkeiten zu JITIR-Agents}{1}{subsection.2.1}
-\contentsline {subsubsection}{\numberline {2.1.1}Proaktiv vs. User Interaction}{1}{subsubsection.2.1.1}
-\contentsline {subsubsection}{\numberline {2.1.2}Informationen darstellen in \IeC {\quotedblbase }Nonintrusive Manner\IeC {\textquotedblleft }}{1}{subsubsection.2.1.2}
-\contentsline {subsubsection}{\numberline {2.1.3}Awareness of user's local context}{1}{subsubsection.2.1.3}
-\contentsline {subsection}{\numberline {2.2}Vergleich mit existierenden JITIR Agents}{1}{subsection.2.2}
-\contentsline {subsubsection}{\numberline {2.2.1}Remembrance Agent (in EMACS Editor)}{1}{subsubsection.2.2.1}
-\contentsline {subsubsection}{\numberline {2.2.2}Margin? Web Plugin \IeC {\"a}hnlich wie EEXCESS}{2}{subsubsection.2.2.2}
-\contentsline {subsubsection}{\numberline {2.2.3}Watson}{2}{subsubsection.2.2.3}
-\contentsline {subsubsection}{\numberline {2.2.4}EEXCESS?}{2}{subsubsection.2.2.4}
-\contentsline {subsection}{\numberline {2.3}Text Retrieval Algorithmen}{2}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Unterschiede und Gemeinsamkeiten zu \IeC {\quotedblbase }Automatic help systems\IeC {\textquotedblleft } (z.B. Microsoft Office Assistant \GenericError {(inputenc) }{Package inputenc Error: Unicode char \u 8:→ not set up for use with LaTeX}{See the inputenc package documentation for explanation.}{Your command was ignored.\MessageBreak Type I <command> <return> to replace it with another command,\MessageBreak or <return> to continue without it.} Domain spezifisch)}{2}{subsection.2.4}
-\contentsline {section}{\numberline {3}Konzept}{2}{section.3}
-\contentsline {subsection}{\numberline {3.1}Warum kein Proactiver JITIR-Agent?}{2}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Anzeige der Ergebnisse}{2}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Erkl\IeC {\"a}rung der Such-Anfragen Generierung}{2}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Anpassen der Suchanfrage durch den Nutzer}{2}{subsection.3.4}
-\contentsline {subsection}{\numberline {3.5}Verbesserung der Suchanfrage z.B. durch maschinelles Lernen}{2}{subsection.3.5}
-\contentsline {section}{\numberline {4}Implementierung}{2}{section.4}
-\contentsline {subsection}{\numberline {4.1}Verwendung von AngularJS f\IeC {\"u}r alle Komponenten des Plugins}{2}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Bau der GUIs}{2}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Einbindung der REST-Services}{2}{subsection.4.3}
-\contentsline {section}{\numberline {5}Evaluierung?}{2}{section.5}
-\contentsline {section}{\numberline {6}Future Work}{3}{section.6}
-\contentsline {subsection}{\numberline {6.1}Alternative Algorithmen zur Textanalyse}{3}{subsection.6.1}
-\contentsline {subsection}{\numberline {6.2}Implementierung einer automatischen Suchanfragen-Verbesserung durch maschinelles Lernen}{3}{subsection.6.2}
-\contentsline {subsection}{\numberline {6.3}Verbesserung der Ergebniss-G\IeC {\"u}te}{3}{subsection.6.3}
-\contentsline {subsection}{\numberline {6.4}Anpassung der Anwendung auf mobile Nutzung}{3}{subsection.6.4}
-\contentsline {section}{\numberline {7}Conclusion}{3}{section.7}
+\contentsline {subsection}{\numberline {1.1}Unterschiede Web Augmentation, Web Personalization, Web Customization}{2}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Vormarsch von JITIR/Web Augmentation}{2}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}Verbesserung des EEXCESS Plugins / Unterschiede zum EEXCESS Plugin}{2}{subsection.1.3}
+\contentsline {section}{\numberline {2}Related Work}{3}{section.2}
+\contentsline {subsection}{\numberline {2.1}Unterschiede und Gemeinsamkeiten zu JITIR-Agents}{3}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}Proaktiv vs. User Interaction}{3}{subsubsection.2.1.1}
+\contentsline {subsubsection}{\numberline {2.1.2}Informationen darstellen in \IeC {\quotedblbase }Nonintrusive Manner\IeC {\textquotedblleft }}{3}{subsubsection.2.1.2}
+\contentsline {subsubsection}{\numberline {2.1.3}Awareness of user's local context}{3}{subsubsection.2.1.3}
+\contentsline {subsection}{\numberline {2.2}Vergleich mit existierenden JITIR Agents}{3}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}Remembrance Agent (in EMACS Editor)}{3}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}Margin? Web Plugin \IeC {\"a}hnlich wie EEXCESS}{3}{subsubsection.2.2.2}
+\contentsline {subsubsection}{\numberline {2.2.3}Watson}{3}{subsubsection.2.2.3}
+\contentsline {subsubsection}{\numberline {2.2.4}EEXCESS?}{3}{subsubsection.2.2.4}
+\contentsline {subsection}{\numberline {2.3}Text Retrieval Algorithmen}{3}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Unterschiede und Gemeinsamkeiten zu \IeC {\quotedblbase }Automatic help systems\IeC {\textquotedblleft } (z.B. Microsoft Office Assistant - > Domain spezifisch)}{3}{subsection.2.4}
+\contentsline {section}{\numberline {3}Konzept}{3}{section.3}
+\contentsline {subsection}{\numberline {3.1}Warum kein Proactiver JITIR-Agent?}{3}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Anzeige der Ergebnisse}{4}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Erkl\IeC {\"a}rung der Such-Anfragen Generierung}{4}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Anpassen der Suchanfrage durch den Nutzer}{4}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Verbesserung der Suchanfrage z.B. durch maschinelles Lernen}{4}{subsection.3.5}
+\contentsline {section}{\numberline {4}Implementierung}{4}{section.4}
+\contentsline {subsection}{\numberline {4.1}Verwendung von AngularJS f\IeC {\"u}r alle Komponenten des Plugins}{4}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Bau der GUIs}{4}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Einbindung der REST-Services}{4}{subsection.4.3}
+\contentsline {section}{\numberline {5}Evaluierung?}{4}{section.5}
+\contentsline {section}{\numberline {6}Future Work}{4}{section.6}
+\contentsline {subsection}{\numberline {6.1}Alternative Algorithmen zur Textanalyse}{4}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Implementierung einer automatischen Suchanfragen-Verbesserung durch maschinelles Lernen}{4}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Verbesserung der Ergebniss-G\IeC {\"u}te}{4}{subsection.6.3}
+\contentsline {subsection}{\numberline {6.4}Anpassung der Anwendung auf mobile Nutzung}{5}{subsection.6.4}
+\contentsline {section}{\numberline {7}Conclusion}{5}{section.7}
+\contentsline {section}{\numberline {8}Quellenverzeichnis}{6}{section.8}
 \contentsline {section}{Anhang}{I}{section*.2}
 \vspace {-0.5em}
-\contentsline {section}{\numberline {A}GUI}{I}{appendix.A}
