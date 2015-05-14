@@ -1,22 +1,18 @@
 \section{Related Work}
-Rhodes\cite{rhodes2000just} definiert JITIR-Agents als eine Klasse von Programmen, die dem Benutzer weiterführende Informationen basierend auf seinem lokalen Kontext anzeigen. Dabei beschränkt sich der überwachte Kontext meist auf die virtuelle Umgebung des Benutzers, wie E-Mail, Webseiten und geöffnete Dokumente. Als Kerneigenschaften von JITIR-Agents nennt Rhodes Selbstständigkeit, die Fähigkeit Informationen in einer leicht zugänglichen und gleichzeitig unaufdringlichen Weise darzustellen und das Bewusstsein über den Kontext des Benutzers\cite{rhodes2000just}.
-Das im Zuge dieser Bachelorarbeit entworfene Programm (im Folgenden als Jarvis bezeichnet) erfordert vom Nutzer die explizite Aufforderung um nach Informationen zu suchen. Gründe für diese Entscheidung werden im dritten Kapitel näher betrachtet. Trotz dieses Widerspruchs zu Rhodes Definition lässt sich Jarvis am besten mit dieser Klasse von Programmen vergleichen.
+Rhodes \cite{rhodes2000just} definiert JITIR-Agents als eine Klasse von Programmen, die dem Benutzer weiterführende Informationen basierend auf seinem lokalen Kontext anzeigen. Dabei beschränkt sich der überwachte Kontext meist auf die virtuelle Umgebung des Benutzers, wie E-Mail, Webseiten und geöffnete Dokumente. Als Kerneigenschaften von JITIR-Agents nennt Rhodes Selbstständigkeit, die Fähigkeit Informationen in einer leicht zugänglichen und gleichzeitig unaufdringlichen Weise darzustellen und das Bewusstsein über den Kontext des Benutzers \cite{rhodes2000just}.
+Das im Zuge dieser Bachelorarbeit entworfene Programm (im Folgenden als Jarvis bezeichnet) erfordert vom Nutzer die explizite Aufforderung um nach Informationen zu suchen. Gründe für diese Entscheidung werden im dritten Kapitel näher betrachtet. Trotz dieses Widerspruchs zu Rhodes Definition lässt sich Jarvis am besten mit dieser Klasse von Programmen vergleichen. Warum diese Klassifizierung zutrifft wird im folgenden Abschnitt beschrieben.
 
 \subsection{Unterschiede und Gemeinsamkeiten zu JITIR-Agents}
+Studien haben gezeigt, dass schon eine kleine Steigerung des Aufwands, der betrieben werden muss um eine Aufgabe zu erfüllen, dazu führen kann, dass man die Aufgabe gar nicht erst ausführt \cite{rhodes2000just}. Laut Miller reicht für die meisten Aufgaben eine Antwortverzögerung von mehr als zwei Sekunden aus, um die Nutzungshäufigkeit des dazugehörigen Programms zu vermindern \cite{miller1968response}. Längere Zeitintervalle erschweren es, den Kontext der gerade ausgeführten Aufgabe und die übergeordneten Aufgaben im Kurzeitgedächtnis zu behalten. Nun wird der Fall betrachtet, dass das Lesen einer Webseite unterbrochen wird, um eine Suche mit einer Suchmaschine durchzuführen. Die eigentliche Aufgabe behält der Nutzer im Kurzzeitgedächtnis. Je länger die Suche dauert und je mehr er sich dazu von seiner eigentlichen Arbeit distanzieren muss, desto schwerer wird es wieder zur Hauptaufgabe zurück zu kehren. Wenn der Exkurs zur Suchmaschine schwerer wiegt ist als die Güte der erwarteten Resultate wird die Suche nicht durchgeführt \cite{rhodes2000just}.
 
-studies in computer response time indicate that small increases in the efoort required to perform a task can have large effects on whether a person will bother acting at all.
-miller argues that for may tasks more than two seconds of response delay is unacapptable and will result in fewer uses of a particular tool, even at the cost of decreased accuracy - > robert miller
-same short-term memomry limitations miller discusses also apply to performing subtasks that distract from a primary task. for example when performing a search for information about a digressing, a person needs to to use shot-term memeory to keep his or her place in the larger framework of the task. the amount of short-term memory required, and thus the amount of effort required in the task, will depend on a number of factors including the complexity of the digression, the amount of time required to complete the task, and the similarity of the digression to the primary task.
-- > applied to the information search domain, these theories suggest that if the cost of finding and using information is more than the expected value of that information, then the search will not be performed.
-Jitir agents greatly reduce the costs of searching for information by doing most of the work automatically. the downside is that queries are automatically generated and therefore will not be as exact as would a human-generagted query.
+Dieses Problem wird versucht mit JITIR-Agents zu beheben. Durch ihre proaktive Arbeitsweise muss der Nutzer seine Tätigkeit nicht mehr unterbrechen, sondern nur noch entscheiden ob er weiter Informationen sehen möchte oder nicht \cite{rhodes2000just}. Beim Entwurf von Jarvis wurde entschieden, dass das Programm nicht völlig eigenständig nach Informationen sucht, sondern nur die Webseite in seine Paragraphen aufteilt. Der Nutzer kann dann entscheiden, ob er zu einem Paragraphen eine Suche durchführen möchte und diese dann per Klick starten. Wie bei einem JITIR-Agent wird die Suchanfrage automatisch aus den gewonnenen Kontextinformationen generiert. Da die Suche innerhalb weniger Millisekunden ausgelöst werden kann und sich der Nutzer dazu nicht von seiner eigentlichen Aufgabe distanzieren muss, bleibt die kognitive Belastung sehr gering. Allerdings entsteht auch so der Nachteil, den Jarvis mit JITIR-Agents gemein hat: Sie nutzen alle gefunden Informationen für ihre Suchanfragen und können nicht zwischen relevanten und unwichtigen Suchwörtern unterscheiden \cite{rhodes2000margin}. Automatisch gebaute Suchanfragen sind deshalb weniger exakt als Menschen-generierte \cite{rhodes2000just}. Um dem entgegen zu wirken hat der Benutzer von Jarvis im Nachhinein noch die Möglichkeit, die Suche anzupassen und erneut abzuschicken.
 
-will not bother perform a search because a lack of time. information he has is already "good" enough. person expects a search will not turn up anything useful. rhodes
+Die zweite von Rhodes beschriebene Eigenschaft von JITIR-Agents, die Fähigkeit Informationen in einer leicht zugänglichen und gleichzeitig unaufdringlichen Wiese darzustellen, hat auch beim Entwurf von Jarvis eine bedeutende Rolle gespielt. Für die Darstellung der Ergebnisse muss ein Mittelwert gefunden werden. Die zusätzlichen Elemente sollen den Benutzer nicht unnötig ablenken, allerdings will man die Seite um möglichst reichhaltige Informationen erweitern \cite{rhodes2000margin}. Wie diese Problematik im Falle von Jarvis gelöst wurde wird im Implementierungs-Teil dieser Arbeit beschrieben.
 
+Jarvis analysiert die geöffnete Webseite und teilt diese in Paragraphen ein. Wie JITIR-Agents ist er sich also über den lokalen Kontext des Benutzers bewusst und wertet diesen aus. Die dritte Voraussetzung für JITIR-Agents ist somit erfüllt.
 
+Trotz der eingeschränkten Selbstständigkeit lässt sich Jarvis folglich am besten mit denen von Rhodes beschriebenen Programmen vergleichen. Auf diese Erkenntnis aufbauend wird nachfolgend Jarvis mit existierenden Implementierungen von JITIR-Agents verglichen.
 
- \subsubsection{Proaktiv vs. User Interaction}
- \subsubsection{Informationen darstellen in „Nonintrusive Manner“}
- \subsubsection{Awareness of user's local context}
 \subsection{Vergleich mit existierenden JITIR Agents}
  	\subsubsection{Remembrance Agent (in EMACS Editor)}
 		Zeigt Quellen an auf Basis des geschriebenen Texts, Benutzer kann Suchanfrage dann auch noch manuell anpassen/verfeinern
@@ -24,8 +20,8 @@ will not bother perform a search because a lack of time. information he has is a
  	\subsubsection{Margin? Web Plugin ähnlich wie EEXCESS}
  	\subsubsection{Watson}
  	\subsubsection{EEXCESS?}
- 	\subsection{Text Retrieval Algorithmen}
- 		Term Frequency/Inverse Document Frequency algorithm
+\subsection{Text Retrieval Algorithmen}
+ 		Term Frequency/Inverse Document Frequency algorithm,
  		Text rank
  \subsection{Unterschiede und Gemeinsamkeiten zu „Automatic help systems“ (z.B. Microsoft Office Assistant - > Domain spezifisch)}
  	Domain spezifisch vs. Domain unabhängig

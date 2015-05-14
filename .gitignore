@@ -3,5 +3,10 @@
 **/*.aux
 **/*.bbl
 **/*.blg
+**/*.lof
+**/*.log
+**/*.out
+**/*.toc
+**/*.lot
 .idea/
 
