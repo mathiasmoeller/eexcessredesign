@@ -1,2 +1,0 @@
-# ignore the vendor scripts (those should be loaded via bower)
-/vendor/*
