@@ -4,7 +4,6 @@
     function PopupCtrl($scope) {
         var extID = chrome.i18n.getMessage('@@extension_id');
         $scope.linkToSettings = "chrome://extensions?options=" + extID;
-        console.log($scope.linkToSettings);
 
         // The application.showApp needs to be a unshallow object. Don't ask why. I dare you. I double dare you.
         $scope.application = {};
@@ -31,9 +30,7 @@
                 var Jarvis = {};
                 Jarvis[tabID] = $scope.application.showApp;
 
-                chrome.storage.sync.set({'Jarvis': Jarvis}, function () {
-                    console.log("success");
-                });
+                chrome.storage.sync.set({'Jarvis': Jarvis});
             });
         });
 

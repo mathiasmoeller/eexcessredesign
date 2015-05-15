@@ -30,8 +30,6 @@
         var _query = function (tabID, queryTerms, callback) {
 
             var query = _buildQueryTerm(queryTerms);
-            console.log("reaced EuService");
-
             $http.get(ENV.api, {
                 params: {
                     query: query,
@@ -40,7 +38,6 @@
                 }
             })
                 .success(function (result) {
-                    console.log(result);
                     callback(result);
                 }).error(function (error) {
                     console.log(error);

@@ -2,26 +2,29 @@
     <div ng-show="showPlugin" layout="row" layout-align="space-between end">
         <!-- Query-->
         <md-button aria-label="Query"
-                   class="md-accent md-raised query-button" ng-click="query()" layout="row" layout-align="start center">
+                   class="md-accent md-raised query-button md-icon-button" ng-click="query()" layout="row"
+                   layout-align="start center">
 
             <!-- Find keywords-->
-            <section class="keyword-section" ng-show="!keywordsFound">
-                <md-icon md-svg-src="{{icons.query}}"
-                         class="query-icon query-fade"></md-icon>
-                <span class="query-name">Find keywords</span>
-            </section>
+            <!--<section class="keyword-section" ng-show="!keywordsFound">-->
+            <!--<md-icon md-svg-src="{{icons.query}}"-->
+            <!--class="query-icon query-fade"></md-icon>-->
+            <!--<span class="query-name">Find keywords</span>-->
+            <!--</section>-->
 
             <!-- Query europeana-->
-            <section class="animated fadeIn" ng-show="keywordsFound">
-                <md-icon md-svg-src="{{icons.search}}"
-                         class="query-icon"></md-icon>
-                <span class="query-name">Query Europeana</span>
-            </section>
+            <!--<section class="animated fadeIn" ng-show="keywordsFound">-->
+            <!--<md-icon md-svg-src="{{icons.search}}"-->
+            <!--class="query-icon"></md-icon>-->
+            <!--<span class="query-name">Query Europeana</span>-->
+            <!--</section>-->
 
-            <!--<md-tooltip>-->
+            <md-icon md-svg-src="{{icons.search}}" style="position: absolute; left: 4px; top: 4px;"></md-icon>
+
+            <md-tooltip>
             <!--<span ng-if="!keywordsFound" class="animate fadeOut">Find keywords</span>-->
-            <!--<span ng-if="keywordsFound" class="animate fadeIn">Query Europeana</span>-->
-            <!--</md-tooltip>-->
+            <span class="animate fadeIn">Query Europeana</span>
+            </md-tooltip>
         </md-button>
 
         <div layout="row" layout-align="end end">
@@ -31,7 +34,8 @@
                        ng-click="showResults($event, 0)">
                 <md-icon md-svg-src="{{icons.text}}" style="position: absolute; left: 4px; top: 4px;"></md-icon>
                 <md-tooltip>Show text results</md-tooltip>
-                <span class="result-counter" layout="row" layout-align="center center">{{resultNumbers.textResults}}</span>
+                <span class="result-counter" layout="row"
+                      layout-align="center center">{{resultNumbers.textResults}}</span>
             </md-button>
 
 
@@ -41,7 +45,8 @@
                        ng-click="showResults($event, 1)">
                 <md-icon md-svg-src="{{icons.image}}" style="position: absolute; left: 4px; top: 4px;"></md-icon>
                 <md-tooltip>Show image results</md-tooltip>
-                <span class="result-counter" layout="row" layout-align="center center">{{resultNumbers.imageResults}}</span>
+                <span class="result-counter" layout="row"
+                      layout-align="center center">{{resultNumbers.imageResults}}</span>
             </md-button>
 
 
@@ -51,7 +56,8 @@
                        ng-click="showResults($event, 2)">
                 <md-icon md-svg-src="{{icons.video}}" style="position: absolute; left: 4px; top: 4px;"></md-icon>
                 <md-tooltip>Show audio and video results</md-tooltip>
-                <span class="result-counter" layout="row" layout-align="center center">{{resultNumbers.avResults}}</span>
+                <span class="result-counter" layout="row"
+                      layout-align="center center">{{resultNumbers.avResults}}</span>
             </md-button>
 
         </div>

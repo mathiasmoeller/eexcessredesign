@@ -39,7 +39,6 @@ jQuery.fn.highlight = function(pat) {
         return skip;
     }
     return this.length && pat && pat.length ? this.each(function() {
-        console.log("highlight");
         innerHighlight(this, pat.toUpperCase());
     }) : this;
 };
