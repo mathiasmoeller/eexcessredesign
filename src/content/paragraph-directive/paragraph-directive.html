@@ -19,11 +19,11 @@
             <!--<span class="query-name">Query Europeana</span>-->
             <!--</section>-->
 
-            <md-icon md-svg-src="{{icons.search}}" style="position: absolute; left: 4px; top: 4px;"></md-icon>
+            <md-icon md-svg-src="{{icons.search}}"></md-icon>
 
             <md-tooltip>
             <!--<span ng-if="!keywordsFound" class="animate fadeOut">Find keywords</span>-->
-            <span class="animate fadeIn">Query Europeana</span>
+            <span class="tooltip">Query Europeana</span>
             </md-tooltip>
         </md-button>
 
@@ -32,8 +32,8 @@
             <md-button id="text-results" ng-if="queried" aria-label="Text"
                        class="animated bounceIn md-primary md-icon-button md-raised result-button"
                        ng-click="showResults($event, 0)">
-                <md-icon md-svg-src="{{icons.text}}" style="position: absolute; left: 4px; top: 4px;"></md-icon>
-                <md-tooltip>Show text results</md-tooltip>
+                <md-icon md-svg-src="{{icons.text}}"></md-icon>
+                <md-tooltip class="tooltip">Show text results</md-tooltip>
                 <span class="result-counter" layout="row"
                       layout-align="center center">{{resultNumbers.textResults}}</span>
             </md-button>
@@ -43,8 +43,8 @@
             <md-button id="image-results" ng-if="queried" aria-label="Image"
                        class="animated bounceIn md-primary md-icon-button md-raised result-button"
                        ng-click="showResults($event, 1)">
-                <md-icon md-svg-src="{{icons.image}}" style="position: absolute; left: 4px; top: 4px;"></md-icon>
-                <md-tooltip>Show image results</md-tooltip>
+                <md-icon md-svg-src="{{icons.image}}"></md-icon>
+                <md-tooltip class="tooltip">Show image results</md-tooltip>
                 <span class="result-counter" layout="row"
                       layout-align="center center">{{resultNumbers.imageResults}}</span>
             </md-button>
@@ -53,9 +53,9 @@
             <!-- Video-->
             <md-button id="video-results" ng-if="queried" aria-label="Video"
                        class="animated bounceIn md-primary md-icon-button md-raised result-button"
-                       ng-click="showResults($event, 2)">
-                <md-icon md-svg-src="{{icons.video}}" style="position: absolute; left: 4px; top: 4px;"></md-icon>
-                <md-tooltip>Show audio and video results</md-tooltip>
+                       ng-click="showResults($event, 2)" style="margin-right: 10px">
+                <md-icon md-svg-src="{{icons.video}}"></md-icon>
+                <md-tooltip class="tooltip">Show audio and video results</md-tooltip>
                 <span class="result-counter" layout="row"
                       layout-align="center center">{{resultNumbers.avResults}}</span>
             </md-button>
