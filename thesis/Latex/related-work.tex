@@ -14,12 +14,22 @@ Jarvis analysiert die geöffnete Webseite und teilt diese in Paragraphen ein. Wi
 Trotz der eingeschränkten Selbstständigkeit lässt sich Jarvis folglich am besten mit denen von Rhodes beschriebenen Programmen vergleichen. Auf diese Erkenntnis aufbauend wird nachfolgend Jarvis mit existierenden Implementierungen von JITIR-Agents verglichen.
 
 \subsection{Vergleich mit existierenden JITIR Agents}
- 	\subsubsection{Remembrance Agent (in EMACS Editor)}
-		Zeigt Quellen an auf Basis des geschriebenen Texts, Benutzer kann Suchanfrage dann auch noch manuell anpassen/verfeinern
-		- > Vorteil von Suchmaschinen wird mit integriert
- 	\subsubsection{Margin? Web Plugin ähnlich wie EEXCESS}
+Es wurden einige JITIR-Agents in der Vergangenheit implementiert, die zwar aus technischer Hinsicht nicht mehr aktuell sind, die sich jedoch durch ihre genaue Untersuchung und Auswertung gut Vergleichen lassen.
+
+ 	\subsubsection{Remembrance Agent}
+ 	Der Remembrance Agent (RA) ist ein in den UNIX Texteditor EMACS-19 integriertes Programm, welches eine Liste von Dokumenten anzeigt, die für den Nutzer interessant seien könnten \cite{rhodes1996remembrance}. Die Informationen für die Vorschläge bezieht der RA aus der gerade geöffneten Datei. Wie Jarvis teilt er das Dokument in Bereiche ein, die er danach analysiert. Allerdings sind die Bereiche in diesem Fall keine Paragraphen sondern verschieden große ``Räume'' in denen er sucht. Von der Position des Cursors ausgehend untersucht er die nächsten zehn, die nächsten 50 und die nächsten 1000 Wörter des Dokuments und sucht zu jedem passende Vorschläge \cite{rhodes1996remembrance}. Die Vorschläge werden von einem Information Retrieval Programm im Hintergrund generiert, welches die Suchanfragen an verschiedene, vom Nutzer konfigurierbare Datenbanken schickt. Genannte Datenbanken sind persönliche Email-Verzeichnisse, persönliche Notizen oder Datenbanken mit wissenschaftlichen Arbeiten.
+
+ 	Die gefundenen Ergebnisse werden dem Nutzer dann am unteren Fensterrand dargestellt. Mehrere Zeilen präsentieren die Vorschläge mit der höchsten Relevanz. Je nach Art der Quellen werden verschiedene Informationen angezeigt. So werden zum Beispiel bei wissenschaftlichen Arbeiten der Autor, das Datum und der Titel angezeigt und bei Zeitungsartikeln nur Herausgeber, Überschrift und Datum \cite{rhodes2000just}. Dieses Design ermöglicht eine unaufdringliche Darstellung der Vorschläge, die leicht überblickt werden kann aber den Nutzer nicht von seiner Arbeit ablenkt \cite{rhodes1996remembrance}. Per Klick kann sich der Nutzer die Schlagwörter anzeigen lassen, die für das jeweilige Ergebnis verantwortlich sind \cite{rhodes2000just}. Mit einer Tastenkombination und der Zeilennummer des Vorschlags kann er sich das dazugehörende, vollständige Dokument anzeigen lassen. Weiterhin hat der Nutzer die Möglichkeit, eine eigene Suchanfrage einzugeben um so explizit nach Inhalten zu suchen \cite{rhodes1996remembrance}.
+
+ 	Mit Hilfe einer Nutzer-Evaluation konnte gezeigt werden, dass der RA nicht nur eine Alternative zu klassischen Suchmaschinen darstellt, sondern in vielen Bereichen sogar besser abscheidet. Durch die Nutzung fanden die Tester mehr relevante Dokumente zum geforderten Themengebiet und die anschließende Umfrage schnitt der RA besser ab als die der Kontrollgruppe zur Verfügung gestellte Suchmaschine \cite{rhodes2000just}.
+
+ 	\subsubsection{Margin Notes}
+ 	
+
+
+ 	
  	\subsubsection{Watson}
- 	\subsubsection{EEXCESS?}
+ 	\subsubsection{EEXCESS}
 \subsection{Text Retrieval Algorithmen}
  		Term Frequency/Inverse Document Frequency algorithm,
  		Text rank
