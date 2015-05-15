@@ -15,9 +15,9 @@
     height: 20px;
     border-radius: 20px;
     z-index: 999;
-    top: 24px;
+    top: 20px;
     position: absolute;
-    left: 24px;
+    left: 20px;
     font-size: 14px;
 }
 
@@ -129,6 +129,10 @@
     opacity: 1;
 }
 
+.tooltip {
+    font-size: 12px;
+}
+
 /*Material Design Changes*/
 body {
     font-size: inherit;
@@ -148,6 +152,14 @@ html {
     font-size: 1.2rem;
 }
 
+md-icon {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    left: 3px;
+    top: 3px;
+}
+
 .md-button.query-button {
     margin: 0 0;
     padding-left: 0;
@@ -161,21 +173,22 @@ html {
     min-width: 0;
     padding-left: 0;
     padding-right: 0;
-    height: 36px;
-    width: 36px;
+    height: 30px;
+    width: 30px;
+    min-height: 0;
     overflow: visible;
 }
 
 .md-button.md-icon-button.result-button {
-    margin-left: 8px;
+    margin-left: 10px;
 }
 
 .md-chips {
     display: table;
     font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     padding: 0 0 0.3rem 0;
-    margin: 5px 0 3px 0;
+    margin: 3px 0 3px 0;
     vertical-align: middle;
     cursor: text;
 }
@@ -190,10 +203,10 @@ html {
     cursor: default;
     border-radius: 1.1rem;
     display: block;
-    height: 2.5rem;
-    line-height: 2.5rem;
+    height: 1.8rem;
+    line-height: 1.8rem;
     margin: 0.3rem 0.3rem 0 0;
-    padding: 0 0.3rem 0 0.7rem;
+    padding: 0 0.1rem 0 0.5rem;
     float: left;
 }
 
@@ -214,21 +227,22 @@ html {
 }
 
 .md-chips .md-chip .md-chip-remove {
+    min-height: 28px;
+    height: 28px;
+    width: 28px;
+    margin: 0 8px 0 0;
     text-align: center;
-    width: 2.5rem;
-    height: 2.5rem;
     min-width: 0;
     padding: 0;
     background: transparent;
     border: none;
     box-shadow: none;
-    margin: 0;
     position: relative;
 }
 
 .md-chips .md-chip .md-chip-remove md-icon {
-    height: 1.3rem;
-    width: 1.3rem;
+    height: 20px;
+    width: 20px;
     position: absolute;
     top: 50%;
     left: 45%;
