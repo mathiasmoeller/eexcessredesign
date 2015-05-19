@@ -2,4 +2,5 @@
 - focus auf input field
 - europeana anfrage checken
 - angular fehler finden
-- placeholder falls keine ergebnisse gefunden
+- angular version checken
+- zu material sachen neue klassen hinzufügen um interferenz zu vermeiden

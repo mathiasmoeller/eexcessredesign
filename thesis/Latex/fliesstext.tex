@@ -1,0 +1,39 @@
+NITELIGHT: A Graphical tool:
+
+Query formulation is a key aspect of information retrieval
+to support end users with respect to the creation and editing of semantic queries we introduce a graphical tool for semanctic query construction that is based on the SPARQL query language
+interactive graphical editing environment
+graphical query visualization techniques
+query formulation tools should avail themselves of user interaction capabilities that contribute to the efficient design of accurate queries qhile maximally exploiting the power and expressivity provided by the constructs of the target query language.
+Nitelight enables users to create SPARQL queries using a set of graphical notations and GUI-Based editing actions.
+SPARQL is a semantic query language that exploits the triple-based structure of RDF to perform graph pattern matching and contingent RDF triple assertion. http://www.w3.org/2001/sw/DataAccess/rq23/ "SPARQL Query Language for RDF"
+Java-based prototype application called NITELIGHT
+interface for graphical query creation
+Query Design Canvas is the centerpiece for user interaction and query construction in the NITELIGHT tool
+
+SEWASIE is a graphical query generation environment that co-opts natural language representations and graph-based visualizations of the domain ontology. The user is able to extend and customize an initial query by adding property constraints to selected classes or by replacing classes in the query with another compatible class, such as a subclass or superclass. This process of query refinement is accomplished by selecting terms in the sentential structure of a text-based representation of the query.
+https://books.google.de/books?hl=en&lr=&id=rU_onmzozu0C&oi=fnd&pg=PA308&dq=Catarci+An+ontology+based+visual+tool&ots=w6lp3ZSaT2&sig=D_36zelk3eVgOJ_eYV8b1RRcwl4#v=onepage&q&f=false
+
+All VQSs aim to support the user with respect to the deliberate creation of queries
+
+
+Towards Interactive Query Expansion:
+in an era of online retrieval, it is appropriate to offer guidance to users wishing to improve their initial queries. one form of such guidance could be short lists of suggested terms gathered from feedback, nearest neigbhors, and term variants of original query terms
+one method for retrieving more relevant documents is to expand the query terms by using relevance feedback, conflating word stems, and/or adding synonyms form thesaurus. These additional terms allow the query to match documents that contain words which are related to the query, but not actually expressed in it. 
+system should be able to help the user modify the query in order to retrieve more relevant documents
+The size of windows and the patience of the user require that only a reasonable number of terms be displayed
+relevance feedback is an interactive retrieval tool
+with the user selecting terms form a small subset of the terms derived from relevance feedback
+In an interactive situation, the user will select only those terms deemed useful
+it has further been shown that user selection from term vaiants and nearest neighbors of query terms can provide terms for query expansion that improve performance to that comparable with feedback.
+
+
+Re-examining the Potential Effectivness of Interactive Query Expansion
+Query expansion techniques, e.g. [1,5] aim to improve a user's search by adding new query terms to an existing query. A standart method of performing query expansion is to use relevance information from the user
+All or some of these expansion terms can be added to the query either by the user - interactive query expansion - or by the retrieval system - automatic query expansion.
+argument for IQE is that interactive query expansion gives more control to the user
+We compare the effect of query expansion against no query expansion. how good are different approaches to query expansion? 
+All AQE strategies were more likely on average to improve a query than harm it. All techniques improved at least 50\% of the queries where query expansion could make a difference to retrieval effectivness.
+query dependet strategy not only improves the highest percentage of queries, is most stable, but also gives the highest average precision over the queries, is most effective
+users, especially web searchers, often use very short queries [9]. presenting a list of possible expansion terms is one way to get users to give more information, in the form of query words, to the system.
+people can recognize expansion terms that are semantically related to the informatin for which they are seeking and expand the query using these terms
