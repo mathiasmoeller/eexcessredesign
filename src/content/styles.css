@@ -12,6 +12,10 @@
     margin-bottom: 6px;
 }
 
+.left-paragraph-buttons {
+    height: 30px;
+}
+
 .result-counter {
     background-color: rgb(255, 82, 82);
     color: white;

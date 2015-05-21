@@ -1,32 +1,39 @@
 <div ng-class="{'detected-paragraph': showPlugin}">
-    <div class="paragraph-buttons" ng-show="showPlugin" layout="row" layout-align="space-between end">
+    <div class="paragraph-buttons" ng-show="showPlugin" layout="row" layout-align="space-between start">
         <!-- Query-->
-        <md-button aria-label="Query"
-                   class="md-accent md-raised query-button md-icon-button" ng-click="query()" layout="row"
-                   layout-align="start center">
+        <div class="left-paragraph-buttons">
+            <md-button aria-label="Search"
+                       class="md-accent md-raised query-button md-icon-button" ng-click="query()" layout="row"
+                       layout-align="start center">
 
-            <!-- Find keywords-->
-            <!--<section class="keyword-section" ng-show="!keywordsFound">-->
-            <!--<md-icon md-svg-src="{{icons.query}}"-->
-            <!--class="query-icon query-fade"></md-icon>-->
-            <!--<span class="query-name">Find keywords</span>-->
-            <!--</section>-->
+                <!-- Find keywords-->
+                <!--<section class="keyword-section" ng-show="!keywordsFound">-->
+                <!--<md-icon md-svg-src="{{icons.query}}"-->
+                <!--class="query-icon query-fade"></md-icon>-->
+                <!--<span class="query-name">Find keywords</span>-->
+                <!--</section>-->
 
-            <!-- Query europeana-->
-            <!--<section class="animated fadeIn" ng-show="keywordsFound">-->
-            <!--<md-icon md-svg-src="{{icons.search}}"-->
-            <!--class="query-icon"></md-icon>-->
-            <!--<span class="query-name">Query Europeana</span>-->
-            <!--</section>-->
+                <!-- Query europeana-->
+                <!--<section class="animated fadeIn" ng-show="keywordsFound">-->
+                <!--<md-icon md-svg-src="{{icons.search}}"-->
+                <!--class="query-icon"></md-icon>-->
+                <!--<span class="query-name">Query Europeana</span>-->
+                <!--</section>-->
 
-            <md-icon md-svg-src="{{icons.search}}"></md-icon>
+                <md-icon md-svg-src="{{icons.search}}"></md-icon>
 
-            <md-tooltip>
-            <!--<span ng-if="!keywordsFound" class="animate fadeOut">Find keywords</span>-->
-            <span class="tooltip">Query Europeana</span>
-            </md-tooltip>
-        </md-button>
+                <md-tooltip>
+                    <span class="tooltip">Find keywords and query Europeana</span>
+                </md-tooltip>
+            </md-button>
 
+            <md-button aria-label="Query" class="md-accent md-raised query-button md-icon-button" ng-click="query()">
+                <md-icon md-svg-src="{{icons.play}}"></md-icon>
+                <md-tooltip>
+                    <span class="tooltip">Query Europeana</span>
+                </md-tooltip>
+            </md-button>
+        </div>
         <div layout="row" layout-align="end end">
             <!-- Text-->
             <md-button id="text-results" ng-if="queried" aria-label="Text"
