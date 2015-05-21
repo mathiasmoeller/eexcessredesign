@@ -57,10 +57,8 @@
                     method: {service: 'KeywordService', func: 'getParagraphEntities'},
                     data: paragraph
                 }, function (result) {
-                    angular.forEach(result.paragraphs[0].statistic, function (elem) {
-                        if (elem.key.text !== "") {
-                            $scope.keywords.push(elem.key.text);
-                        }
+                    angular.forEach(result, function (elem) {
+                            $scope.keywords.push(elem.keyword);
                     });
 
                     $scope.keywordsFound = true;
