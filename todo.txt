@@ -2,5 +2,3 @@
 - focus auf input field
 - europeana anfrage checken
 - angular fehler finden
-- angular version checken
-- zu material sachen neue klassen hinzufügen um interferenz zu vermeiden

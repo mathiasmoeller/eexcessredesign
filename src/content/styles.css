@@ -1,11 +1,15 @@
 .detected-paragraph {
     border: 2px solid rgba(63, 81, 181, 0.3);
-    border-radius: 2px 2px 1.1rem 1.1rem;
+    border-radius: 2px 2px 18px 18px;
     padding: 5px;
 }
 
 .detected-paragraph:hover {
     border: 2px solid rgba(63, 81, 181, 1);
+}
+
+.paragraph-buttons {
+    margin-bottom: 6px;
 }
 
 .result-counter {
@@ -144,13 +148,11 @@ html {
 }
 
 .md-button {
-
-    padding: 0 0.6rem;
-    margin: 0.6rem 0.8rem;
-    line-height: 2.5rem;
-    height: 2.5rem;
-    /*min-width: 8.8rem;*/
-    font-size: 1.2rem;
+    padding: 0 10px;
+    margin: 8px 8px;
+    line-height: 40px;
+    height: 40px;
+    font-size: 18px;
 }
 
 md-icon {
@@ -187,8 +189,8 @@ md-icon {
 .md-chips {
     display: table;
     font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;
-    font-size: 0.8rem;
-    padding: 0 0 0.3rem 0;
+    font-size: 14px;
+    padding: 0 0 5px 0;
     margin: 3px 0 3px 0;
     vertical-align: middle;
     cursor: text;
@@ -202,12 +204,12 @@ md-icon {
 
 .md-chips .md-chip {
     cursor: default;
-    border-radius: 1.1rem;
+    border-radius: 18px;
     display: block;
-    height: 1.8rem;
-    line-height: 1.8rem;
-    margin: 0.3rem 0.3rem 0 0;
-    padding: 0 0.1rem 0 0.5rem;
+    height: 27px;
+    line-height: 27px;
+    margin: 5px 5px 0 0;
+    padding: 0 2px 0 8px;
     float: left;
 }
 
@@ -224,13 +226,13 @@ md-icon {
 
 .md-chips .md-chip .md-chip-remove-container {
     display: inline-block;
-    margin-right: -0.5rem;
+    margin-right: -8px;
 }
 
 .md-chips .md-chip .md-chip-remove {
-    min-height: 28px;
-    height: 28px;
-    width: 28px;
+    min-height: 26px;
+    height: 26px;
+    width: 26px;
     margin: 0 8px 0 0;
     text-align: center;
     min-width: 0;
@@ -242,8 +244,8 @@ md-icon {
 }
 
 .md-chips .md-chip .md-chip-remove md-icon {
-    height: 20px;
-    width: 20px;
+    height: 18px;
+    width: 18px;
     position: absolute;
     top: 50%;
     left: 45%;
@@ -253,16 +255,16 @@ md-icon {
 
 .md-chips .md-chip-input-container {
     display: block;
-    line-height: 1.8rem;
-    margin: 0.3rem 0.3rem 0 0;
-    padding: 0 0.3rem 0 0.5rem;
+    line-height: 27px;
+    margin: 5px 5px 0 0;
+    padding: 0 5px 0 8px;
     float: left;
 }
 
 .md-chips .md-chip-input-container input:not([type]), .md-chips .md-chip-input-container input[type="email"], .md-chips .md-chip-input-container input[type="number"], .md-chips .md-chip-input-container input[type="tel"], .md-chips .md-chip-input-container input[type="url"], .md-chips .md-chip-input-container input[type="text"] {
     border: 0;
-    height: 1.8rem;
-    line-height: 1.8rem;
+    height: 27px;
+    line-height: 27px;
     padding: 0;
 }
 
@@ -272,7 +274,7 @@ md-icon {
 
 .md-chips .md-chip-input-container md-autocomplete, .md-chips .md-chip-input-container md-autocomplete-wrap {
     background: transparent;
-    height: 1.8rem;
+    height: 27px;
 }
 
 .md-chips .md-chip-input-container md-autocomplete {
@@ -285,8 +287,8 @@ md-icon {
 
 .md-chips .md-chip-input-container input {
     border: 0;
-    height: 1.8rem;
-    line-height: 1.8rem;
+    height: 27px;
+    line-height: 27px;
     padding: 0;
 }
 
@@ -295,7 +297,7 @@ md-icon {
 }
 
 .md-chips .md-chip-input-container md-autocomplete, .md-chips .md-chip-input-container md-autocomplete-wrap {
-    height: 1.8rem;
+    height: 27px;
 }
 
 .md-chips .md-chip-input-container md-autocomplete {
@@ -307,7 +309,7 @@ md-icon {
 }
 
 .md-chips .md-chip-input-container:not(:first-child) {
-    margin: 0.3rem 0.3rem 0 0;
+    margin: 5px 5px 0 0;
 }
 
 .md-chips .md-chip-input-container input {
@@ -341,6 +343,6 @@ md-grid-list md-grid-tile md-grid-tile-footer figcaption div {
     color: white;
     overflow: hidden;
     text-overflow: ellipsis;
-    height: 30px;
+    height: 29px;
     font-size: 14px;
 }
