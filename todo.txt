@@ -1,3 +1,4 @@
 - replace vendor scripts with minified versions
 - angular fehler finden
 - check manifests rights
+- wenn die application aus ist, soll dann alles gelöscht werden?
