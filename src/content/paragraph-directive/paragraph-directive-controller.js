@@ -9,7 +9,8 @@
         $scope.icons.image = $sce.trustAsResourceUrl('chrome-extension://' + _extID + '/media/icons/image-icon.svg');
         $scope.icons.text = $sce.trustAsResourceUrl('chrome-extension://' + _extID + '/media/icons/text-icon.svg');
         $scope.icons.video = $sce.trustAsResourceUrl('chrome-extension://' + _extID + '/media/icons/video-icon.svg');
-        $scope.keywords = [];
+        $scope.keywords = {};
+        $scope.keywords.words = [];
 
         var queryResults = undefined;
 
@@ -48,7 +49,7 @@
         // Depending if there are keywords or not this method queries keywords from the current paragraph
         // or sends a query with the given keywords to europeana
         $scope.query = function () {
-            if ($scope.keywords.length === 0) {
+            if ($scope.keywords.words.length === 0) {
 
                 // outgoing paragraph has to be in a list. this is requested by the api of the REST service
                 var paragraph = [ER.paragraphs.getParagraph($scope.id)];
@@ -58,11 +59,11 @@
                     data: paragraph
                 }, function (result) {
                     angular.forEach(result, function (elem) {
-                            $scope.keywords.push(elem.keyword);
+                        if ($scope.keywords.words.indexOf(elem) === -1) {
+                            $scope.keywords.words.push(elem.keyword);
+                        }
                     });
 
-                    $scope.keywordsFound = true;
-                    $scope.$apply();
                     _queryEuropeana();
                 });
             }
@@ -73,11 +74,13 @@
         };
 
         // Watch for keyword changes to highlight the current keywords
-        $scope.$watch('keywords', function () {
+        $scope.$watch('keywords.words', function () {
             HighlightService.removeHighlight($scope.id);
-            angular.forEach($scope.keywords, function (keyword) {
+            angular.forEach($scope.keywords.words, function (keyword) {
                 HighlightService.highlight($scope.id, keyword);
-            })
+            });
+
+            $scope.keywordsFound = $scope.keywords.words.length !== 0;
         }, true);
 
         // Show a dialog with all found results
@@ -98,12 +101,25 @@
                 },
                 targetEvent: event
             });
-        }
+        };
+
+        // checks if the given keyword is already in the list. if yes it removes it. if now it adds it
+        $scope.toggleKeyword = function (keyword) {
+            console.log(keyword);
+            var index = $scope.keywords.words.indexOf(keyword);
+
+            if (index === -1) {
+                $scope.keywords.words.push(keyword);
+            } else {
+                $scope.keywords.words.splice(index, 1);
+            }
+            $scope.$apply();
+        };
 
         function _queryEuropeana() {
             MessageService.callBG({
                 method: {service: 'EuService', func: 'query'},
-                data: $scope.keywords
+                data: $scope.keywords.words
             }, function (result) {
                 queryResults = result.items;
                 $scope.resultNumbers = {};

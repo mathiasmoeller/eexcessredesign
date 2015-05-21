@@ -62,11 +62,11 @@
 
         </div>
     </div>
-    <md-chips ng-show="showPlugin && keywordsFound" ng-model="keywords" placeholder="Add a keyword"
+    <md-chips ng-show="showPlugin && keywordsFound" ng-model="keywords.words" placeholder="Add a keyword"
               delete-button-label="Remove Keyword"
               delete-hint="Press delete to remove keyword"
               secondary-placeholder="Add a keyword">
     </md-chips>
-    <div class="highlightable" ng-transclude="true">
+    <div class="highlightable" ng-transclude="true" keyword-selector handle-click="toggleKeyword(keyword)">
     </div>
 </div>

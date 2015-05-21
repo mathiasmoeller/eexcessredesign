@@ -1,4 +1,3 @@
 - replace vendor scripts with minified versions
-- focus auf input field
-- europeana anfrage checken
 - angular fehler finden
+- check manifests rights
