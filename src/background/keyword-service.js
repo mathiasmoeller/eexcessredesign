@@ -10,7 +10,6 @@
             })
                 .success(function (result) {
                     var scoredEntities = _calcEntityScores(result.paragraphs[0].statistic, 1);
-                    console.log(scoredEntities);
                     callback(scoredEntities);
                 }).error(function (error) {
                     console.log(error);
@@ -23,8 +22,6 @@
             var weightedEntities = [];
             var score;
             angular.forEach(entityList, function (entity) {
-                console.log(entity);
-
                 // keyword service returns empty entity texts if they contain unknown symbols
                 if (entity.key.text !== '') {
                     // the repetitions of the entity are weighted with 0.5
