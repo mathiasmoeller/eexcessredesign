@@ -1,10 +1,28 @@
 \section{Konzept}
- \subsection{Warum kein Proactiver JITIR-Agent?}
- 	- > API Limitierung und decrease cognitive load 
-	- > Benutzer entscheidet ob er weitere Informationen erhalten möchte
-	- > Benutzer kann Suchanfrage erst anpassen (Nachteil von Margin Notes (Paper 4)
+ Wie auch bei der von EEXCESS entwickelten Extension fiel auch bei Jarvis die Wahl auf eine Chrome Extension. Google Chrome hat mit 40\% den größten Marktanteil unter Web Browsern und durch die Ähnlichkeit der Extension Architektur von Chrome zu anderen Browsern kann die Anwendung im Nachhinein leicht auf diese übertragen werden \cite{schlottererweb}. Per ``JavaScript Injection'' kann in diesen Architekturen das Aussehen und Verhalten der Seite verändert und neue Funktionalität hinzugefügt werden \cite{schlottererweb}.
+
+ Beim Entwurf von Jarvis wurde sich am Design von JITIR-Agents orientiert. Trotzdem sucht Jarvis nicht proaktiv nach Ergebnissen, sondern nur nach einer Interaktion des Users. Zum einen entstehen durch die Nutzung der Europeana API technische Limitierungen. Für jeden API-Key lässt Europeana pro Tag nur 10.000 Anfragen zu \cite{europlimit}. Dieser API-Key wird von allen installierten Jarvis Extensions genutzt. Da in jeder geöffneten Webseite für jeden gefundenen Paragraphen eine eigene Anfrage an die Europeana API gesendet werden würde, wäre dieses Limit ab einer gewissen Anzahl von Nutzern schnell überschritten. Zum anderen kann der User so entscheiden, ob er zum jeweiligen Paragraphen weitere Informationen erhalten möchte oder nicht. Möchte er dass nicht, wird seine Aufmerksamkeit auch nicht durch das erscheinen von Ergebnissen gestört. Der letzte Grund, der zu dieser Entscheidung geführt hat, ist, dass der User sich auf diese Weise seine Suchanfrage selber erstellen kann, bevor diese abgeschickt wird. Entsteht beim Lesen eines Absatzes ein Bedarf auf spezifische Informationen, kann der User die Anfrage direkt über dem Absatz einfügen oder sie interaktiv zusammenbauen. Die Resultate dieser Anfrage haben mit hoher Wahrscheinlichkeit eine höhere Relevanz als die von einer automatisch generierten \cite{rhodes2000just}.
+
+ Der Entwurf der Extension lässt sich in vier Ziele einteilen:
+ \begin{enumerate*}
+ 	\item Die Anzeige der Ergebnisse
+  	\item Die Erklärung der Suchanfragen Generierung
+ 	\item Das Anpassen der Suchanfrage durch den User
+ 	\item Die Verbesserung der Ergebnisgüte.
+\end{enumerate*}
+Auf diese Ziele wird im folgenden genauer eingegangen.
+
  \subsection{Anzeige der Ergebnisse}
- \subsection{Erklärung der Such-Anfragen Generierung}
- \subsection{Anpassen der Suchanfrage durch den Nutzer}
+ Es ist wichtig einen Mittelwert zu finden was die Menge der angezeigten Informationen betrifft. Zu viele Informationen auf einmal können den User ablenken. Auf der anderen Seite ist es das Ziel dem User eine möglichst reichhaltige alternative Informationsquelle zu liefern \cite{rhodes2000margin}. Es müssen genug Informationen vorhanden sein um entscheiden zu können ob das jeweilige Ergebnis angezeigt werden soll oder nicht. Um dem User zu verdeutlichen, welche Ergebnisse von welchem Paragraphen stammen, werden sie direkt am Paragraphen angezeigt. Jarvis zeigt nach einer erfolgreichen Suche zunächst nur die Anzahl der gefundenen Ergebnisse an. Diese Anzeige ist aufteilt in Anzahl der textuellen Ergebnisse, der gefundenen Bilder sowie der gefundenen Audio- und Videoquellen. Durch Auswählen einer der drei Kategorien werden in einem sich über dem Paragraphen öffnenden Fenster eine Liste mit Basisinformationen über die Ergebnisse angezeigt. Durch weitere Benutzerinteraktionen kann sich der User mehr Daten anzeigen lassen oder dem Link zu einer Quelle folgen.
+
+ \subsection{Erklärung der Suchanfragen Generierung}
+ Für den User soll es einfach zu erkennen sein, wie die Ergebnisse zustande gekommen sind. Dafür ist es wichtig, dass er sieht aus welchen Suchbegriffen die Anfrage zusammengesetzt wurde. Nach dem Auslösen der Suchfunktion der Extension werden die Schlagwörter, die aus diesem Paragraphen extrahiert wurden, über diesem angezeigt. Diese Anzeige erlaubt auch die Manipulation der Suchanfrage. Weiterhin werden die gefundenen Schlagwörter im Text hervorgehoben.
+
+ \subsection{Anpassen der Suchanfrage durch den User}
+ Da automatisch generierte Suchanfragen nicht immer die gewünschten Ergebnisse liefern, kann der User die Suchanfrage selber erstellen oder die generierte manipulieren. 
+
+ interaktiv.
  Durch die Chips kann man später auch leicht IQE hinzufügen, zb relevance feedback
- \subsection{Verbesserung der Suchanfrage z.B. durch maschinelles Lernen}
+
+ \subsection{Verbesserung der Ergebnisgüte}
+ Durch den Einsatz von Methoden des maschinellen Lernens sowie von Query Extension soll die Relevanz der Ergebnisse verbessert werden. Da das den Rahmen dieser Arbeit jedoch sprengen würde, wird darauf nur in Kapitel \ref{sec:futureWork} Bezug genommen.
