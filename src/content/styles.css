@@ -14,6 +14,7 @@
 
 .left-paragraph-buttons {
     height: 30px;
+    width: 64px;
 }
 
 .result-counter {
@@ -140,6 +141,15 @@
 
 .tooltip {
     font-size: 12px;
+}
+
+.anchor {
+    color: rgb(6, 69, 173);
+    cursor: pointer;
+}
+
+.anchor:hover {
+    text-decoration: underline;
 }
 
 /*Material Design Changes*/
