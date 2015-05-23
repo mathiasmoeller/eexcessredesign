@@ -11,4 +11,6 @@ angular
         'ngMaterial'
     ]).config(MdThemeConfig);
 
+// we need to inject the angular app and controller attributes to bootstrap the application
 $("html").attr('ng-app','Jarvis');
+$("body").attr('ng-controller', 'AppCtrl');

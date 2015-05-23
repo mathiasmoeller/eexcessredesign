@@ -1,10 +1,14 @@
 (function () {
     'use strict';
 
-    function ParagraphCtrl($scope, $sce, $mdDialog, HighlightService, MessageService, Utils) {
+    function ParagraphCtrl($scope, $sce, $mdDialog, HighlightService, MessageService, Utils, ParagraphDetectionService) {
         var _extID = Utils.getExtID();
+
+        // the paragraph wrapped by the directive
+        var paragraph = ParagraphDetectionService.getParagraph($scope.id);
+
+        // icons that are used in the directive
         $scope.icons = {};
-        $scope.icons.query = $sce.trustAsResourceUrl('chrome-extension://' + _extID + '/media/icons/query-icon.svg');
         $scope.icons.search = $sce.trustAsResourceUrl('chrome-extension://' + _extID + '/media/icons/search-icon.svg');
         $scope.icons.play = $sce.trustAsResourceUrl('chrome-extension://' + _extID + '/media/icons/play-icon.svg');
         $scope.icons.image = $sce.trustAsResourceUrl('chrome-extension://' + _extID + '/media/icons/image-icon.svg');
@@ -52,11 +56,11 @@
         // Searches for keywords and sends a query to europeana afterwards
         $scope.findKeywords = function () {
             // outgoing paragraph has to be in a list. this is requested by the api of the REST service
-            var paragraph = [ER.paragraphs.getParagraph($scope.id)];
+            var outgoingParagraph = [paragraph];
 
             MessageService.callBG({
                 method: {service: 'KeywordService', func: 'getParagraphEntities'},
-                data: paragraph
+                data: outgoingParagraph
             }, function (result) {
                 angular.forEach(result, function (elem) {
                     if ($scope.keywords.words.indexOf(elem) === -1) {

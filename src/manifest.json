@@ -1,6 +1,6 @@
 {
   "name": "Jarvis",
-  "version": "0.3",
+  "version": "0.4",
   "browser_action": {
     "default_title": "Jarvis",
     "default_icon": {
@@ -22,12 +22,12 @@
         "vendor/angular-material/angular-material.js",
         "vendor/angular-animate/angular-animate.js",
         "vendor/angular-aria/angular-aria.js",
-        "content/paragraph-detection/ContextDetector.js",
+        "vendor/highlight.js",
         "content/app.js",
         "content/app-controller.js",
+        "content/paragraph-detection/paragraph-detection-service.js",
         "content/message-service.js",
         "content/utils-service.js",
-        "content/paragraph-directive/highlight.js",
         "content/paragraph-directive/highlight-service.js",
         "content/paragraph-directive/keyword-selector-directive.js",
         "content/paragraph-directive/anchor-directive.js",
