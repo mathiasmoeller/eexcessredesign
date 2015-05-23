@@ -1,33 +1,17 @@
 <div ng-class="{'detected-paragraph': showPlugin}">
     <div class="paragraph-buttons" ng-show="showPlugin" layout="row" layout-align="space-between start">
         <!-- Query-->
-        <div class="left-paragraph-buttons">
+        <div class="left-paragraph-buttons" layout="row" layout-align="space-between start">
             <md-button aria-label="Search"
-                       class="md-accent md-raised query-button md-icon-button" ng-click="query()" layout="row"
+                       class="md-accent md-raised query-button md-icon-button" ng-click="findKeywords()" layout="row"
                        layout-align="start center">
-
-                <!-- Find keywords-->
-                <!--<section class="keyword-section" ng-show="!keywordsFound">-->
-                <!--<md-icon md-svg-src="{{icons.query}}"-->
-                <!--class="query-icon query-fade"></md-icon>-->
-                <!--<span class="query-name">Find keywords</span>-->
-                <!--</section>-->
-
-                <!-- Query europeana-->
-                <!--<section class="animated fadeIn" ng-show="keywordsFound">-->
-                <!--<md-icon md-svg-src="{{icons.search}}"-->
-                <!--class="query-icon"></md-icon>-->
-                <!--<span class="query-name">Query Europeana</span>-->
-                <!--</section>-->
-
                 <md-icon md-svg-src="{{icons.search}}"></md-icon>
-
                 <md-tooltip>
                     <span class="tooltip">Find keywords and query Europeana</span>
                 </md-tooltip>
             </md-button>
 
-            <md-button aria-label="Query" class="md-accent md-raised query-button md-icon-button" ng-click="query()">
+            <md-button aria-label="Query" class="md-accent md-raised query-button md-icon-button" ng-show="keywords.words.length !== 0" ng-click="query()">
                 <md-icon md-svg-src="{{icons.play}}"></md-icon>
                 <md-tooltip>
                     <span class="tooltip">Query Europeana</span>
@@ -69,7 +53,7 @@
 
         </div>
     </div>
-    <md-chips ng-show="showPlugin && keywordsFound" ng-model="keywords.words" placeholder="Add a keyword"
+    <md-chips ng-show="showPlugin && keywords.words.length !== 0" ng-model="keywords.words" placeholder="Add a keyword"
               delete-button-label="Remove Keyword"
               delete-hint="Press delete to remove keyword"
               secondary-placeholder="Add a keyword">

@@ -8,14 +8,19 @@ ER.queryParagraphs = function () {
 
     // replaces all link elements with a custom directive to enable double click selection
     var _replaceLinks = function () {
-        $('a').each(function () {
-            var ref = $(this).attr('href');
-            var nodeClass = $(this).attr('class');
-            var id = $(this).attr('id');
-            var title = $(this).attr('title');
-            var text = $(this).html();
+        $('paragraph-directive').each(function () {
+            $(this).find('a').each(function() {
+                var attributes = '';
+                for (var i = 0, atts = this.attributes, n = atts.length; i < n; i++) {
+                    if (atts[i].nodeName !== 'href') {
+                        attributes = attributes.concat(' ' + atts[i].nodeName + '="' + atts[i].nodeValue + '"');
+                    }
+                }
+                var ref = $(this).attr('href');
+                var text = $(this).html();
 
-            $(this).replaceWith('<anchor id="' + id + '" anchor-ref="' + ref + '" title="' + title + '" class="' + nodeClass + '">' + text + '</anchor>')
+                $(this).replaceWith('<anchor anchor-ref="' + ref + '" ' + attributes + '>' + text + '</anchor>')
+            })
         })
     };
 

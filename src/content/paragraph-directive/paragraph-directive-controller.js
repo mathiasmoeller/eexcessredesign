@@ -10,6 +10,8 @@
         $scope.icons.image = $sce.trustAsResourceUrl('chrome-extension://' + _extID + '/media/icons/image-icon.svg');
         $scope.icons.text = $sce.trustAsResourceUrl('chrome-extension://' + _extID + '/media/icons/text-icon.svg');
         $scope.icons.video = $sce.trustAsResourceUrl('chrome-extension://' + _extID + '/media/icons/video-icon.svg');
+
+        // Must be a deep object to prevent problems with the watcher
         $scope.keywords = {};
         $scope.keywords.words = [];
 
@@ -47,31 +49,28 @@
             }
         });
 
-        // Depending if there are keywords or not this method queries keywords from the current paragraph
-        // or sends a query with the given keywords to europeana
-        $scope.query = function () {
-            if ($scope.keywords.words.length === 0) {
+        // Searches for keywords and sends a query to europeana afterwards
+        $scope.findKeywords = function () {
+            // outgoing paragraph has to be in a list. this is requested by the api of the REST service
+            var paragraph = [ER.paragraphs.getParagraph($scope.id)];
 
-                // outgoing paragraph has to be in a list. this is requested by the api of the REST service
-                var paragraph = [ER.paragraphs.getParagraph($scope.id)];
-
-                MessageService.callBG({
-                    method: {service: 'KeywordService', func: 'getParagraphEntities'},
-                    data: paragraph
-                }, function (result) {
-                    angular.forEach(result, function (elem) {
-                        if ($scope.keywords.words.indexOf(elem) === -1) {
-                            $scope.keywords.words.push(elem.keyword);
-                        }
-                    });
-
-                    _queryEuropeana();
+            MessageService.callBG({
+                method: {service: 'KeywordService', func: 'getParagraphEntities'},
+                data: paragraph
+            }, function (result) {
+                angular.forEach(result, function (elem) {
+                    if ($scope.keywords.words.indexOf(elem) === -1) {
+                        $scope.keywords.words.push(elem.keyword);
+                    }
                 });
-            }
 
-            else {
                 _queryEuropeana();
-            }
+            });
+        };
+
+        // Sends a query with the given keywords to europeana
+        $scope.query = function () {
+            _queryEuropeana();
         };
 
         // Watch for keyword changes to highlight the current keywords
@@ -80,8 +79,6 @@
             angular.forEach($scope.keywords.words, function (keyword) {
                 HighlightService.highlight($scope.id, keyword);
             });
-
-            $scope.keywordsFound = $scope.keywords.words.length !== 0;
         }, true);
 
         // Show a dialog with all found results
