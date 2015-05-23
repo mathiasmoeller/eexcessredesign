@@ -1,5 +1,8 @@
-# ignore the vendor scripts (those should be loaded via bower)
+# ignore the vendor scripts (those should be loaded via bower). only highlight can't be loaded via bower
 /src/vendor/*
+!/src/vendor/highlight.js
+
+# ignore latex files
 **/*.aux
 **/*.bbl
 **/*.blg
@@ -8,5 +11,7 @@
 **/*.out
 **/*.toc
 **/*.lot
+
+# ignore IDE files
 .idea/
 
