@@ -29,6 +29,8 @@
         "content/utils-service.js",
         "content/paragraph-directive/highlight.js",
         "content/paragraph-directive/highlight-service.js",
+        "content/paragraph-directive/keyword-selector-directive.js",
+        "content/paragraph-directive/anchor-directive.js",
         "content/paragraph-directive/paragraph-directive.js",
         "content/paragraph-directive/paragraph-directive-controller.js",
         "content/result-dialog/result-dialog-controller.js"
@@ -45,9 +47,6 @@
     "content/*",
     "media/*",
     "vendor/*"
-//    "directive/*",
-//    "result-dialog/*",
-//    "settings/*"
   ],
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "manifest_version": 2,

@@ -1,4 +1,4 @@
 - replace vendor scripts with minified versions
-- focus auf input field
-- europeana anfrage checken
 - angular fehler finden
+- check manifests rights
+- wenn die application aus ist, soll dann alles gelöscht werden?

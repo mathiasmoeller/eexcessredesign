@@ -6,6 +6,24 @@ ER.queryParagraphs = function () {
     var corresponding = [];
     var single = [];
 
+    // replaces all link elements with a custom directive to enable double click selection
+    var _replaceLinks = function () {
+        $('paragraph-directive').each(function () {
+            $(this).find('a').each(function() {
+                var attributes = '';
+                for (var i = 0, atts = this.attributes, n = atts.length; i < n; i++) {
+                    if (atts[i].nodeName !== 'href') {
+                        attributes = attributes.concat(' ' + atts[i].nodeName + '="' + atts[i].nodeValue + '"');
+                    }
+                }
+                var ref = $(this).attr('href');
+                var text = $(this).html();
+
+                $(this).replaceWith('<anchor anchor-ref="' + ref + '" ' + attributes + '>' + text + '</anchor>')
+            })
+        })
+    };
+
     var _getParagraphs = function () {
         var pars = [];
         var walker = document.createTreeWalker(
@@ -112,8 +130,8 @@ ER.queryParagraphs = function () {
             content: text
         };
         id++;
-
     }
+    _replaceLinks();
     processedParagraphs = finalParagraphs;
 }();
 

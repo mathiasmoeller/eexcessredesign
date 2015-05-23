@@ -19,12 +19,16 @@
             var queryTerm = '';
             angular.forEach(terms, function (value) {
                 if (queryTerm === '') {
-                    queryTerm = value;
+                    queryTerm = _wrapTerm(value);
                 } else {
-                    queryTerm = queryTerm.concat(' OR ' + value);
+                    queryTerm = queryTerm.concat(' OR ' + _wrapTerm(value));
                 }
             });
             return queryTerm;
+        };
+
+        var _wrapTerm = function(term) {
+            return '(' + term + ')';
         };
 
         var _query = function (tabID, queryTerms, callback) {
