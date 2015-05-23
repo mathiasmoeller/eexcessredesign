@@ -1,11 +1,13 @@
 (function () {
     'use strict';
 
-    function AppCtrl($scope) {
-        //   Not used at the moment
+    function AppCtrl() {
     }
 
     angular
         .module('Jarvis')
-        .controller('AppCtrl', AppCtrl);
+        .controller('AppCtrl', AppCtrl)
+        .run(function(ParagraphDetectionService) {
+            ParagraphDetectionService.queryParagraphs();
+        });
 })();
