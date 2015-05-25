@@ -1,29 +1,38 @@
 \section{Implementierung}
-we propose to apply just in time retrieval mechanisms to bring the content to the user in a web-based scenario.
- 	first prototype is a chrome extension which proposes Europeana content based on the current user context, i.e., the current web site
-
- 	to enrich the users browsing experience with cultural content, addiational functionality needs to be added to existing web pages, wich is called javascript-injection. by exectuing injected java-script, the look and feel of web pages can be altered and aditional information and functionality can be added.
- 	altough the initial burden to install a browser extension is aliitle higher compared to the other approaches we chose to implement a browser extension because of the following advantages: the widget is limited to the wweb pages implementing it and the bookmarklet needs to be triggered on every page on which additional information is desirable, whereas the browser extension is applicable to all web pages without additional effort. Also, both, bookmarklet and widget are limited to the context of the current page and cannot account for addional inforamion source( eg browsing history), to tailor the injected cultural contents towards the users interests.
-
- 	we decided to start with an extension for google chrome for the following reasons: according to StatCounter Google Chrome has the highest and still growing market share of 40\%. Moreover FIrefox, Safari and Opera share similar extension architectures with chrome, all based on standart web technologies, such as html, javascript and css. thus the results from a google chrome extension can easily be transfered to the afore mentioned other browsers. developing an extension for google chrome and porting the result to the browsers with a similar extension architecture will cover around 70\% of the browsers in use.
 
  	siehe paper über EEXCESS
  \subsection{Verwendung von AngularJS für alle Komponenten des Plugins}
+ Für die Implementierung von Jarvis wurde sich für AngularJS\footnote{\url{https://angularjs.org/}} entschieden. Das von Google entwickelte JavaScript MVC-Framework bietet einige Vorteile, die Webentwicklung im Allgemeinen und die Entwicklung dieser Extension erleichtern.
+
+ AngularJS erlaubt es eigene Direktiven zu entwerfen. Direktiven beschreiben wie ein HTML Element dargestellt werden soll und wie es (z.B. auf Benutzerinteraktionen) reagieren soll \cite{jain2015angularjs}. Sie können dann wie HTML Tags oder Attribute genutzt werden. So wird eine hohe Wiederverwendbarkeit von Komponenten erzeugt. Genutzt wurde dieses Feature um eine Direktive zu entwickeln, mit der die Paragraphen der Webseite ``verpackt'' werden. Die neue Direktive enthält die Funktionen um eine Suchanfrage zu bauen und zu senden und die graphischen Elemente um die Resultate anzuzeigen. 
+
+ Weiterhin befindet sich in den meisten Frameworks das Markup in einem Template. Dieses Template wird dann in HTML kompiliert und in das Document Object Model (DOM) geladen \cite{jain2015angularjs}. Das Markup der AngularJS Application befindet sich innerhalb des HTML-Dokuments. Dadurch ist es möglich, dass AngularJS das Markup erst auswertet, nachdem es in das DOM geladen wurde \cite{jain2015angularjs}. Von den Vorteilen die dadurch entstehen ist einer für die Entwicklung von Jarvis besonders nützlich: Da AngularJS die Seite erst nach dem Laden auswertet, ist es einfach, AngularJS Module in existierende Webseiten zu integrieren \cite{jain2015angularjs}. Mit Jarvis möchte genau das erreicht werden. Zu einer bestehenden Seite soll Funktionalität hinzugefügt werden. Zusammen mit JavaScript Injection kann man auf diese Weise innerhalb des Client-Browsers AngularJS Logik in eine beliebige Seite integrieren, ohne die eigentliche Implementierung der Seite zu verändern.
+
+ Der Modul-basierte Aufbau von AngularJS Anwendungen gestattet außerdem eine leichte Erweiterbarkeit und Austauschbarkeit der Komponenten. Einzelne Dienste, wie bei Jarvis die Extrahierung der Schlüsselwörter oder die Kommunikation mit Europeana, sind in Module oder Services verpackt und können so einfach durch andere ersetzt werden. So kann man die Extension leicht auf andere Suchmaschinen umbauen oder andere Algorithmen zur Analyse der Paragraphen verwenden.
+
+ Unabhängig von der Entwicklung von Jarvis bietet AngularJS einen weiteren großen Vorteil: Two way data-binding \cite{jain2015angularjs}. Im Gegensatz zu anderen Frameworks oder zu reinem JavaScript, wo man manuell jede Änderung des Models an die View propagieren muss und anderes herum, übernimmt AngularJS diese Aufgabe. Ändert sich das Model, wird automatisch das jeweilige DOM Element angepasst. Interagiert der User mit einem Element, werden Änderungen sofort an das dahinter stehende Model weitergeben. Das reduziert den benötigten Code erlaubt eine schnelle und saubere Entwicklung von Anwendungen.
+
+ \subsection{Architektur der Extension}
+ Jarvis ist in vier AngularJS Module unterteilt:
+ \begin{enumerate*}[label=\alph*\upshape)]
+ 	\item Jarvis für die Content-Skripte,
+  	\item JarvisBG für die Background-Skripte,
+ 	\item JarvisPopup für die Browser-Action, und
+ 	\item JarvisSettings für die Options-Page.
+ \end{enumerate*}
 
  \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=\linewidth]{Bilder/architektur.jpg}
-	\captionof{figure}{Kommunikation der Komponenten untereinander}
+	\captionof{figure}{Kommunikation der AngularJS Komponenten untereinander}
 	\label{fig:architektur}
  \end{minipage}
 
 
- %\begin{figure}
- %	\centering
- %	\includegraphics[width=\textwidth]{Bilder/architektur.jpg}
- %	\caption{Kommunikation der Komponenten untereinander}
- %	\label{fig:architektur}
- %\end{figure}
+ \subsection{Paragraphen-Erkennung}
+ \subsection{Paragraphen-Analyse}
+  Improving Efficiancy and Accuracy in Multilingual Entity Extraction
+
  \subsection{Bau der GUIs}
 		- > Darf den Benutzer nicht zu sehr ablenken
 		- > Ergebnisse müssen in der Nähe ihrer „Quelle“ angezeigt werden (proximity compatibility pricinple)
