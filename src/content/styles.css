@@ -10,6 +10,11 @@
 
 .paragraph-buttons {
     margin-bottom: 6px;
+    opacity: 0.3;
+}
+
+.paragraph-buttons.hovered {
+    opacity: 1;
 }
 
 .left-paragraph-buttons {
