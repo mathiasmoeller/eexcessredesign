@@ -4,4 +4,5 @@
 - wenn die application aus ist, soll dann alles gelöscht werden?
 - settings setzt keinen default value
 - find keywords passiert nix -> fliegt fehler
-- opacity
+- neue screenshots für hovered (maus fehlt) und anzeige der keywords (hover fehlt)
+- screenshots auf kleinem bildschirm

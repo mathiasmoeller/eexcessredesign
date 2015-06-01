@@ -1,12 +1,11 @@
 \section{Implementierung}
-
- 	siehe Paper über EEXCESS
+Im nachfolgenden Teil wird beschrieben, welche Technologien eingesetzt wurden, wie die Architektur der Anwendung aussieht und wie die Benutzeroberflächen umgesetzt worden sind.
  \subsection{Verwendung von AngularJS für alle Komponenten des Plugins}
  Für die Implementierung von Jarvis wurde sich für AngularJS\footnote{\url{https://angularjs.org/}} entschieden. Das von Google entwickelte JavaScript MVC-Framework bietet einige Vorteile, die Webentwicklung im Allgemeinen und die Entwicklung dieser Extension erleichtern.
 
  AngularJS erlaubt es eigene Direktiven zu entwerfen. Direktiven beschreiben wie ein HTML Element dargestellt werden soll und wie es (z.B. auf Benutzerinteraktionen) reagieren soll \cite{jain2015angularjs}. Sie können dann wie HTML Tags oder Attribute genutzt werden. So wird eine hohe Wiederverwendbarkeit von Komponenten erzeugt. Genutzt wurde dieses Feature um eine Direktive zu entwickeln, mit der die Paragraphen der Webseite ``verpackt'' werden. Die neue Direktive enthält die Funktionen um eine Suchanfrage zu bauen und zu senden und die graphischen Elemente um die Resultate anzuzeigen. 
 
- Weiterhin befindet sich in den meisten Frameworks das Markup in einem Template. Dieses Template wird dann in HTML kompiliert und in das Document Object Model (DOM) geladen \cite{jain2015angularjs}. Das Markup der AngularJS Application befindet sich innerhalb des HTML-Dokuments. Dadurch ist es möglich, dass AngularJS das Markup erst auswertet, nachdem es in das DOM geladen wurde \cite{jain2015angularjs}. Von den Vorteilen die dadurch entstehen ist einer für die Entwicklung von Jarvis besonders nützlich: Da AngularJS die Seite erst nach dem Laden auswertet, ist es einfach, AngularJS Module in existierende Webseiten zu integrieren \cite{jain2015angularjs}. Mit Jarvis möchte genau das erreicht werden. Zu einer bestehenden Seite soll Funktionalität hinzugefügt werden. Zusammen mit JavaScript Injection kann man auf diese Weise innerhalb des Client-Browsers AngularJS Logik in eine beliebige Seite integrieren, ohne die eigentliche Implementierung der Seite zu verändern.
+ Weiterhin befindet sich in den meisten Frameworks das Markup in einem Template. Dieses Template wird dann in HTML Code kompiliert und in das Document Object Model (DOM) geladen \cite{jain2015angularjs}. Das Markup der AngularJS Application befindet sich innerhalb des HTML-Dokuments. Dadurch ist es möglich, dass AngularJS das Markup erst auswertet, nachdem es in das DOM geladen wurde \cite{jain2015angularjs}. Von den Vorteilen die dadurch entstehen ist einer für die Entwicklung von Jarvis besonders nützlich: Da AngularJS die Seite erst nach dem Laden auswertet, ist es einfach, AngularJS Module in existierende Webseiten zu integrieren \cite{jain2015angularjs}. Mit Jarvis möchte genau das erreicht werden. Zu einer bestehenden Seite soll Funktionalität hinzugefügt werden. Zusammen mit JavaScript Injection kann man auf diese Weise innerhalb des Client-Browsers AngularJS Logik in eine beliebige Seite integrieren, ohne die eigentliche Implementierung der Seite zu verändern.
 
  Der Modul-basierte Aufbau von AngularJS Anwendungen gestattet außerdem eine leichte Erweiterbarkeit und Austauschbarkeit der Komponenten. Einzelne Dienste, wie bei Jarvis die Extrahierung der Schlüsselwörter oder die Kommunikation mit Europeana, sind in Module oder Services verpackt und können so einfach durch andere ersetzt werden. So kann man die Extension leicht auf andere Suchmaschinen umbauen oder andere Algorithmen zur Analyse der Paragraphen verwenden.
 
@@ -38,10 +37,63 @@
  Der Nutzer hat die Möglichkeit, über die Options-Page\footnote{\url{https://developer.chrome.com/extensions/optionsV2}} die verwendeten Services zu konfigurieren. Das dafür zuständige Modul ist JarvisSettings. Es speichert die Einstellungen im Chrome Storage und JarvisBG passt die REST-Anfragen entsprechend an.
 
  \subsection{Paragraphen-Erkennung}
+ nicht alle keywords werden angezeigt
  \subsection{Paragraphen-Analyse}
   Improving Efficiancy and Accuracy in Multilingual Entity Extraction
 
+  relevance score
+
  \subsection{Bau der GUIs}
+
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=\linewidth]{Bilder/app-screenshots/paragraph-unhovered.png}
+	\captionof{figure}{Hervorgehobener Paragraph ohne Hover}
+	\label{fig:paragraph}
+ \end{minipage}
+ \begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=\linewidth]{Bilder/app-screenshots/paragraph-hovered.png}
+	\captionof{figure}{Hervorgehobener Paragraph mit Hover}
+	\label{fig:paragraphHover}
+ \end{minipage}
+ \begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=\linewidth]{Bilder/app-screenshots/keywords.png}
+	\captionof{figure}{Anzeige der gefundenen Keywords sowie Anzahl der Ergebnisse}
+	\label{fig:keywords}
+ \end{minipage}
+ \begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=\linewidth]{Bilder/app-screenshots/text-results.png}
+	\captionof{figure}{Dialog mit gefundenen Textquellen}
+	\label{fig:textResults}
+ \end{minipage}
+ \begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=\linewidth]{Bilder/app-screenshots/text-results-hovered.png}
+	\captionof{figure}{Detaillierte Ansicht einer Textquelle}
+	\label{fig:textResultsHover}
+ \end{minipage}
+ \begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=\linewidth]{Bilder/app-screenshots/image-results.png}
+	\captionof{figure}{Dialog mit gefundenen Bildquellen}
+	\label{fig:imageResults}
+ \end{minipage}
+ \begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[scale=0.6]{Bilder/app-screenshots/popup.png}
+	\captionof{figure}{Popup zum aktivieren der Extension}
+	\label{fig:popup}
+ \end{minipage}
+ \begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[scale=0.5]{Bilder/app-screenshots/settings.png}
+	\captionof{figure}{Dialog zum anpassen der Einstellungen}
+	\label{fig:settings}
+ \end{minipage}
+
 		- > Darf den Benutzer nicht zu sehr ablenken
 		- > Ergebnisse müssen in der Nähe ihrer „Quelle“ angezeigt werden (proximity compatibility pricinple)
 		- > Benutzer muss klar zwischen Webseite und Augmentation unterscheiden können
@@ -50,4 +102,6 @@
 
 
  Durch die Chips kann man später auch leicht IQE hinzufügen, zb relevance feedback
+
+ Probleme mit Hyperlinks
  \subsection{Einbindung der REST-Services}
