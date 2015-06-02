@@ -37,3 +37,47 @@ All AQE strategies were more likely on average to improve a query than harm it. 
 query dependet strategy not only improves the highest percentage of queries, is most stable, but also gives the highest average precision over the queries, is most effective
 users, especially web searchers, often use very short queries [9]. presenting a list of possible expansion terms is one way to get users to give more information, in the form of query words, to the system.
 people can recognize expansion terms that are semantically related to the informatin for which they are seeking and expand the query using these terms
+
+
+
+
+
+DBpedia Spotlight:
+the standart disambiguation algorithm is based upon cosine similarities and a modification of TD-IDF weights. main phrase spotting algorithm is exact string matching.
+ the project has focused initially on the english language.
+
+ phrase spotting: is the task of finding passages in a text that later should be linked to DBpedia entities. stardard phrase spotting algorithm used by DBpedia Spotlight is very light on its NLP demands, only requiring one language-dependent step: tokenization.
+ candidates are generated:
+ 	1. identifying all sequences of capitalized tokens
+ 	2. identifying all noun phrases, prepositional phrases and multi word phrases
+ 	3. identifying all named entities
+
+ german is available
+
+ select the best candidates. all candidates below a score threshold are removed.
+ score is computed for each spot candidate as a linear combination of features (annotation probability), binary features
+ \cite{daiber2013improving}
+
+
+ system for automatically annotating text documents with DBpedia URIs
+ DBpedia spotlight computes scores such as prominence (how many times a resource is mentioned in wikipedia), topical relevance (how close a paragraph is to a DBpedia resource's context) and contextual ambiguity (is there more than one candidate resource with similarly high topical relevance for this surface form in its current context?)
+
+ four stages: !spotting stage recognizes in a sentence the phrases that may indicate a mention of a DBpedia resource. 
+ !candidate selection is subsequently employed to map the spotted phrase to resources that are candidate disambiguations for that phrase.
+ the !disambiguation stage, in turn, uses the context around the spotted phrase to decide for the best choice amongst the candidates. 
+ the annotation can be customized by users to their specific needs through !configuration parameters
+
+ spotting:
+ labels gathered from the DBpedia resources which can be seen as community approved surface forms.
+ set of labels used used for spotting
+
+ candidate selection:
+ map resource names to candidate disambiguations. we use the dbpedia lexicalization dataset for determining candidate disambiguations for each surface form.
+ the candidate selection offers a chance to narrow down the space of disambiguation possibilities
+ candidate selection phase can also be viewed as a way to pre-rank the candidates for disambiguation before observing a surface form in the context of a paragraph
+
+ disambiguation:
+ after selecting candidate resources for each surface form, our system uses the context around the surface forms, e.g. paragraphs, as information to find the most likely disambiguations.
+ we modeled dbpedia resource occurences in a Vector Space Model.
+ our approach is to rank candidate resources according to the similarity score between their context vectors and the context surrounding the surface form.
+ \cite{mendes2011dbpedia}
