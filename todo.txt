@@ -6,3 +6,4 @@
 - find keywords passiert nix -> fliegt fehler
 - neue screenshots für hovered (maus fehlt) und anzeige der keywords (hover fehlt)
 - screenshots auf kleinem bildschirm
+- beim architektur diagramm keyword service durch entity service ersetzen

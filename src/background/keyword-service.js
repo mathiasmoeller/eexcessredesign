@@ -4,13 +4,12 @@
 
     function KeywordService($http) {
 
-        var _getParagraphEntities = function (tabID, paragraphs, callback) {
+        var _getParagraphEntities = function (tabID, paragraphs) {
             $http.post('http://zaire.dimis.fim.uni-passau.de:8999/doser-disambiguationserverstable/webclassify/entityAndCategoryStatistic', {
                 paragraphs: paragraphs
             })
                 .success(function (result) {
-                    var scoredEntities = _calcEntityScores(result.paragraphs[0].statistic, 1);
-                    callback(scoredEntities);
+                    return _calcEntityScores(result.paragraphs[0].statistic, 1);
                 }).error(function (error) {
                     console.log(error);
                 });
