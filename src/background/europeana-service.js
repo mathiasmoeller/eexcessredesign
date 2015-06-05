@@ -42,9 +42,10 @@
                 }
             })
                 .success(function (result) {
-                    callback(result);
+                    callback({data: result, type: 'success'});
                 }).error(function (error) {
                     console.log(error);
+                    callback({data: error, type: 'error'});
                 });
         };
 

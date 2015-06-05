@@ -28,8 +28,8 @@
                     method: {service: 'UtilsService', func: 'getCurrentTabID'}
                 }, function (tabID) {
 
-                    if (data.Jarvis[tabID] !== undefined) {
-                        $scope.showPlugin = data.Jarvis[tabID];
+                    if (data.Jarvis[tabID.data] !== undefined) {
+                        $scope.showPlugin = data.Jarvis[tabID.data];
                     }
                     $scope.$apply();
                 });
@@ -45,8 +45,8 @@
                     method: {service: 'UtilsService', func: 'getCurrentTabID'}
                 }, function (tabID) {
 
-                    if (storageValue[tabID] !== undefined) {
-                        $scope.showPlugin = storageValue[tabID];
+                    if (storageValue[tabID.data] !== undefined) {
+                        $scope.showPlugin = storageValue[tabID.data];
                     }
                     $scope.$apply();
                 });
@@ -62,13 +62,17 @@
                 method: {service: 'KeywordService', func: 'getParagraphEntities'},
                 data: outgoingParagraph
             }, function (result) {
-                angular.forEach(result, function (elem) {
-                    if ($scope.keywords.words.indexOf(elem) === -1) {
-                        $scope.keywords.words.push(elem.keyword);
-                    }
-                });
+                if (result.type === 'success') {
+                    angular.forEach(result.data, function (elem) {
+                        if ($scope.keywords.words.indexOf(elem) === -1) {
+                            $scope.keywords.words.push(elem.keyword);
+                        }
+                    });
 
-                _queryEuropeana();
+                    _queryEuropeana();
+                } else {
+                    _showAlertDialog('Entity Service');
+                }
             });
         };
 
@@ -123,25 +127,40 @@
                 method: {service: 'EuService', func: 'query'},
                 data: $scope.keywords.words
             }, function (result) {
-                queryResults = result.items;
-                $scope.resultNumbers = {};
-                $scope.resultNumbers.textResults = 0;
-                $scope.resultNumbers.imageResults = 0;
-                $scope.resultNumbers.avResults = 0;
+                if (result.type === 'success') {
+                    queryResults = result.data.items;
+                    $scope.resultNumbers = {};
+                    $scope.resultNumbers.textResults = 0;
+                    $scope.resultNumbers.imageResults = 0;
+                    $scope.resultNumbers.avResults = 0;
 
-                angular.forEach(queryResults, function (item) {
-                    if (item.type === 'TEXT') {
-                        $scope.resultNumbers.textResults++;
-                    } else if (item.type === 'IMAGE' || item.type === '3D') {
-                        $scope.resultNumbers.imageResults++;
-                    } else {
-                        $scope.resultNumbers.avResults++;
-                    }
-                });
+                    angular.forEach(queryResults, function (item) {
+                        if (item.type === 'TEXT') {
+                            $scope.resultNumbers.textResults++;
+                        } else if (item.type === 'IMAGE' || item.type === '3D') {
+                            $scope.resultNumbers.imageResults++;
+                        } else {
+                            $scope.resultNumbers.avResults++;
+                        }
+                    });
 
-                $scope.queried = true;
-                $scope.$apply();
+                    $scope.queried = true;
+                    $scope.$apply();
+                } else {
+                    _showAlertDialog('Europeana Service');
+                }
             });
+        }
+
+        function _showAlertDialog(errorSource) {
+            $mdDialog.show(
+                $mdDialog.alert()
+                    .parent(angular.element(document.body))
+                    .title('An unexpected error occured')
+                    .content('We are sorry to inform you that an error occured at the ' + errorSource + '. Please try again or wait a few minutes.')
+                    .ariaLabel('Error Dialog')
+                    .ok('Ok')
+            );
         }
     }
 

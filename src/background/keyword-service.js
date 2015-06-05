@@ -10,9 +10,10 @@
             })
                 .success(function (result) {
                     var scoredEntities = _calcEntityScores(result.paragraphs[0].statistic, 1);
-                    callback(scoredEntities);
+                    callback({data: scoredEntities, type: 'success'});
                 }).error(function (error) {
                     console.log(error);
+                    callback({data: error, type: 'error'});
                 });
         };
 
