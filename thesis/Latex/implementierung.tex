@@ -24,9 +24,11 @@ Im nachfolgenden Kapitel wird beschrieben, welche Technologien eingesetzt wurden
 
  \begin{minipage}{\linewidth}
 	\centering
+	\vspace*{0.5cm}
 	\includegraphics[width=\linewidth]{Bilder/architektur.jpg}
 	\captionof{figure}{Kommunikation der AngularJS Komponenten untereinander}
 	\label{fig:architektur}
+	\vspace*{0.5cm}
  \end{minipage}
  
  Jarvis ist das Modul, welches in die jeweilige Webseite per JavaScript Injection eingefügt wird. Es extrahiert die Paragraphen aus dem Text und fügt die eigene Direktive (im Folgenden Paragraph-Directive genannt) in das DOM ein. Die extrahierten Paragraphen werden per Message Passing\footnote{\url{https://developer.chrome.com/extensions/messaging}} an die Background-Skripte weitergegeben. Diese sind zusammengefasst im Modul JarvisBG. 
@@ -73,67 +75,106 @@ Im nachfolgenden Kapitel wird beschrieben, welche Technologien eingesetzt wurden
   Der MessageService im JarvisBG Modul hört auf Nachrichten die an die Background-Skripte gesendet werden. Hier werden alle zur Verfügung stehenden Services registriert. Kommt eine Nachricht an, extrahiert der er den Namen des gewünschten Services sowie den Namen der Methode und führt diese aus. Die Ergebnisse, die von der ausgeführten Methode zurückgeliefert wurden, übergibt er dann der Callback-Methode. Weiterhin stellt er Funktionen zur Kommunikation mit den Content-Skripten in den verschiedenen Browser Tabs bereit.
 
   \subsubsection{ParagraphDirective}
+  Die ParagraphDirective umschließt die Paragraphen der Seite. Sie beinhaltet die GUI Elemente zur Manipulation der Schlüsselwörter sowie zur Anzeige der Ergebnisse. 
+
+  Der Controller der Direktive synchronisiert sich mit dem Chrome Storage um auf Zustandsänderungen der Extension zu reagieren. Deaktiviert der User die Anwendung über das Popup, werden die graphischen Elemente der ParagraphDirective ausgeblendet. Wird sie aktiviert erscheinen sie wieder. Klickt der User auf den Suchbutton, wird eine Anfrage, die den Text des jeweiligen Paragraphen beinhaltet, an JarvisBG gesendet. Dazu wird der schon erwähnte MessageService genutzt. Sobald die Ergebnisse vom KeywordService in der Direktive ankommen, wird eine Suchanfrage mit den gefundenen Schlüsselwörtern über die Background-Skripte an Europeana gesendet. Icons zum Ansehen der Quellen werden bei Ankunft der Ergebnisse neben den gefundenen Schlüsselwörtern angezeigt.
+
   \subsubsection{AnchorDirective}
   Der User soll per Doppelklick Wörter im Text auswählen können und sie so zur Suchanfrage hinzufügen können. Auch das Löschen von Schlagwörtern durch Doppelklick auf hervorgehobene Wörter im Text soll möglich sein. Ein Problem dabei sind Hyperlinks. Bei einem Klick auf einen Anchor Knoten wird sofort der zugewiesene Link aufgerufen. Ein Doppelklick funktioniert also nicht da die neue Seite schon geladen wurde. Um dieses Problem zu umgehen wurde eine neue Direktive entworfen, die das Verhalten von Anchor Tags imitieren soll. Sie übernimmt alle Eigenschaften wie Titel und CSS Klassen vom ursprünglichen Anchor Tag. Die Zieladresse des Hyperlinks wird der neuen AnchorDirektive übergeben und dort gespeichert. Bei einem Klick auf die Direktive wird ein Countdown von 300 ms gestartet. Wird während dieser Zeit kein zweiter Klick registriert lädt die Direktive die Seite des Hyperlinks. Macht der User jedoch einen Doppelklick, verhindert sie, dass sich die Seite ändert.
 
- \subsection{Bau der GUIs}
-
-\begin{minipage}{\linewidth}
+ \subsection{Implementierung der GUIs}
+ In diesem Teil wird beschrieben wie das Konzept des Ramping Interfaces umgesetzt wurde und wie man versucht hat zu Erreichen, dass die zusätzlichen Elemente die Aufmerksamkeit des Users nicht zu sehr belasten. Für die Beschreibung der GUI Elemente wird ``Hover'' als Beschreibung für den Zustand eines Elements eingeführt, auf welchem sich gerade der Cursor der Maus befindet. Als Farbpalette für die Extension wurde sich für blau und rot entschieden, da sich diese Farben von den meisten Designs gut abheben. So erkennt der Nutzer leicht, welche Elemente zur Extension gehören und welche zur ursprünglichen Webseite. 
+ 
+ \begin{minipage}{\linewidth}
 	\centering
+	\vspace*{0.5cm}
 	\includegraphics[width=\linewidth]{Bilder/app-screenshots/paragraph-unhovered.png}
-	\captionof{figure}{Hervorgehobener Paragraph ohne Hover}
+	\captionof{figure}{Hervorgehobener Paragraph}
 	\label{fig:paragraph}
+	\vspace*{0.5cm}
  \end{minipage}
+
+ Ist die Extension aktiviert und geladen, werden alle gefundenen Paragraphen mit einem Rahmen umschlossen (siehe Abbildung \ref{fig:paragraph}). So wird verdeutlicht, was alles zu einem Abschnitt dazugehört. Im oberen linken Eck des Paragraphen befindet sich ein Icon mit dem zuerst die Analyse des Paragraphen-Inhalts gestartet wird und anschließend automatisch eine Anfrage an Europeana gesendet wird.
+
  \begin{minipage}{\linewidth}
 	\centering
+	\vspace*{0.5cm}
 	\includegraphics[width=\linewidth]{Bilder/app-screenshots/paragraph-hovered.png}
-	\captionof{figure}{Hervorgehobener Paragraph mit Hover}
+	\captionof{figure}{Hervorgehobener Paragraph im Hover-Zustand}
 	\label{fig:paragraphHover}
+	\vspace*{0.5cm}
  \end{minipage}
+
+ Um den Nutzer nicht unnötig abzulenken, verlieren die Elemente der einzelnen ParagraphDirectives an Deckkraft, wenn sie nicht im Hover Zustand sind, also der Cursor sich nicht über dem Element befindet. Fährt der User mit der Maus über einen Paragraphen, erscheint er wieder in voller Farbe (siehe Abbildungen \ref{fig:paragraph} und \ref{fig:paragraphHover}).
+
  \begin{minipage}{\linewidth}
 	\centering
+	\vspace*{0.5cm}
 	\includegraphics[width=\linewidth]{Bilder/app-screenshots/keywords.png}
 	\captionof{figure}{Anzeige der gefundenen Keywords sowie Anzahl der Ergebnisse}
 	\label{fig:keywords}
+	\vspace*{0.5cm}
  \end{minipage}
+
+ Sobald Schlüsselwörter zur Verfügung stehen, werden sie im Text hervorgehoben sowie oberhalb des Textes angezeigt (siehe Abbildung \ref{fig:keywords}). Dieser Fall tritt ein, wenn der Nutzer per Doppelklick ein Wort im Text ausgewählt hat oder wenn er durch Betätigen des Knopfes die Analyse des Paragraphen ausgelöst hat. Zur Anzeige der Schlüsselwörter wurden md-chips\footnote{\url{https://material.angularjs.org/latest/\#/api/material.components.chips/directive/mdChips}} verwendet. Diese Direktive aus der Angular Material Bibliothek gestattet die einfache Darstellung von Listenelementen und bietet zudem intuitive Steuerungsmöglichkeiten. Durch einen Klick auf das Kreuz neben einem Schlüsselwort kann dieses entfernt werden. Zudem kann mit den Pfeiltasten zwischen den Schlüsselwörtern hin und her gewechselt werden und durch das Betätigen der Entfernen-Taste kann das ausgewählte Element entfernt werden. Die md-chips Direktive bietet zudem eine gute Möglichkeit für die Zukunft, um Relevance Feedback umzusetzen. Darauf wird in Kapitel \ref{sec:futureWork} genauer eingegangen.
+
+ Sobald Ergebnisse von Europeana zur Verfügung stehen, erscheinen im oberen rechten Eck des Paragraphen drei Icons, eines für jeden Quellen-Typ. Ein Zähler an jedem Icon signalisiert dem User, wie viele Ergebnisse zum jeweiligen Quellen-Typ gefunden wurden. Nach einem Klick auf eines der Icons öffnet sich ein Dialog mit den Ergebnissen.
+
+ Hat der User die Schlüsselwörter angepasst, kann er mit einem Klick auf das neu erschienene Icon neben dem Suchsymbol eine erneute Suchanfrage an Europeana schicken, ohne den Paragraphen nochmals nach Schlüsselwörtern durchsuchen zu lassen.
+
  \begin{minipage}{\linewidth}
 	\centering
+	\vspace*{0.5cm}
 	\includegraphics[width=\linewidth]{Bilder/app-screenshots/text-results.png}
 	\captionof{figure}{Dialog mit gefundenen Textquellen}
 	\label{fig:textResults}
+	\vspace*{0.5cm}
  \end{minipage}
+
+ Abbildung \ref{fig:textResults} zeigt den Dialog für textuelle Ergebnisse. Mit dem oberen Reiter kann der User zwischen den Quellen-Typen umschalten. Text-Quellen sowie Audio- und Video-Quellen werden in einer Liste dargestellt. Die Listenelemente bestehen aus einem Miniaturbild und dem Titel der Quelle. Durch einen Klick auf das Bild oder den Titel gelangt der der User direkt zu Europeana, wo sich die Ressource befindet. Fährt er mit der Maus über das Miniaturbild wechselt das Element in den Hover-Zustand. 
+
  \begin{minipage}{\linewidth}
 	\centering
+	\vspace*{0.5cm}
 	\includegraphics[width=\linewidth]{Bilder/app-screenshots/text-results-hovered.png}
 	\captionof{figure}{Detaillierte Ansicht einer Textquelle}
 	\label{fig:textResultsHover}
+	\vspace*{0.5cm}
  \end{minipage}
+
+ Der Hover-Zustand ist gleichzeitig die letzte Stufe des Ramping Interfaces. Nach der Anzahl der gefundenen Quellen und Miniaturbild und Titel der Quellen werden nun detailliertere Informationen angezeigt. Wie in Abbildung \ref{fig:textResultsHover} zu sehen ist wird jetzt das Bild der Quelle vergrößert. Außerdem werden unter dem Titel noch der Anbieter der Ressource sowie Sprache und Nutzungsrechte dargestellt. Die Ergebnisse sind nach einem Relevance Score sortiert, den die Europeana API für jede Quellen mitsendet. Je höher der Score umso höher die Wahrscheinlichkeit, dass die Ressource für den User interessant ist. Dieser Wert wird ebenfalls angezeigt. 
+
  \begin{minipage}{\linewidth}
 	\centering
+	\vspace*{0.5cm}
 	\includegraphics[width=\linewidth]{Bilder/app-screenshots/image-results.png}
 	\captionof{figure}{Dialog mit gefundenen Bildquellen}
 	\label{fig:imageResults}
+	\vspace*{0.5cm}
  \end{minipage}
+
+ Bei Bildquellen sind Metadaten wie die Sprache der Ressource nicht so Relevant wie das eigentliche Bild. Aus diesem Grund wurde für die Anzeige der Bildquellen eine andere Darstellungsweise gewählt. Die Ergebnisse werden in einer md-grid-list\footnote{\url{https://material.angularjs.org/latest/\#/api/material.components.gridList/directive/mdGridList}} angezeigt. Die Elemente der Liste bestehen aus dem Bild sowie dem Titel. Auch hier gelangt der User durch einen Klick direkt zur Ressource, jedoch existiert kein separater Hover-Zustand.
+
+ Ist ein Vorschaubild nicht verfügbar oder wurden keine Quellen des ausgewählten Typs gefunden, wird stattdessen ein Platzhalter an der entsprechenden Stelle angezeigt.
+
  \begin{minipage}{\linewidth}
 	\centering
+	\vspace*{0.5cm}
 	\includegraphics[scale=0.6]{Bilder/app-screenshots/popup.png}
 	\captionof{figure}{Popup zum aktivieren der Extension}
 	\label{fig:popup}
+	\vspace*{0.5cm}
  \end{minipage}
+
+ Um die Extension zu aktivieren oder deaktivieren muss der User auf das Jarvis-Icon neben der Adressleiste des Browsers klicken. Dadurch öffnet sich ein Popup (siehe Abbildung \ref{fig:popup}). Durch einen Klick auf den Umschalter wechselt die Anwendung ihren Zustand. Allerdings gilt dies nur für den aktuellen Tab. Die Jarvis Module in anderen Tabs sind dadurch nicht betroffen. Weiterhin bietet das Popup dem User einen Knopf an, mit dem er zum Einstellungsdialog gelangt.
+
  \begin{minipage}{\linewidth}
 	\centering
+	\vspace*{0.5cm}
 	\includegraphics[scale=0.5]{Bilder/app-screenshots/settings.png}
 	\captionof{figure}{Dialog zum anpassen der Einstellungen}
 	\label{fig:settings}
+	\vspace*{0.5cm}
  \end{minipage}
 
-		- > Darf den Benutzer nicht zu sehr ablenken
-		- > Ergebnisse müssen in der Nähe ihrer „Quelle“ angezeigt werden (proximity compatibility pricinple)
-		- > Benutzer muss klar zwischen Webseite und Augmentation unterscheiden können
-		- > buntes, auffälliges Design
-		- > Ramping interface: Mehr Benutzerinteraktionen führen zu mehr angezeigten Informationen (Erklärung der Stages) 
-
-
- Durch die Chips kann man später auch leicht IQE hinzufügen, zb relevance feedback
-
- Probleme mit Hyperlinks
+ Die Einstellungen der Extension können über ein separates Fenster angepasst werden. Der in Abbildung \ref{fig:settings} dargestellte Dialog ist über den Extension Manager\footnote{Innerhalb von Chrome zu finden unter: \url{chrome://extensions/}}, sowie über den erwähnten Knopf im Popup, erreichbar. Er bietet momentan die Möglichkeit die Anzahl der Ergebnisse fest zu legen, die von Europeana geliefert werden sollen. Auch kann der User entscheiden ob er alle Quellen sehen möchte, oder nur solche, die er weiterverwenden und bearbeiten darf.
