@@ -31,7 +31,7 @@
             return '(' + term + ')';
         };
 
-        var _query = function (tabID, queryTerms) {
+        var _query = function (tabID, queryTerms, callback) {
 
             var query = _buildQueryTerm(queryTerms);
             $http.get(ENV.api, {
@@ -42,9 +42,10 @@
                 }
             })
                 .success(function (result) {
-                    return result;
+                    callback({data: result, type: 'success'});
                 }).error(function (error) {
                     console.log(error);
+                    callback({data: error, type: 'error'});
                 });
         };
 

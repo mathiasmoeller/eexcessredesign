@@ -18,10 +18,10 @@
       "run_at": "document_end",
       "js": [
         "vendor/jquery/dist/jquery.min.js",
-        "vendor/angular/angular.js",
-        "vendor/angular-material/angular-material.js",
-        "vendor/angular-animate/angular-animate.js",
-        "vendor/angular-aria/angular-aria.js",
+        "vendor/angular/angular.min.js",
+        "vendor/angular-material/angular-material.min.js",
+        "vendor/angular-animate/angular-animate.min.js",
+        "vendor/angular-aria/angular-aria.min.js",
         "vendor/highlight.js",
         "content/app.js",
         "content/app-controller.js",
@@ -36,7 +36,7 @@
         "content/result-dialog/result-dialog-controller.js"
       ],
       "css": [
-        "vendor/angular-material/angular-material.css",
+        "vendor/angular-material/angular-material.min.css",
         "common/angular-csp.css",
         "content/styles.css",
         "content/animate.css"

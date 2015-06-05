@@ -64,6 +64,8 @@ Im nachfolgenden Kapitel wird beschrieben, welche Technologien eingesetzt wurden
  
   Aufgerufen wird der Entity Service aus einem AngularJS Service (KeywordService), welcher den erhaltenen Entities noch einen Score zu weißt. Der Score errechnet sich aus der Anzahl der Vorkommen der Entity im Paragraphen und einer Gewichtung der Entity-Typen. Ist der Score größer als ein gegebener Schwellwert, wird die Entity in die Ergebnisliste eingefügt. Der KeywordService, welcher im JarvisBG Modul registriert ist, gibt darauf hin die Liste mit den Ergebnissen zurück.
 
+  (TODO: limitierung: englisch)
+
   \subsubsection{MessageService}
   Es gibt zwei Versionen des MessageServices. Eine ist im Jarvis Modul registriert und eine im JarvisBG Modul. Die Aufgabe des MessageService, welcher Teil von Jarvis ist, ist die Weiterleitung von Nachrichten aus den Content-Skripten an die Background-Skripte. Dazu wird das Message Passing der Chrome API verwendet. Eine Nachricht besteht dabei aus drei Teilen:
   \begin{enumerate*}
@@ -72,7 +74,7 @@ Im nachfolgenden Kapitel wird beschrieben, welche Technologien eingesetzt wurden
  	\item eine Callback-Methode die vom Empfänger nach der Abarbeitung der Nachricht aufgerufen werden soll. 
   \end{enumerate*} 
 
-  Der MessageService im JarvisBG Modul hört auf Nachrichten die an die Background-Skripte gesendet werden. Hier werden alle zur Verfügung stehenden Services registriert. Kommt eine Nachricht an, extrahiert der er den Namen des gewünschten Services sowie den Namen der Methode und führt diese aus. Die Ergebnisse, die von der ausgeführten Methode zurückgeliefert wurden, übergibt er dann der Callback-Methode. Weiterhin stellt er Funktionen zur Kommunikation mit den Content-Skripten in den verschiedenen Browser Tabs bereit.
+  Der MessageService im JarvisBG Modul hört auf Nachrichten die an die Background-Skripte gesendet werden. Hier werden alle zur Verfügung stehenden Services registriert. Kommt eine Nachricht an, extrahiert der er den Namen des gewünschten Services sowie den Namen der Methode und führt diese aus. Die Ergebnisse, die von der ausgeführten Methode zurückgeliefert wurden, übergibt er dann der Callback-Methode (TODO: ändern). Weiterhin stellt er Funktionen zur Kommunikation mit den Content-Skripten in den verschiedenen Browser Tabs bereit.
 
   \subsubsection{ParagraphDirective}
   Die ParagraphDirective umschließt die Paragraphen der Seite. Sie beinhaltet die GUI Elemente zur Manipulation der Schlüsselwörter sowie zur Anzeige der Ergebnisse. 

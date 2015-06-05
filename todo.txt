@@ -1,8 +1,7 @@
-- replace vendor scripts with minified versions
 - check manifests rights
 - wenn die application aus ist, soll dann alles gelöscht werden?
-- settings setzt keinen default value
-- find keywords passiert nix -> fliegt fehler
 - screenshots auf kleinem bildschirm
+- screenshots erneuern
+- fehlerbehandlung
 - geht europeana wieder?
 - fehlerbehandlung

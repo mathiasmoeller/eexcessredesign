@@ -4,8 +4,8 @@
 
     function UtilsService() {
 
-        var _getCurrentTabID = function (tabID) {
-            return tabID;
+        var _getCurrentTabID = function (tabID, data, callback) {
+            callback({data: tabID, type: 'success'});
         };
 
         return {
