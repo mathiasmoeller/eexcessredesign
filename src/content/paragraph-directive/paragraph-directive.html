@@ -4,7 +4,7 @@
         <!-- Query-->
         <div class="left-paragraph-buttons" layout="row" layout-align="space-between start">
             <md-button aria-label="Search"
-                       class="md-raised query-button md-icon-button" ng-click="findKeywords()" layout="row"
+                       class="md-raised query-button md-icon-button" ng-click="query()" layout="row"
                        layout-align="start center" ng-class="{'md-primary': !newKeywords, 'md-accent': newKeywords}">
                 <md-icon md-svg-src="{{icons.search}}"></md-icon>
                 <md-tooltip>
@@ -12,7 +12,7 @@
                 </md-tooltip>
             </md-button>
         </div>
-        <div layout="row" layout-align="end end">
+        <div layout="row" layout-align="end end" ng-hide="newKeywords">
             <!-- Text-->
             <md-button id="text-results" ng-if="queried" aria-label="Text"
                        class="animated bounceIn md-primary md-icon-button md-raised result-button"
