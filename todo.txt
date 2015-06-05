@@ -3,3 +3,5 @@
 - screenshots auf kleinem bildschirm
 - screenshots erneuern
 - fehlerbehandlung
+- geht europeana wieder?
+- fehlerbehandlung
