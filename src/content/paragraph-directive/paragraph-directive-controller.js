@@ -18,6 +18,7 @@
         // Must be a deep object to prevent problems with the watcher
         $scope.keywords = {};
         $scope.keywords.words = [];
+        $scope.newKeywords = true;
 
         var queryResults = undefined;
 
@@ -86,6 +87,7 @@
             angular.forEach($scope.keywords.words, function (keyword) {
                 HighlightService.highlight($scope.id, keyword);
             });
+            $scope.newKeywords = true;
         }, true);
 
         // Show a dialog with all found results
@@ -110,7 +112,6 @@
 
         // checks if the given keyword is already in the list. if yes it removes it. if now it adds it
         $scope.toggleKeyword = function (keyword) {
-            console.log(keyword);
             var index = $scope.keywords.words.indexOf(keyword);
 
             if (index === -1) {
@@ -144,6 +145,7 @@
                     });
 
                     $scope.queried = true;
+                    $scope.newKeywords = false;
                     $scope.$apply();
                 } else {
                     _showAlertDialog('Europeana Service');

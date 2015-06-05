@@ -4,8 +4,8 @@
         <!-- Query-->
         <div class="left-paragraph-buttons" layout="row" layout-align="space-between start">
             <md-button aria-label="Search"
-                       class="md-accent md-raised query-button md-icon-button" ng-click="findKeywords()" layout="row"
-                       layout-align="start center">
+                       class="md-raised query-button md-icon-button" ng-click="findKeywords()" layout="row"
+                       layout-align="start center" ng-class="{'md-primary': !newKeywords, 'md-accent': newKeywords}">
                 <md-icon md-svg-src="{{icons.search}}"></md-icon>
                 <md-tooltip>
                     <span class="tooltip">Query Europeana</span>
