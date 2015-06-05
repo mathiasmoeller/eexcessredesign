@@ -1,5 +1,5 @@
-<div ng-class="{'detected-paragraph': showPlugin}">
-    <div class="paragraph-buttons" ng-show="showPlugin" layout="row" layout-align="space-between start">
+<div ng-class="{'detected-paragraph': showPlugin}" ng-mouseover="hover = true" ng-mouseleave="hover = false">
+    <div class="paragraph-buttons" ng-show="showPlugin" layout="row" layout-align="space-between start" ng-class="{'hovered': hover}">
         <!-- Query-->
         <div class="left-paragraph-buttons" layout="row" layout-align="space-between start">
             <md-button aria-label="Search"
@@ -56,7 +56,7 @@
     <md-chips ng-show="showPlugin && keywords.words.length !== 0" ng-model="keywords.words" placeholder="Add a keyword"
               delete-button-label="Remove Keyword"
               delete-hint="Press delete to remove keyword"
-              secondary-placeholder="Add a keyword">
+              secondary-placeholder="Add a keyword" ng-class="{'hovered': hover}">
     </md-chips>
     <div class="highlightable" ng-transclude="true" keyword-selector handle-click="toggleKeyword(keyword)">
     </div>

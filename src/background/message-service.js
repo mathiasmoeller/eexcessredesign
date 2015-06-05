@@ -28,7 +28,7 @@
             });
         };
 
-        chrome.runtime.onMessage.addListener(function (request, sender, response) {
+        chrome.runtime.onMessage.addListener(function (request, sender, callback) {
 
             if (typeof sender.tab === 'undefined') {
                 // sender cannot be identified, exit
@@ -36,7 +36,8 @@
             } else {
                 var tabID = sender.tab.id;
                 // call function as specfied by the request
-                service[request.method.service][request.method.func](tabID, request.data, response);
+                var result = service[request.method.service][request.method.func](tabID, request.data);
+                callback(result);
                 return true;
             }
         });
