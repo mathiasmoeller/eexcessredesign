@@ -36,8 +36,7 @@
             } else {
                 var tabID = sender.tab.id;
                 // call function as specfied by the request
-                var result = service[request.method.service][request.method.func](tabID, request.data, callback);
-                return true;
+                service[request.method.service][request.method.func](tabID, request.data, callback);
             }
         });
 
