@@ -5,3 +5,4 @@
 - find keywords passiert nix -> fliegt fehler
 - screenshots auf kleinem bildschirm
 - geht europeana wieder?
+- fehlerbehandlung
