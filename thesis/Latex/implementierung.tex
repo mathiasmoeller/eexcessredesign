@@ -62,9 +62,9 @@ Im nachfolgenden Kapitel wird beschrieben, welche Technologien eingesetzt wurden
 
   Die erhaltenen Kandidaten werden dann als Schlüsselwörter für die Suche bei Europeana genutzt. Allerdings sind diese Kandidaten nicht immer Wörter oder Phrasen, die direkt im Text vorkommen. So wird zum Beispiel das Wort ``Marbach'' nicht genauso wieder zurück gesendet, sondern der dazugehörige Kandidat wäre ``Marbach am Neckar''. So wird zwar eine höhere Genauigkeit erzielt, jedoch können diese Kandidaten dann nicht wie die anderen Schlüsselwörter der Suche im Paragraphen hervorgehoben werden (siehe Kapitel \ref{ssec:suchanfragenGenerierung}).
  
-  Aufgerufen wird der Entity Service aus einem AngularJS Service (KeywordService), welcher den erhaltenen Entities noch einen Score zu weißt. Der Score errechnet sich aus der Anzahl der Vorkommen der Entity im Paragraphen und einer Gewichtung der Entity-Typen. Ist der Score größer als ein gegebener Schwellwert, wird die Entity in die Ergebnisliste eingefügt. Der KeywordService, welcher im JarvisBG Modul registriert ist, gibt darauf hin die Liste mit den Ergebnissen zurück.
+  DBpedia Spotlight unterstützt schon mehrere Sprachen bei der Entity Erkennung. Allerdings funktioniert der Entity Service des Lehrstuhls im Moment nur mit englischen Texten.
 
-  (TODO: limitierung: englisch)
+  Aufgerufen wird der Entity Service aus einem AngularJS Service (KeywordService), welcher den erhaltenen Entities noch einen Score zu weißt. Der Score errechnet sich aus der Anzahl der Vorkommen der Entity im Paragraphen und einer Gewichtung der Entity-Typen. Ist der Score größer als ein gegebener Schwellwert, wird die Entity in die Ergebnisliste eingefügt. Der KeywordService, welcher im JarvisBG Modul registriert ist, gibt darauf hin die Liste mit den Ergebnissen zurück.
 
   \subsubsection{MessageService}
   Es gibt zwei Versionen des MessageServices. Eine ist im Jarvis Modul registriert und eine im JarvisBG Modul. Die Aufgabe des MessageService, welcher Teil von Jarvis ist, ist die Weiterleitung von Nachrichten aus den Content-Skripten an die Background-Skripte. Dazu wird das Message Passing der Chrome API verwendet. Eine Nachricht besteht dabei aus drei Teilen:
@@ -74,7 +74,7 @@ Im nachfolgenden Kapitel wird beschrieben, welche Technologien eingesetzt wurden
  	\item eine Callback-Methode die vom Empfänger nach der Abarbeitung der Nachricht aufgerufen werden soll. 
   \end{enumerate*} 
 
-  Der MessageService im JarvisBG Modul hört auf Nachrichten die an die Background-Skripte gesendet werden. Hier werden alle zur Verfügung stehenden Services registriert. Kommt eine Nachricht an, extrahiert der er den Namen des gewünschten Services sowie den Namen der Methode und führt diese aus. Die Ergebnisse, die von der ausgeführten Methode zurückgeliefert wurden, übergibt er dann der Callback-Methode (TODO: ändern). Weiterhin stellt er Funktionen zur Kommunikation mit den Content-Skripten in den verschiedenen Browser Tabs bereit.
+  Der MessageService im JarvisBG Modul hört auf Nachrichten die an die Background-Skripte gesendet werden. Hier werden alle zur Verfügung stehenden Services registriert. Kommt eine Nachricht an, extrahiert der er den Namen des gewünschten Services sowie den Namen der Methode und führt diese aus. Weiterhin stellt er Funktionen zur Kommunikation mit den Content-Skripten in den verschiedenen Browser Tabs bereit.
 
   \subsubsection{ParagraphDirective}
   Die ParagraphDirective umschließt die Paragraphen der Seite. Sie beinhaltet die GUI Elemente zur Manipulation der Schlüsselwörter sowie zur Anzeige der Ergebnisse. 
@@ -96,7 +96,7 @@ Im nachfolgenden Kapitel wird beschrieben, welche Technologien eingesetzt wurden
 	\vspace*{0.5cm}
  \end{minipage}
 
- Ist die Extension aktiviert und geladen, werden alle gefundenen Paragraphen mit einem Rahmen umschlossen (siehe Abbildung \ref{fig:paragraph}). So wird verdeutlicht, was alles zu einem Abschnitt dazugehört. Im oberen linken Eck des Paragraphen befindet sich ein Icon mit dem zuerst die Analyse des Paragraphen-Inhalts gestartet wird und anschließend automatisch eine Anfrage an Europeana gesendet wird.
+ Ist die Extension aktiviert und geladen, werden alle gefundenen Paragraphen mit einem Rahmen umschlossen (siehe Abbildung \ref{fig:paragraph}). So wird verdeutlicht, was alles zu einem Abschnitt dazugehört. Im oberen linken Eck des Paragraphen befindet sich ein Icon mit dem zuerst die Analyse des Paragraphen-Inhalts gestartet wird und anschließend automatisch eine Anfrage an Europeana gesendet wird. Wurde der Paragraph schon durchsucht. Wird nur noch die Anfrage an Europeana abgeschickt.
 
  \begin{minipage}{\linewidth}
 	\centering
@@ -120,9 +120,9 @@ Im nachfolgenden Kapitel wird beschrieben, welche Technologien eingesetzt wurden
 
  Sobald Schlüsselwörter zur Verfügung stehen, werden sie im Text hervorgehoben sowie oberhalb des Textes angezeigt (siehe Abbildung \ref{fig:keywords}). Dieser Fall tritt ein, wenn der Nutzer per Doppelklick ein Wort im Text ausgewählt hat oder wenn er durch Betätigen des Knopfes die Analyse des Paragraphen ausgelöst hat. Zur Anzeige der Schlüsselwörter wurden md-chips\footnote{\url{https://material.angularjs.org/latest/\#/api/material.components.chips/directive/mdChips}} verwendet. Diese Direktive aus der Angular Material Bibliothek gestattet die einfache Darstellung von Listenelementen und bietet zudem intuitive Steuerungsmöglichkeiten. Durch einen Klick auf das Kreuz neben einem Schlüsselwort kann dieses entfernt werden. Zudem kann mit den Pfeiltasten zwischen den Schlüsselwörtern hin und her gewechselt werden und durch das Betätigen der Entfernen-Taste kann das ausgewählte Element entfernt werden. Die md-chips Direktive bietet zudem eine gute Möglichkeit für die Zukunft, um Relevance Feedback umzusetzen. Darauf wird in Kapitel \ref{sec:futureWork} genauer eingegangen.
 
- Sobald Ergebnisse von Europeana zur Verfügung stehen, erscheinen im oberen rechten Eck des Paragraphen drei Icons, eines für jeden Quellen-Typ. Ein Zähler an jedem Icon signalisiert dem User, wie viele Ergebnisse zum jeweiligen Quellen-Typ gefunden wurden. Nach einem Klick auf eines der Icons öffnet sich ein Dialog mit den Ergebnissen.
+ Sobald Ergebnisse von Europeana zur Verfügung stehen, erscheinen im oberen rechten Eck des Paragraphen drei Icons, eines für jeden Quellen-Typ. Ein Zähler an jedem Icon signalisiert dem User, wie viele Ergebnisse zum jeweiligen Quellen-Typ gefunden wurden. Nach einem Klick auf eines der Icons öffnet sich ein Dialog mit den Ergebnissen. Das Suchsymbols wird blau um zu verdeutlichen, das die Ergebnisse aktuell sind.
 
- Hat der User die Schlüsselwörter angepasst, kann er mit einem Klick auf das neu erschienene Icon neben dem Suchsymbol eine erneute Suchanfrage an Europeana schicken, ohne den Paragraphen nochmals nach Schlüsselwörtern durchsuchen zu lassen.
+ Hat der User die Schlüsselwörter angepasst, wird das Suchsymbol wieder rot und die Icons zur Anzeige der Ergebnisse verschwinden. Durch einen erneuten Klick auf das rote Icon wird eine neue Anfrage losgeschickt ohne den Paragraphen nochmals nach Schlüsselwörtern zu durchsuchen.
 
  \begin{minipage}{\linewidth}
 	\centering
