@@ -12,7 +12,6 @@ This is a bachelor thesis about the automatic augmentation of webpages with cult
 
 ## setup
 1. Clone the repository
-2. Navigate to the `src` folder and use `bower install` to install the dependencies
 3. Go to `chrome://extensions/`
 4. Activate developer mode
 5. Click on  `load an unpacked extension` and locate your cloned repo, and select the `eexcessredesign/src` folder
