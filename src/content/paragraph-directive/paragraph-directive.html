@@ -1,18 +1,12 @@
 <div ng-class="{'detected-paragraph': showPlugin}" ng-mouseover="hover = true" ng-mouseleave="hover = false">
-    <div class="paragraph-buttons" ng-show="showPlugin" layout="row" layout-align="space-between start" ng-class="{'hovered': hover}">
+    <div class="paragraph-buttons" ng-show="showPlugin" layout="row" layout-align="space-between start"
+         ng-class="{'hovered': hover}">
         <!-- Query-->
         <div class="left-paragraph-buttons" layout="row" layout-align="space-between start">
             <md-button aria-label="Search"
                        class="md-accent md-raised query-button md-icon-button" ng-click="findKeywords()" layout="row"
                        layout-align="start center">
                 <md-icon md-svg-src="{{icons.search}}"></md-icon>
-                <md-tooltip>
-                    <span class="tooltip">Find keywords and query Europeana</span>
-                </md-tooltip>
-            </md-button>
-
-            <md-button aria-label="Query" class="md-accent md-raised query-button md-icon-button" ng-show="keywords.words.length !== 0" ng-click="query()">
-                <md-icon md-svg-src="{{icons.play}}"></md-icon>
                 <md-tooltip>
                     <span class="tooltip">Query Europeana</span>
                 </md-tooltip>
@@ -53,11 +47,14 @@
 
         </div>
     </div>
-    <md-chips ng-show="showPlugin && keywords.words.length !== 0" ng-model="keywords.words" placeholder="Add a keyword"
-              delete-button-label="Remove Keyword"
-              delete-hint="Press delete to remove keyword"
-              secondary-placeholder="Add a keyword" ng-class="{'hovered': hover}">
-    </md-chips>
+    <div ng-class="{'hovered': hover}" class="jarvis-chips">
+        <md-chips ng-show="showPlugin && keywords.words.length !== 0" ng-model="keywords.words"
+                  placeholder="Add a keyword"
+                  delete-button-label="Remove Keyword"
+                  delete-hint="Press delete to remove keyword"
+                  secondary-placeholder="Add a keyword">
+        </md-chips>
+    </div>
     <div class="highlightable" ng-transclude="true" keyword-selector handle-click="toggleKeyword(keyword)">
     </div>
 </div>

@@ -55,30 +55,29 @@
 
         // Searches for keywords and sends a query to europeana afterwards
         $scope.findKeywords = function () {
-            // outgoing paragraph has to be in a list. this is requested by the api of the REST service
-            var outgoingParagraph = [paragraph];
+            if ($scope.keywords.words.length === 0) {
+                // outgoing paragraph has to be in a list. this is requested by the api of the REST service
+                var outgoingParagraph = [paragraph];
 
-            MessageService.callBG({
-                method: {service: 'KeywordService', func: 'getParagraphEntities'},
-                data: outgoingParagraph
-            }, function (result) {
-                if (result.type === 'success') {
-                    angular.forEach(result.data, function (elem) {
-                        if ($scope.keywords.words.indexOf(elem) === -1) {
-                            $scope.keywords.words.push(elem.keyword);
-                        }
-                    });
+                MessageService.callBG({
+                    method: {service: 'KeywordService', func: 'getParagraphEntities'},
+                    data: outgoingParagraph
+                }, function (result) {
+                    if (result.type === 'success') {
+                        angular.forEach(result.data, function (elem) {
+                            if ($scope.keywords.words.indexOf(elem) === -1) {
+                                $scope.keywords.words.push(elem.keyword);
+                            }
+                        });
 
-                    _queryEuropeana();
-                } else {
-                    _showAlertDialog('Entity Service');
-                }
-            });
-        };
-
-        // Sends a query with the given keywords to europeana
-        $scope.query = function () {
-            _queryEuropeana();
+                        _queryEuropeana();
+                    } else {
+                        _showAlertDialog('Entity Service');
+                    }
+                });
+            } else {
+                _queryEuropeana();
+            }
         };
 
         // Watch for keyword changes to highlight the current keywords

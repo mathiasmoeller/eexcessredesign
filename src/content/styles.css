@@ -157,6 +157,14 @@
     text-decoration: underline;
 }
 
+.jarvis-chips {
+    opacity: 0.3;
+}
+
+.jarvis-chips.hovered {
+    opacity: 1;
+}
+
 /*Material Design Changes*/
 body {
     font-size: inherit;
@@ -213,6 +221,7 @@ md-icon {
     margin: 3px 0 3px 0;
     vertical-align: middle;
     cursor: text;
+
 }
 
 .md-chips:after {
