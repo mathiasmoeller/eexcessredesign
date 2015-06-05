@@ -1,3 +1,4 @@
 - check manifests rights
 - wenn die application aus ist, soll dann alles gelöscht werden?
 - screenshots auf kleinem bildschirm
+- screenshots erneuern
