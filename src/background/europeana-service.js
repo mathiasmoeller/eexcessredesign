@@ -61,7 +61,11 @@
         };
 
         var _parseLanguage = function (language) {
-            return 'LANGUAGE:' + language
+            if (language) {
+                return 'LANGUAGE:' + language;
+            } else {
+                return '';
+            }
         };
 
         chrome.storage.onChanged.addListener(function (changes) {
