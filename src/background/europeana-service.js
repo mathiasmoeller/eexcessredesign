@@ -5,12 +5,14 @@
     function EuService($http, ENV) {
         var resultNumber = 30;
         var reusability = '';
+        var language = '';
 
         // load settings from storage
         chrome.storage.sync.get('JarvisSettings', function(data) {
             if (data && data.JarvisSettings) {
                 reusability = _parseUsability(data.JarvisSettings.onlyOpen);
                 resultNumber = data.JarvisSettings.resultNumber;
+                language = _parseLanguage(data.JarvisSettings.language);
             }
         });
 
@@ -38,7 +40,8 @@
                 params: {
                     query: query,
                     rows: resultNumber,
-                    reusability: reusability
+                    reusability: reusability,
+                    qf: language
                 }
             })
                 .success(function (result) {
@@ -57,11 +60,16 @@
             }
         };
 
+        var _parseLanguage = function (language) {
+            return 'LANGUAGE:' + language
+        };
+
         chrome.storage.onChanged.addListener(function (changes) {
             if (changes.JarvisSettings) {
                 var change = changes.JarvisSettings.newValue;
                 resultNumber = change.resultNumber;
                 reusability = _parseUsability(change.onlyOpen);
+                language = _parseLanguage(change.language);
             }
         });
 
