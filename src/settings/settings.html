@@ -7,13 +7,14 @@
     <link rel="stylesheet" href="settings.css">
     <link rel="stylesheet" href="../common/angular-csp.css">
 </head>
-<body style="min-width: 410px" layout="column" layout-align="start center">
+<body style="min-width: 410px;" layout="column" layout-align="start center">
 <md-toolbar>
     <div class="md-toolbar-tools">
         <h4 class="md-subhead">Jarvis Settings</h4>
     </div>
 </md-toolbar>
-<div ng-controller="SettingsCtrl" layout="column" layout-align="space-between start" layout-padding style="height: 478px">
+<div ng-controller="SettingsCtrl" layout="column" layout-align="space-between start" layout-padding
+     style="height: 478px">
     <div class="settings-feedback settings-feedback-success"
          ng-show="feedback === 'saved'">Settings saved
     </div>
@@ -27,7 +28,17 @@
                            name="results" required>
                 </md-input-container>
             </form>
+
+            <div style="margin: 15px;">
+                <label>Only show sources described in :</label>
+                <md-select placeholder="Language" ng-model="language">
+                    <md-option ng-repeat="language in languages" value="{{language.abbrev}}">{{language.name}}
+                    </md-option>
+                </md-select>
+            </div>
+
             <md-switch ng-model="onlyOpen">Only show open, reusable sources</md-switch>
+
         </div>
         <div layout="row" layout-align="end end" class="settings">
             <md-button style="width: 70px; font-size: 18px" class="md-primary" ng-click="save()"
