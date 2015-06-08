@@ -70,7 +70,8 @@
                                 $scope.keywords.words.push(elem.keyword);
                             }
                         });
-
+                        
+                        $scope.newKeywords = false;
                         _queryEuropeana();
                     } else {
                         _showAlertDialog('Entity Service');
