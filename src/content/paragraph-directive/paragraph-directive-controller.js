@@ -70,7 +70,7 @@
                                 $scope.keywords.words.push(elem.keyword);
                             }
                         });
-                        
+
                         $scope.newKeywords = false;
                         _queryEuropeana();
                     } else {
@@ -83,12 +83,16 @@
         };
 
         // Watch for keyword changes to highlight the current keywords
-        $scope.$watch('keywords.words', function () {
+        $scope.$watch('keywords.words', function (newVal, oldVal) {
             HighlightService.removeHighlight($scope.id);
             angular.forEach($scope.keywords.words, function (keyword) {
                 HighlightService.highlight($scope.id, keyword);
             });
-            $scope.newKeywords = true;
+
+            // check if the keywords really have changed and check if it is the array was empty before
+            if (newVal != oldVal && oldVal.length !== 0) {
+                $scope.newKeywords = true;
+            }
         }, true);
 
         // Show a dialog with all found results
@@ -124,34 +128,36 @@
         };
 
         function _queryEuropeana() {
-            MessageService.callBG({
-                method: {service: 'EuService', func: 'query'},
-                data: $scope.keywords.words
-            }, function (result) {
-                if (result.type === 'success') {
-                    queryResults = result.data.items;
-                    $scope.resultNumbers = {};
-                    $scope.resultNumbers.textResults = 0;
-                    $scope.resultNumbers.imageResults = 0;
-                    $scope.resultNumbers.avResults = 0;
+            if ($scope.keywords.words.length !== 0) {
+                MessageService.callBG({
+                    method: {service: 'EuService', func: 'query'},
+                    data: $scope.keywords.words
+                }, function (result) {
+                    if (result.type === 'success') {
+                        queryResults = result.data.items;
+                        $scope.resultNumbers = {};
+                        $scope.resultNumbers.textResults = 0;
+                        $scope.resultNumbers.imageResults = 0;
+                        $scope.resultNumbers.avResults = 0;
 
-                    angular.forEach(queryResults, function (item) {
-                        if (item.type === 'TEXT') {
-                            $scope.resultNumbers.textResults++;
-                        } else if (item.type === 'IMAGE' || item.type === '3D') {
-                            $scope.resultNumbers.imageResults++;
-                        } else {
-                            $scope.resultNumbers.avResults++;
-                        }
-                    });
+                        angular.forEach(queryResults, function (item) {
+                            if (item.type === 'TEXT') {
+                                $scope.resultNumbers.textResults++;
+                            } else if (item.type === 'IMAGE' || item.type === '3D') {
+                                $scope.resultNumbers.imageResults++;
+                            } else {
+                                $scope.resultNumbers.avResults++;
+                            }
+                        });
 
-                    $scope.queried = true;
-                    $scope.newKeywords = false;
-                    $scope.$apply();
-                } else {
-                    _showAlertDialog('Europeana Service');
-                }
-            });
+                        $scope.queried = true;
+                        $scope.newKeywords = false;
+                        $scope.$apply();
+                    } else {
+                        _showAlertDialog('Europeana Service');
+                    }
+                });
+            }
         }
 
         function _showAlertDialog(errorSource) {
