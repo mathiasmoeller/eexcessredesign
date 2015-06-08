@@ -2,9 +2,9 @@
 
     'use strict';
 
-    function MessageService(EuService, KeywordService, UtilsService) {
+    function MessageService(EuropeanaService, KeywordService, UtilsService) {
         var service = {};
-        service.EuService = EuService;
+        service.EuropeanaService = EuropeanaService;
         service.KeywordService = KeywordService;
         service.UtilsService = UtilsService;
 

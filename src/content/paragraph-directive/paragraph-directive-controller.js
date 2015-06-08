@@ -130,7 +130,7 @@
         function _queryEuropeana() {
             if ($scope.keywords.words.length !== 0) {
                 MessageService.callBG({
-                    method: {service: 'EuService', func: 'query'},
+                    method: {service: 'EuropeanaService', func: 'query'},
                     data: $scope.keywords.words
                 }, function (result) {
                     if (result.type === 'success') {
