@@ -1,5 +1,5 @@
 \section{Implementierung}
-Im nachfolgenden Kapitel wird beschrieben, welche Technologien eingesetzt wurden und wie die Architektur der Anwendung aussieht. Des weiteren werden die wichtigsten AngularJS Services und Direktiven vorgestellt, die für die Anwendung implementiert wurden und es wird beschrieben, wie die Benutzeroberflächen umgesetzt worden sind.
+Im nachfolgenden Kapitel wird beschrieben, welche Technologien eingesetzt wurden und wie die Architektur der Anwendung aussieht. Des weiteren werden die wichtigsten AngularJS Services und Direktiven vorgestellt, die für die Anwendung implementiert wurden und es wird beschrieben, wie die Benutzeroberflächen umgesetzt worden sind. Abschließend werden die Erweiterungen aufgezählt, die nach der Auswertung der Evaluationen vorgenommen wurden.
 
  \subsection{Verwendung von AngularJS für alle Komponenten des Plugins}
  Für die Implementierung von Jarvis wurde sich für AngularJS\footnote{\url{https://angularjs.org/}} entschieden. Das von Google entwickelte JavaScript MVC-Framework bietet einige Vorteile, die Webentwicklung im Allgemeinen und die Entwicklung dieser Extension erleichtern.
@@ -43,13 +43,13 @@ Im nachfolgenden Kapitel wird beschrieben, welche Technologien eingesetzt wurden
  Um eine hohe Modularität und Austauschbarkeit zu gewährleisten sowie eine übersichtliche Architektur zu schaffen wurden einzelne Funktionalitäten in AngularJS Services und Direktiven ausgelagert. So können zum Beispiel die Services zur Kommunikation mit Europeana oder zum Finden der Schlüsselwörter einfach ausgetauscht werden um andere Algorithmen/Informations-Quellen zu benutzen. Die wichtigsten Services und Direktiven werden hier vorgestellt.
 
   \subsubsection{ParagraphDetectionService}
-  Jarvis teilt die aktuelle Webseite in Paragraphen ein. In diesem Fall sind damit nicht HTML Paragraphen Tags gemeint, sondern jegliche zusammenhängende Textpassage die größer als ein bestimmter Schwellwert ist. Der Algorithmus dafür stammt vom Lehrstuhl für Medieninformatik an der Universität Passau.
+  Jarvis teilt die aktuelle Webseite in Paragraphen ein. In diesem Fall sind damit nicht HTML Paragraphen Tags (\texttt{<p>}) gemeint, sondern jegliche zusammenhängende Textpassage die größer als ein bestimmter Schwellwert ist. Der Algorithmus dafür stammt vom Lehrstuhl für Medieninformatik an der Universität Passau.
  
-  Um Paragraphen innerhalb der Seite zu finden wird das DOM mit einem TreeWalker\footnote{\url{http://www.javascriptkit.com/dhtmltutors/treewalker.shtml}} durchlaufen. Es werden alle Knoten herausgefiltert, deren Vorgängerknoten Script, Style oder Noscript Tags sind, sowie Knoten die keinen Text oder weniger als 40 Zeichen enthalten. Die restlichen Knoten werden nun einzeln betrachtet um zusammenhängende Paragraphen zu erkennen. Dazu werden jeweils die Nachbarknoten betrachtet. Gibt es einen Nachbarknoten der kein reiner Textknoten ist und sich ebenfalls in der Liste der gefundenen Paragraphen befindet so werden beide als zusammengehörig abgespeichert. Alle Knoten zu denen kein passender Nachbar gefunden wurde, die jedoch mehr als 100 Zeichen haben und mindestens einen ``.'', werden als einzelne Paragraphen gespeichert.
+  Um Paragraphen innerhalb der Seite zu finden wird das DOM mit einem TreeWalker\footnote{\url{http://www.javascriptkit.com/dhtmltutors/treewalker.shtml}} durchlaufen. Es werden alle Knoten herausgefiltert, deren Vorgängerknoten Script (\texttt{<script>}), Style (\texttt{<style>}) oder Noscript Tags (\texttt{<noscript>}) sind, sowie Knoten die keinen Text oder weniger als 40 Zeichen enthalten. Die restlichen Knoten werden nun einzeln betrachtet um zusammenhängende Paragraphen zu erkennen. Dazu werden jeweils die Nachbarknoten betrachtet. Gibt es einen Nachbarknoten der kein reiner Textknoten ist und sich ebenfalls in der Liste der gefundenen Paragraphen befindet so werden beide als zusammengehörig abgespeichert. Alle Knoten zu denen kein passender Nachbar gefunden wurde, die jedoch mehr als 100 Zeichen haben und mindestens einen ``.'', werden als einzelne Paragraphen gespeichert.
 
   Daraufhin werden nochmal alle zusammengehörigen und einzelnen Paragraphen durchlaufen. Dabei wird der Vorgängerknoten jedes Elements betrachtet. Ist dieser ein Header Knoten so wird er als Überschrift des Paragraphen gespeichert. Jedes Element wird dann in die ParagraphDirective eingebettet.
 
-  Schlussendlich werden noch alle Anchor Tags innerhalb der Paragraphen entfernt. Sie verhindern das Auswählen eines Schlüsselwortes aus dem Text per Doppelklick und werden deshalb durch AnchorDirectives ersetzt. 
+  Schlussendlich werden noch alle Anchor Tags (\texttt{<a>}) innerhalb der Paragraphen entfernt. Sie verhindern das Auswählen eines Schlüsselwortes aus dem Text per Doppelklick und werden deshalb durch AnchorDirectives ersetzt. 
 
   Verpackt ist dieser Algorithmus in einen AngularJS Service (ParagraphDetectionService), der im Modul Jarvis registriert ist. Nach dem Laden der Extension führt er die Paragraphen-Suche aus und stellt Funktionen zum abrufen der gefunden Textpassagen bereit.
  
@@ -187,3 +187,9 @@ Im nachfolgenden Kapitel wird beschrieben, welche Technologien eingesetzt wurden
  \end{minipage}
 
  Die Einstellungen der Extension können über ein separates Fenster angepasst werden. Der in Abbildung \ref{fig:settings} dargestellte Dialog ist über den Extension Manager\footnote{Innerhalb von Chrome zu finden unter: \url{chrome://extensions/}}, sowie über den erwähnten Knopf im Popup, erreichbar. Er bietet momentan die Möglichkeit die Anzahl der Ergebnisse fest zu legen, die von Europeana geliefert werden sollen. Auch kann der User entscheiden ob er alle Quellen sehen möchte, oder nur solche, die er weiterverwenden und bearbeiten darf.
+
+
+ \subsection{1. Erweiterung des Prototyps}
+ Nach der ersten evaluation design und verhalten angepasst. Optionen hinzugefügt. Button entfernt
+ \subsection{2. Erweiterung des Prototyps (optional)}
+ Nach der zweiten evaluation neues recommender system angebunden

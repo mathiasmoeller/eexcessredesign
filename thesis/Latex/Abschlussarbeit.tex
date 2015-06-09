@@ -25,6 +25,7 @@
 \usepackage[pdfpagelabels=true]{hyperref}
 \usepackage[inline]{enumitem}
 \usepackage[section]{placeins}
+\usepackage{pdfpages}
 
 \usepackage{listings}
 \lstset{basicstyle=\footnotesize, captionpos=b, breaklines=true, showstringspaces=false, tabsize=2, frame=lines, numbers=left, numberstyle=\tiny, xleftmargin=2em, framexleftmargin=2em}
@@ -177,7 +178,8 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 % ----------------------------------------------------------------------------------------------------------
 \pagenumbering{Roman}
 \setcounter{page}{1}
-\lhead{Anhang \thesection}
+\lhead{Anhang}
+\rhead{}
 
 \begin{appendix}
 \section*{Anhang}
@@ -186,9 +188,13 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 \addtocontents{toc}{\vspace{-0.5em}}
 
 
-\subsection*{GUI Screenshots}
-\label{app:screenshot}
-Unterkategorie, die nicht im Inhaltsverzeichnis auftaucht.
+\subsection*{Thinking Aloud Test Anweisungen}
+\label{eval:instructions}
+\includepdf{Evaluation/instructions}
+
+\subsection*{Thinking Aloud Fragebogen}
+\label{eval:survey}
+\includepdf[pages={1,2}]{Evaluation/survey}
 
 \end{appendix}
 
