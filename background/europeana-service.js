@@ -84,6 +84,6 @@
 
     angular
         .module('JarvisBG')
-        .factory('EuService', EuService);
+        .factory('EuropeanaService', EuService);
 
 })();
