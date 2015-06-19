@@ -1,1 +1,2 @@
-- check manifests rights
+- neuen recommender anbinden
+- für alle tabs machen?
