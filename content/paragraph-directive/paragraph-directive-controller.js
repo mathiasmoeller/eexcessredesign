@@ -48,6 +48,16 @@
 
                     if (storageValue[tabID.data] !== undefined) {
                         $scope.showPlugin = storageValue[tabID.data];
+
+                        // reset the application
+                        if (!$scope.showPlugin) {
+                            HighlightService.removeHighlight($scope.id);
+                            $scope.keywords.words = [];
+                            $scope.resultNumbers.textResults = 0;
+                            $scope.resultNumbers.imageResults = 0;
+                            $scope.resultNumbers.avResults = 0;
+                            queryResults = undefined;
+                        }
                     }
                     $scope.$apply();
                 });
