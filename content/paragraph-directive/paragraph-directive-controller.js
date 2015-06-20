@@ -19,6 +19,7 @@
         $scope.keywords = {};
         $scope.keywords.words = [];
         $scope.newKeywords = true;
+        $scope.resultNumbers = {};
 
         var queryResults = undefined;
 
@@ -32,7 +33,7 @@
                     if (data.Jarvis[tabID.data] !== undefined) {
                         $scope.showPlugin = data.Jarvis[tabID.data];
                     }
-                    $scope.$apply();
+                    //$scope.$apply();
                 });
             }
         });
@@ -127,10 +128,11 @@
 
         // checks if the given keyword is already in the list. if yes it removes it. if now it adds it
         $scope.toggleKeyword = function (keyword) {
-            var index = $scope.keywords.words.indexOf(keyword);
+            var capitalizedKeyword = keyword.charAt(0).toUpperCase() + keyword.slice(1);
+            var index = $scope.keywords.words.indexOf(capitalizedKeyword);
 
             if (index === -1) {
-                $scope.keywords.words.push(keyword);
+                $scope.keywords.words.push(capitalizedKeyword);
             } else {
                 $scope.keywords.words.splice(index, 1);
             }
