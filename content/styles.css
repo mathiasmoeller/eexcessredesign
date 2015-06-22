@@ -81,6 +81,11 @@
     overflow: hidden;
 }
 
+.result-dialog-description {
+    max-height: 35px;
+    overflow: hidden;
+}
+
 .result-dialog-placeholder {
     padding: 16px 0 0 16px;
     font-size: 14px;

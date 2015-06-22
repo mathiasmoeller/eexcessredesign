@@ -83,13 +83,13 @@
                         });
 
                         $scope.newKeywords = false;
-                        _queryEuropeana();
+                        _queryRecommender();
                     } else {
                         _showAlertDialog('Entity Service');
                     }
                 });
             } else {
-                _queryEuropeana();
+                _queryRecommender();
             }
         };
 
@@ -139,23 +139,23 @@
             $scope.$apply();
         };
 
-        function _queryEuropeana() {
+        function _queryRecommender() {
             if ($scope.keywords.words.length !== 0) {
                 MessageService.callBG({
-                    method: {service: 'EuropeanaService', func: 'query'},
+                    method: {service: 'C4Service', func: 'query'},
                     data: $scope.keywords.words
                 }, function (result) {
                     if (result.type === 'success') {
-                        queryResults = result.data.items;
+                        queryResults = result.data;
                         $scope.resultNumbers = {};
                         $scope.resultNumbers.textResults = 0;
                         $scope.resultNumbers.imageResults = 0;
                         $scope.resultNumbers.avResults = 0;
 
                         angular.forEach(queryResults, function (item) {
-                            if (item.type === 'TEXT') {
+                            if (item.mediaType === 'TEXT' || item.mediaType === 'unknown') {
                                 $scope.resultNumbers.textResults++;
-                            } else if (item.type === 'IMAGE' || item.type === '3D') {
+                            } else if (item.mediaType === 'IMAGE' || item.type === '3D') {
                                 $scope.resultNumbers.imageResults++;
                             } else {
                                 $scope.resultNumbers.avResults++;
@@ -166,7 +166,7 @@
                         $scope.newKeywords = false;
                         $scope.$apply();
                     } else {
-                        _showAlertDialog('Europeana Service');
+                        _showAlertDialog('C4 Database Service');
                     }
                 });
             }
