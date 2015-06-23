@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     function ParagraphCtrl($scope, $sce, $mdDialog, HighlightService, MessageService, Utils, ParagraphDetectionService) {
@@ -24,49 +24,33 @@
         var queryResults = undefined;
 
         // Load the initial value from the storage
-        chrome.storage.sync.get('Jarvis', function (data) {
-            if (data.Jarvis) {
-                MessageService.callBG({
-                    method: {service: 'UtilsService', func: 'getCurrentTabID'}
-                }, function (tabID) {
-
-                    if (data.Jarvis[tabID.data] !== undefined) {
-                        $scope.showPlugin = data.Jarvis[tabID.data];
-                    }
-                    //$scope.$apply();
-                });
+        chrome.storage.sync.get('Jarvis', function(data) {
+            if (data.Jarvis !== undefined) {
+                $scope.showPlugin = data.Jarvis;
             }
         });
 
 
         // Set listener who listens for changes in the storage
-        chrome.storage.onChanged.addListener(function (changes) {
-            if (changes.Jarvis) {
-                var storageValue = changes.Jarvis.newValue;
-                MessageService.callBG({
-                    method: {service: 'UtilsService', func: 'getCurrentTabID'}
-                }, function (tabID) {
+        chrome.storage.onChanged.addListener(function(changes) {
+            if (changes.Jarvis && changes.Jarvis.newValue !== undefined) {
+                $scope.showPlugin = changes.Jarvis.newValue;
 
-                    if (storageValue[tabID.data] !== undefined) {
-                        $scope.showPlugin = storageValue[tabID.data];
-
-                        // reset the application
-                        if (!$scope.showPlugin) {
-                            HighlightService.removeHighlight($scope.id);
-                            $scope.keywords.words = [];
-                            $scope.resultNumbers.textResults = 0;
-                            $scope.resultNumbers.imageResults = 0;
-                            $scope.resultNumbers.avResults = 0;
-                            queryResults = undefined;
-                        }
-                    }
-                    $scope.$apply();
-                });
+                // reset the application
+                if (!$scope.showPlugin) {
+                    HighlightService.removeHighlight($scope.id);
+                    $scope.keywords.words = [];
+                    $scope.resultNumbers.textResults = 0;
+                    $scope.resultNumbers.imageResults = 0;
+                    $scope.resultNumbers.avResults = 0;
+                    queryResults = undefined;
+                }
+                $scope.$apply();
             }
         });
 
         // Searches for keywords and sends a query to europeana afterwards
-        $scope.query = function () {
+        $scope.query = function() {
             if ($scope.keywords.words.length === 0) {
                 // outgoing paragraph has to be in a list. this is requested by the api of the REST service
                 var outgoingParagraph = [paragraph];
@@ -74,9 +58,9 @@
                 MessageService.callBG({
                     method: {service: 'KeywordService', func: 'getParagraphEntities'},
                     data: outgoingParagraph
-                }, function (result) {
+                }, function(result) {
                     if (result.type === 'success') {
-                        angular.forEach(result.data, function (elem) {
+                        angular.forEach(result.data, function(elem) {
                             if ($scope.keywords.words.indexOf(elem) === -1) {
                                 $scope.keywords.words.push(elem.keyword);
                             }
@@ -94,9 +78,9 @@
         };
 
         // Watch for keyword changes to highlight the current keywords
-        $scope.$watch('keywords.words', function (newVal, oldVal) {
+        $scope.$watch('keywords.words', function(newVal, oldVal) {
             HighlightService.removeHighlight($scope.id);
-            angular.forEach($scope.keywords.words, function (keyword) {
+            angular.forEach($scope.keywords.words, function(keyword) {
                 HighlightService.highlight($scope.id, keyword);
             });
 
@@ -107,18 +91,18 @@
         }, true);
 
         // Show a dialog with all found results
-        $scope.showResults = function (event, selectedTab) {
+        $scope.showResults = function(event, selectedTab) {
             $mdDialog.show({
                 templateUrl: $sce.trustAsResourceUrl('chrome-extension://' + _extID + '/content/result-dialog/result-dialog.html'),
                 controller: 'ResultDialogCtrl',
                 resolve: {
-                    results: function () {
+                    results: function() {
                         return queryResults;
                     },
-                    selectedTab: function () {
+                    selectedTab: function() {
                         return selectedTab;
                     },
-                    resultNumbers: function () {
+                    resultNumbers: function() {
                         return $scope.resultNumbers;
                     }
                 },
@@ -127,7 +111,7 @@
         };
 
         // checks if the given keyword is already in the list. if yes it removes it. if now it adds it
-        $scope.toggleKeyword = function (keyword) {
+        $scope.toggleKeyword = function(keyword) {
             var capitalizedKeyword = keyword.charAt(0).toUpperCase() + keyword.slice(1);
             var index = $scope.keywords.words.indexOf(capitalizedKeyword);
 
@@ -144,7 +128,7 @@
                 MessageService.callBG({
                     method: {service: 'EuropeanaService', func: 'query'},
                     data: $scope.keywords.words
-                }, function (result) {
+                }, function(result) {
                     if (result.type === 'success') {
                         queryResults = result.data.items;
                         $scope.resultNumbers = {};
@@ -152,7 +136,7 @@
                         $scope.resultNumbers.imageResults = 0;
                         $scope.resultNumbers.avResults = 0;
 
-                        angular.forEach(queryResults, function (item) {
+                        angular.forEach(queryResults, function(item) {
                             if (item.type === 'TEXT') {
                                 $scope.resultNumbers.textResults++;
                             } else if (item.type === 'IMAGE' || item.type === '3D') {
