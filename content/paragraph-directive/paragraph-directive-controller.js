@@ -14,6 +14,7 @@
         $scope.icons.image = $sce.trustAsResourceUrl('chrome-extension://' + _extID + '/media/icons/image-icon.svg');
         $scope.icons.text = $sce.trustAsResourceUrl('chrome-extension://' + _extID + '/media/icons/text-icon.svg');
         $scope.icons.video = $sce.trustAsResourceUrl('chrome-extension://' + _extID + '/media/icons/video-icon.svg');
+        $scope.icons.unassinged = $sce.trustAsResourceUrl('chrome-extension://' + _extID + '/media/icons/unknown-icon.svg');
 
         // Must be a deep object to prevent problems with the watcher
         $scope.keywords = {};
@@ -33,7 +34,6 @@
                     if (data.Jarvis[tabID.data] !== undefined) {
                         $scope.showPlugin = data.Jarvis[tabID.data];
                     }
-                    //$scope.$apply();
                 });
             }
         });
@@ -151,9 +151,12 @@
                         $scope.resultNumbers.textResults = 0;
                         $scope.resultNumbers.imageResults = 0;
                         $scope.resultNumbers.avResults = 0;
+                        $scope.resultNumbers.unassignedResults = 0;
 
                         angular.forEach(queryResults, function (item) {
-                            if (item.mediaType === 'TEXT' || item.mediaType === 'unknown') {
+                            if (item.mediaType === 'unknown') {
+                                $scope.resultNumbers.unassignedResults++;
+                            } else if (item.mediaType === 'TEXT') {
                                 $scope.resultNumbers.textResults++;
                             } else if (item.mediaType === 'IMAGE' || item.type === '3D') {
                                 $scope.resultNumbers.imageResults++;

@@ -123,6 +123,11 @@
     -webkit-animation-duration: 0.3s;
 }
 
+#unassigned-results {
+    -webkit-animation-delay: 0.3s;
+    -webkit-animation-duration: 0.3s;
+}
+
 .query-icon {
     position: relative;
     top: -3px;

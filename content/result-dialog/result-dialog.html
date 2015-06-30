@@ -8,7 +8,7 @@
                         No text results found
                     </div>
                     <md-list>
-                        <md-list-item ng-repeat="result in results | resultFilter: {'TEXT': true, 'unknown': true}" ng-mouseleave="showDetailDialog = false">
+                        <md-list-item ng-repeat="result in results | resultFilter: {'TEXT': true}" ng-mouseleave="showDetailDialog = false">
                             <div class="result-image-container" layout="row" layout-align="start center" ng-mouseenter="showDetailDialog = true"
                                  ng-class="{'result-image-container-small': !showDetailDialog, 'result-image-container-big': showDetailDialog}">
                                 <a href="{{result.documentBadge.uri}}" target="_blank" >
@@ -117,6 +117,68 @@
                                                 <span class="name">Description:</span>
                                             </div>
                                             <div flex>{{result.description}}</div>
+                                        </md-list-item>
+                                        <md-list-item class="detailed-item" layout="row" layout-align="start center">
+                                            <div flex="25" layout-align="start start">
+                                                <span class="name">Data Provider:</span>
+                                            </div>
+                                            <div flex>{{result.documentBadge.provider}}</div>
+                                        </md-list-item>
+                                        <md-list-item class="detailed-item" layout="row" layout-align="start center">
+                                            <div flex="25" layout-align="start start">
+                                                <span class="name">Language:</span>
+                                            </div>
+                                            <div flex>{{result.language}}</div>
+                                        </md-list-item>
+                                        <md-list-item class="detailed-item" layout="row" layout-align="start center">
+                                            <div flex="25" layout-align="start start">
+                                                <span class="name">Rights:</span>
+                                            </div>
+                                            <div flex><a ng-if="isUri(result.licence)" href="{{result.licence}}" target="_blank">{{result.licence}}</a>
+                                                <span ng-if="!isUri(result.licence)">{{result.licence}}</span>
+                                            </div>
+                                        </md-list-item>
+                                    </md-list>
+                                </div>
+                            </div>
+                            <md-divider ng-show="!$last"></md-divider>
+                        </md-list-item>
+                    </md-list>
+                </md-content>
+            </md-tab>
+
+            <md-tab label="Unassigned Results">
+                <md-content>
+                    <div class="result-dialog-placeholder" ng-if="resultNums.unassignedResults === 0">
+                        No unassigned results found
+                    </div>
+                    <md-list>
+                        <md-list-item ng-repeat="result in results | resultFilter: {'unknown': true}" ng-mouseleave="showDetailDialog = false">
+                            <div class="result-image-container" layout="row" layout-align="start center" ng-mouseenter="showDetailDialog = true"
+                                 ng-class="{'result-image-container-small': !showDetailDialog, 'result-image-container-big': showDetailDialog}">
+                                <a href="{{result.documentBadge.uri}}" target="_blank" >
+                                    <img ng-src="{{result.previewImage || textFallback}}" class="preview-icon"
+                                         ng-class="{'preview-icon-small': !showDetailDialog, 'preview-icon-big': showDetailDialog}">
+                                </a>
+                            </div>
+
+                            <div layout="column" layout-align="start start" layout-fill layout-padding>
+
+                                <div class="result-dialog-text" layout="column" layout-align="center start">
+                                    <div class="result-dialog-header" layout="column" layout-align="center start">
+                                        <a href="{{result.documentBadge.uri}}" target="_blank">
+                                            {{result.title}}
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div ng-show="showDetailDialog" layout-fill>
+                                    <md-list class="detailed-list">
+                                        <md-list-item class="detailed-item" layout="row" layout-align="start center">
+                                            <div flex="25" layout-align="start start">
+                                                <span class="name">Description:</span>
+                                            </div>
+                                            <div flex class="result-dialog-description">{{result.description}}</div>
                                         </md-list-item>
                                         <md-list-item class="detailed-item" layout="row" layout-align="start center">
                                             <div flex="25" layout-align="start start">
