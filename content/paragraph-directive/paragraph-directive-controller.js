@@ -14,48 +14,44 @@
         $scope.icons.image = $sce.trustAsResourceUrl('chrome-extension://' + _extID + '/media/icons/image-icon.svg');
         $scope.icons.text = $sce.trustAsResourceUrl('chrome-extension://' + _extID + '/media/icons/text-icon.svg');
         $scope.icons.video = $sce.trustAsResourceUrl('chrome-extension://' + _extID + '/media/icons/video-icon.svg');
+        $scope.icons.unassinged = $sce.trustAsResourceUrl('chrome-extension://' + _extID + '/media/icons/unknown-icon.svg');
 
         // Must be a deep object to prevent problems with the watcher
         $scope.keywords = {};
         $scope.keywords.words = [];
         $scope.newKeywords = true;
+        $scope.resultNumbers = {};
 
         var queryResults = undefined;
 
         // Load the initial value from the storage
-        chrome.storage.sync.get('Jarvis', function (data) {
-            if (data.Jarvis) {
-                MessageService.callBG({
-                    method: {service: 'UtilsService', func: 'getCurrentTabID'}
-                }, function (tabID) {
-
-                    if (data.Jarvis[tabID.data] !== undefined) {
-                        $scope.showPlugin = data.Jarvis[tabID.data];
-                    }
-                    $scope.$apply();
-                });
+        chrome.storage.sync.get('Jarvis', function(data) {
+            if (data.Jarvis !== undefined) {
+                $scope.showPlugin = data.Jarvis;
             }
         });
 
 
         // Set listener who listens for changes in the storage
-        chrome.storage.onChanged.addListener(function (changes) {
-            if (changes.Jarvis) {
-                var storageValue = changes.Jarvis.newValue;
-                MessageService.callBG({
-                    method: {service: 'UtilsService', func: 'getCurrentTabID'}
-                }, function (tabID) {
+        chrome.storage.onChanged.addListener(function(changes) {
+            if (changes.Jarvis && changes.Jarvis.newValue !== undefined) {
+                $scope.showPlugin = changes.Jarvis.newValue;
 
-                    if (storageValue[tabID.data] !== undefined) {
-                        $scope.showPlugin = storageValue[tabID.data];
-                    }
-                    $scope.$apply();
-                });
+                // reset the application
+                if (!$scope.showPlugin) {
+                    HighlightService.removeHighlight($scope.id);
+                    $scope.keywords.words = [];
+                    $scope.resultNumbers.textResults = 0;
+                    $scope.resultNumbers.imageResults = 0;
+                    $scope.resultNumbers.avResults = 0;
+                    queryResults = undefined;
+                }
+                $scope.$apply();
             }
         });
 
         // Searches for keywords and sends a query to europeana afterwards
-        $scope.query = function () {
+        $scope.query = function() {
             if ($scope.keywords.words.length === 0) {
                 // outgoing paragraph has to be in a list. this is requested by the api of the REST service
                 var outgoingParagraph = [paragraph];
@@ -63,29 +59,29 @@
                 MessageService.callBG({
                     method: {service: 'KeywordService', func: 'getParagraphEntities'},
                     data: outgoingParagraph
-                }, function (result) {
+                }, function(result) {
                     if (result.type === 'success') {
-                        angular.forEach(result.data, function (elem) {
+                        angular.forEach(result.data, function(elem) {
                             if ($scope.keywords.words.indexOf(elem) === -1) {
                                 $scope.keywords.words.push(elem.keyword);
                             }
                         });
 
                         $scope.newKeywords = false;
-                        _queryEuropeana();
+                        _queryRecommender();
                     } else {
                         _showAlertDialog('Entity Service');
                     }
                 });
             } else {
-                _queryEuropeana();
+                _queryRecommender();
             }
         };
 
         // Watch for keyword changes to highlight the current keywords
-        $scope.$watch('keywords.words', function (newVal, oldVal) {
+        $scope.$watch('keywords.words', function(newVal, oldVal) {
             HighlightService.removeHighlight($scope.id);
-            angular.forEach($scope.keywords.words, function (keyword) {
+            angular.forEach($scope.keywords.words, function(keyword) {
                 HighlightService.highlight($scope.id, keyword);
             });
 
@@ -96,18 +92,18 @@
         }, true);
 
         // Show a dialog with all found results
-        $scope.showResults = function (event, selectedTab) {
+        $scope.showResults = function(event, selectedTab) {
             $mdDialog.show({
                 templateUrl: $sce.trustAsResourceUrl('chrome-extension://' + _extID + '/content/result-dialog/result-dialog.html'),
                 controller: 'ResultDialogCtrl',
                 resolve: {
-                    results: function () {
+                    results: function() {
                         return queryResults;
                     },
-                    selectedTab: function () {
+                    selectedTab: function() {
                         return selectedTab;
                     },
-                    resultNumbers: function () {
+                    resultNumbers: function() {
                         return $scope.resultNumbers;
                     }
                 },
@@ -116,34 +112,38 @@
         };
 
         // checks if the given keyword is already in the list. if yes it removes it. if now it adds it
-        $scope.toggleKeyword = function (keyword) {
-            var index = $scope.keywords.words.indexOf(keyword);
+        $scope.toggleKeyword = function(keyword) {
+            var capitalizedKeyword = keyword.charAt(0).toUpperCase() + keyword.slice(1);
+            var index = $scope.keywords.words.indexOf(capitalizedKeyword);
 
             if (index === -1) {
-                $scope.keywords.words.push(keyword);
+                $scope.keywords.words.push(capitalizedKeyword);
             } else {
                 $scope.keywords.words.splice(index, 1);
             }
             $scope.$apply();
         };
 
-        function _queryEuropeana() {
+        function _queryRecommender() {
             if ($scope.keywords.words.length !== 0) {
                 MessageService.callBG({
-                    method: {service: 'EuropeanaService', func: 'query'},
+                    method: {service: 'C4Service', func: 'query'},
                     data: $scope.keywords.words
-                }, function (result) {
+                }, function(result) {
                     if (result.type === 'success') {
-                        queryResults = result.data.items;
+                        queryResults = result.data;
                         $scope.resultNumbers = {};
                         $scope.resultNumbers.textResults = 0;
                         $scope.resultNumbers.imageResults = 0;
                         $scope.resultNumbers.avResults = 0;
+                        $scope.resultNumbers.unassignedResults = 0;
 
                         angular.forEach(queryResults, function (item) {
-                            if (item.type === 'TEXT') {
+                            if (item.mediaType === 'unknown') {
+                                $scope.resultNumbers.unassignedResults++;
+                            } else if (item.mediaType === 'TEXT') {
                                 $scope.resultNumbers.textResults++;
-                            } else if (item.type === 'IMAGE' || item.type === '3D') {
+                            } else if (item.mediaType === 'IMAGE' || item.type === '3D') {
                                 $scope.resultNumbers.imageResults++;
                             } else {
                                 $scope.resultNumbers.avResults++;
@@ -154,7 +154,7 @@
                         $scope.newKeywords = false;
                         $scope.$apply();
                     } else {
-                        _showAlertDialog('Europeana Service');
+                        _showAlertDialog('C4 Database Service');
                     }
                 });
             }

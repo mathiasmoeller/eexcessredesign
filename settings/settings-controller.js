@@ -27,8 +27,12 @@
                 $scope.onlyOpen = data.JarvisSettings.onlyOpen;
                 $scope.resultNumber = data.JarvisSettings.resultNumber;
                 $scope.language = data.JarvisSettings.language;
-                $scope.$apply();
+            } else {
+                $scope.onlyOpen = false;
+                $scope.resultNumber = 30;
+                $scope.language = '';
             }
+            $scope.$apply();
         });
 
 

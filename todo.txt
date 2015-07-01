@@ -1,3 +1,2 @@
-- check manifests rights
-- wenn die application aus ist, soll dann alles gelöscht werden?
-- default values laden
+- neuen recommender anbinden
+- für alle tabs machen?

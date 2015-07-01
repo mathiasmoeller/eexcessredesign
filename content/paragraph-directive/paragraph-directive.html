@@ -38,11 +38,21 @@
             <!-- Video-->
             <md-button id="video-results" ng-if="queried" aria-label="Video"
                        class="animated bounceIn md-primary md-icon-button md-raised result-button"
-                       ng-click="showResults($event, 2)" style="margin-right: 10px">
+                       ng-click="showResults($event, 2)">
                 <md-icon md-svg-src="{{icons.video}}"></md-icon>
                 <md-tooltip class="tooltip">Show audio and video results</md-tooltip>
                 <span class="result-counter" layout="row"
                       layout-align="center center">{{resultNumbers.avResults}}</span>
+            </md-button>
+
+            <!-- Unassigned-->
+            <md-button id="unassigned-results" ng-if="queried" aria-label="Unassigned"
+                       class="animated bounceIn md-primary md-icon-button md-raised result-button"
+                       ng-click="showResults($event, 3)" style="margin-right: 10px">
+                <md-icon md-svg-src="{{icons.unassinged}}"></md-icon>
+                <md-tooltip class="tooltip">Show unassigned results</md-tooltip>
+                <span class="result-counter" layout="row"
+                      layout-align="center center">{{resultNumbers.unassignedResults}}</span>
             </md-button>
 
         </div>

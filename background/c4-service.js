@@ -2,69 +2,48 @@
 
     'use strict';
 
-    function EuService($http, ENV) {
+    function C4Service($http, ENV) {
         var resultNumber = 30;
-        var reusability = '';
         var language = '';
 
         // load settings from storage
         chrome.storage.sync.get('JarvisSettings', function(data) {
             if (data && data.JarvisSettings) {
-                reusability = _parseUsability(data.JarvisSettings.onlyOpen);
                 resultNumber = data.JarvisSettings.resultNumber;
                 language = _parseLanguage(data.JarvisSettings.language);
             }
         });
 
-
         var _buildQueryTerm = function (terms) {
-            var queryTerm = '';
+            var query = [];
             angular.forEach(terms, function (value) {
-                if (queryTerm === '') {
-                    queryTerm = _wrapTerm(value);
-                } else {
-                    queryTerm = queryTerm.concat(' OR ' + _wrapTerm(value));
-                }
+                    query.push({"text": value});
             });
-            return queryTerm;
-        };
 
-        var _wrapTerm = function(term) {
-            return '(' + term + ')';
+            return query;
         };
 
         var _query = function (tabID, queryTerms, callback) {
 
             var query = _buildQueryTerm(queryTerms);
-            $http.get(ENV.EUROPEANA_API, {
-                params: {
-                    query: query,
-                    rows: resultNumber,
-                    reusability: reusability,
-                    qf: language
-                }
+            $http.post(ENV.C4_API, {
+                    contextKeywords: query,
+                    numResults: resultNumber,
+                    languages: language
             })
                 .success(function (result) {
-                    callback({data: result, type: 'success'});
+                    callback({data: result.result, type: 'success'});
                 }).error(function (error) {
                     console.log(error);
                     callback({data: error, type: 'error'});
                 });
         };
 
-        var _parseUsability = function (onlyOpen) {
-            if (onlyOpen) {
-                return 'open';
-            } else {
-                return '';
-            }
-        };
-
         var _parseLanguage = function (language) {
             if (language) {
-                return 'LANGUAGE:' + language;
+                return [{"iso2": language}];
             } else {
-                return '';
+                return [];
             }
         };
 
@@ -72,7 +51,6 @@
             if (changes.JarvisSettings) {
                 var change = changes.JarvisSettings.newValue;
                 resultNumber = change.resultNumber;
-                reusability = _parseUsability(change.onlyOpen);
                 language = _parseLanguage(change.language);
             }
         });
@@ -84,6 +62,6 @@
 
     angular
         .module('JarvisBG')
-        .factory('EuropeanaService', EuService);
+        .factory('C4Service', C4Service);
 
 })();
