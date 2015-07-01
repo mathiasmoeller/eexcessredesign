@@ -81,6 +81,11 @@
     overflow: hidden;
 }
 
+.result-dialog-description {
+    max-height: 35px;
+    overflow: hidden;
+}
+
 .result-dialog-placeholder {
     padding: 16px 0 0 16px;
     font-size: 14px;
@@ -115,6 +120,11 @@
 
 #video-results {
     -webkit-animation-delay: 0.2s;
+    -webkit-animation-duration: 0.3s;
+}
+
+#unassigned-results {
+    -webkit-animation-delay: 0.3s;
     -webkit-animation-duration: 0.3s;
 }
 

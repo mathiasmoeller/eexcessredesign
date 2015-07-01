@@ -12,6 +12,11 @@
         $scope.hide = function () {
             $mdDialog.hide();
         };
+
+        $scope.isUri = function (string) {
+                var pattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+                return pattern.test(string);
+        }
     }
 
     angular
@@ -19,9 +24,10 @@
         .controller('ResultDialogCtrl', ResultDialogCtrl)
         .filter('resultFilter', function () {
             return function (results, types) {
+                //debugger;
                 var out = [];
                 angular.forEach(results, function (value) {
-                    if (types[value.type] === true) {
+                    if (types[value.mediaType] === true) {
                         out.push(value);
                     }
                 });
