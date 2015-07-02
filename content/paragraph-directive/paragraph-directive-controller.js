@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     function ParagraphCtrl($scope, $sce, $mdDialog, HighlightService, MessageService, Utils, ParagraphDetectionService) {
@@ -67,8 +67,19 @@
                             }
                         });
 
-                        $scope.newKeywords = false;
-                        _queryRecommender();
+                        if ($scope.keywords.words.length !== 0) {
+                            $scope.newKeywords = false;
+                            _queryRecommender();
+                        } else {
+                            $mdDialog.show(
+                                $mdDialog.alert()
+                                    .parent(angular.element(document.body))
+                                    .title('No keywords found')
+                                    .content('The automatic search did not find any keywords. You have to add them on your own.')
+                                    .ariaLabel('Error Dialog')
+                                    .ok('Ok')
+                            );
+                        }
                     } else {
                         _showAlertDialog('Entity Service');
                     }
@@ -138,7 +149,7 @@
                         $scope.resultNumbers.avResults = 0;
                         $scope.resultNumbers.unassignedResults = 0;
 
-                        angular.forEach(queryResults, function (item) {
+                        angular.forEach(queryResults, function(item) {
                             if (item.mediaType === 'unknown') {
                                 $scope.resultNumbers.unassignedResults++;
                             } else if (item.mediaType === 'TEXT') {
