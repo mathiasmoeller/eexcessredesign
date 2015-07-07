@@ -99,6 +99,7 @@
             // check if the keywords really have changed and check if it is the array was empty before
             if (newVal != oldVal && oldVal.length !== 0) {
                 $scope.newKeywords = true;
+                _queryRecommender();
             }
         }, true);
 
