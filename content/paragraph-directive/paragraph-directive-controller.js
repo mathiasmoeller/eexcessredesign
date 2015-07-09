@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     function ParagraphCtrl($scope, $sce, $mdDialog, HighlightService, MessageService, Utils, ParagraphDetectionService) {
@@ -67,8 +67,19 @@
                             }
                         });
 
-                        $scope.newKeywords = false;
-                        _queryRecommender();
+                        if ($scope.keywords.words.length !== 0) {
+                            $scope.newKeywords = false;
+                            _queryRecommender();
+                        } else {
+                            $mdDialog.show(
+                                $mdDialog.alert()
+                                    .parent(angular.element(document.body))
+                                    .title('No keywords found')
+                                    .content('The automatic search did not find any keywords. You have to add them on your own.')
+                                    .ariaLabel('Error Dialog')
+                                    .ok('Ok')
+                            );
+                        }
                     } else {
                         _showAlertDialog('Entity Service');
                     }
@@ -88,6 +99,7 @@
             // check if the keywords really have changed and check if it is the array was empty before
             if (newVal != oldVal && oldVal.length !== 0) {
                 $scope.newKeywords = true;
+                _queryRecommender();
             }
         }, true);
 
@@ -138,12 +150,12 @@
                         $scope.resultNumbers.avResults = 0;
                         $scope.resultNumbers.unassignedResults = 0;
 
-                        angular.forEach(queryResults, function (item) {
-                            if (item.mediaType === 'unknown') {
+                        angular.forEach(queryResults, function(item) {
+                            if (item.mediaType.toUpperCase() === 'UNKNOWN') {
                                 $scope.resultNumbers.unassignedResults++;
-                            } else if (item.mediaType === 'TEXT') {
+                            } else if (item.mediaType.toUpperCase() === 'TEXT') {
                                 $scope.resultNumbers.textResults++;
-                            } else if (item.mediaType === 'IMAGE' || item.type === '3D') {
+                            } else if (item.mediaType.toUpperCase() === 'IMAGE' || item.type === '3D') {
                                 $scope.resultNumbers.imageResults++;
                             } else {
                                 $scope.resultNumbers.avResults++;
