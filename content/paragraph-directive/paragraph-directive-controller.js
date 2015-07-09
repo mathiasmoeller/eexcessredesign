@@ -151,11 +151,11 @@
                         $scope.resultNumbers.unassignedResults = 0;
 
                         angular.forEach(queryResults, function(item) {
-                            if (item.mediaType === 'unknown') {
+                            if (item.mediaType.toUpperCase() === 'UNKNOWN') {
                                 $scope.resultNumbers.unassignedResults++;
-                            } else if (item.mediaType === 'TEXT') {
+                            } else if (item.mediaType.toUpperCase() === 'TEXT') {
                                 $scope.resultNumbers.textResults++;
-                            } else if (item.mediaType === 'IMAGE' || item.type === '3D') {
+                            } else if (item.mediaType.toUpperCase() === 'IMAGE' || item.type === '3D') {
                                 $scope.resultNumbers.imageResults++;
                             } else {
                                 $scope.resultNumbers.avResults++;
