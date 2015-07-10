@@ -153,7 +153,7 @@
                         No unassigned results found
                     </div>
                     <md-list>
-                        <md-list-item ng-repeat="result in results | resultFilter: {'unknown': true}" ng-mouseleave="showDetailDialog = false">
+                        <md-list-item ng-repeat="result in results | resultFilter: {'UNKNOWN': true}" ng-mouseleave="showDetailDialog = false">
                             <div class="result-image-container" layout="row" layout-align="start center" ng-mouseenter="showDetailDialog = true"
                                  ng-class="{'result-image-container-small': !showDetailDialog, 'result-image-container-big': showDetailDialog}">
                                 <a href="{{result.documentBadge.uri}}" target="_blank" >

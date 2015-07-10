@@ -150,15 +150,20 @@
                         $scope.resultNumbers.avResults = 0;
                         $scope.resultNumbers.unassignedResults = 0;
 
+                        // we uppercase everything because some types are returned lowercase and some uppercase
                         angular.forEach(queryResults, function(item) {
                             if (item.mediaType.toUpperCase() === 'UNKNOWN') {
                                 $scope.resultNumbers.unassignedResults++;
+                                item.mediaType = item.mediaType.toUpperCase();
                             } else if (item.mediaType.toUpperCase() === 'TEXT') {
                                 $scope.resultNumbers.textResults++;
+                                item.mediaType = item.mediaType.toUpperCase();
                             } else if (item.mediaType.toUpperCase() === 'IMAGE' || item.type === '3D') {
                                 $scope.resultNumbers.imageResults++;
+                                item.mediaType = item.mediaType.toUpperCase();
                             } else {
                                 $scope.resultNumbers.avResults++;
+                                item.mediaType = item.mediaType.toUpperCase();
                             }
                         });
 
