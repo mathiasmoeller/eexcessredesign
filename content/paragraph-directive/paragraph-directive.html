@@ -5,11 +5,11 @@
         <div class="left-paragraph-buttons" layout="row" layout-align="space-between start">
             <md-button aria-label="Search"
                        class="md-raised query-button md-icon-button" ng-click="query()" layout="row"
-                       layout-align="start center" ng-class="{'md-primary': !newKeywords, 'md-accent': newKeywords}">
+                       layout-align="start center" ng-class="{'md-primary': !newKeywords, 'md-accent': newKeywords || keywords.words.length === 0}">
                 <md-icon md-svg-src="{{icons.search}}"></md-icon>
             </md-button>
         </div>
-        <div layout="row" layout-align="end end" ng-hide="newKeywords">
+        <div layout="row" layout-align="end end" ng-hide="newKeywords || keywords.words.length == 0">
             <!-- Text-->
             <md-button id="text-results" ng-if="queried" aria-label="Text"
                        class="animated bounceIn md-primary md-icon-button md-raised result-button"
