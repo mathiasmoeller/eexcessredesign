@@ -4,7 +4,7 @@
 
     function C4Service($http, ENV) {
         var resultNumber = 30;
-        var language = '';
+        var language = [];
 
         // load settings from storage
         chrome.storage.sync.get('JarvisSettings', function(data) {

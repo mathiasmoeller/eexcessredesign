@@ -28,7 +28,7 @@
                 });
 
                 function _removeProperties() {
-                    $scope.element.css({cursor: 'default'});
+                    $scope.element.css({cursor: 'auto'});
                     $scope.element.off('dblclick');
                 }
 

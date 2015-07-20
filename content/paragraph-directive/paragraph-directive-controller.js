@@ -96,8 +96,8 @@
                 HighlightService.highlight($scope.id, keyword);
             });
 
-            // check if the keywords really have changed and check if it is the array was empty before
-            if (newVal != oldVal && oldVal.length !== 0) {
+            // check if the keywords really have changed
+            if (newVal != oldVal) {
                 $scope.newKeywords = true;
                 _queryRecommender();
             }
